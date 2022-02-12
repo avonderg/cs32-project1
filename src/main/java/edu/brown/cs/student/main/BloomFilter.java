@@ -5,7 +5,7 @@ public interface BloomFilter<T> {
 //    int size;
 //    List<ToIntFunction<T>> hashFunctions;
 
-    public String createBf(T value);
+    public String createBf(int r, int n);
 
     public String insertBf(T value);
 

@@ -44,7 +44,7 @@ public class BloomHashes {
      * @param bytes the byte array to convert
      * @return the hex string
      */
-    private static String bytesToHex(byte[] bytes) {
+    public static String bytesToHex(byte[] bytes) {
         byte[] hexArray = "0123456789ABCDEF".getBytes(StandardCharsets.UTF_8);
         byte[] hexChars = new byte[bytes.length * 2];
         for (int j = 0; j < bytes.length; j++) {
