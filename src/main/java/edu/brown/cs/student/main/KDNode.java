@@ -2,7 +2,17 @@ package edu.brown.cs.student.main;
 
 public interface KDNode {
 
-  public double getCoord(int dim);
+  public double[] getCoords();
+
+  public KDNode getLeft();
+
+  public KDNode getRight();
+
+  public void setLeft(KDNode leftNode);
+
+  public void setRight(KDNode rightNode);
+
+
 
 
 }
