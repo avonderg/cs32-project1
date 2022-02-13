@@ -11,5 +11,5 @@ public interface BloomFilter<T> {
 
     public String insertBf(byte[] value) throws NoSuchAlgorithmException;
 
-    public String queryBf(T value);
+    public String queryBf(byte[] value) throws NoSuchAlgorithmException;
 }

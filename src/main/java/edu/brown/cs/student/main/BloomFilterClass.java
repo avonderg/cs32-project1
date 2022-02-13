@@ -48,8 +48,16 @@ public class BloomFilterClass<T> implements BloomFilter {
     }
 
     @Override
-    public String queryBf(Object value) {
-        return null;
+    public String queryBf(byte[] value) throws NoSuchAlgorithmException {
+        BloomHashes hash = new BloomHashes();
+        BigInteger[] hashFunctions = hash.createHashes(value, this.getN()); // res of hash functions
+        for (BigInteger func: hashFunctions) {
+            int val = func.mod(BigInteger.valueOf(this.set.length())).intValue(); // index in bitset
+            if (!this.set.get(val)) { // if value not in set
+                return value.toString() + " is definitely not in the set.\n";
+            }
+        }
+        return value.toString() + " might be in the set.";
     }
 
 }
