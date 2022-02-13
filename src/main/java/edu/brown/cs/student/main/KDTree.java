@@ -28,8 +28,8 @@ public class KDTree<T extends KDNode> {
     int mid = (start + end)/2;
     currNode = elementList.get(mid);
 
-    currNode.setLeft(createKDTree(elementList, start, mid - 1, depth + 1));
-    currNode.setRight(createKDTree(elementList, mid + 1, end, depth + 1));
+    currNode.setLeft(this.createKDTree(elementList, start, mid - 1, depth + 1));
+    currNode.setRight(this.createKDTree(elementList, mid + 1, end, depth + 1));
     return currNode;
 
   }

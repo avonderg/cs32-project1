@@ -81,4 +81,7 @@ public class starMethodsTest {
     errorCommand.add("Sol");
     assertEquals(testStarMethods.checkArgs(errorCommand), "error");
   }
+
+  public static class KDTreeTest {
+  }
 }
