@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main;
+package main.java.edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
 import java.io.BufferedReader;
@@ -20,8 +20,7 @@ import spark.Spark;
 public final class Main {
 
   // use port 4567 by default when running server
-  private static final int DEFAULT_PORT = 4567;
-  private HashMap<Integer, Star> starData = new HashMap<Integer, Star>();
+   private static final int DEFAULT_PORT = 4567;
 
   /**
    * The initial method called when execution begins.
@@ -57,27 +56,10 @@ public final class Main {
       runSparkServer((int) options.valueOf("port"));
     }
 
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    StarMethods starMethods = new StarMethods(starData);
-
-    while (true) { // REPL
-      String line = reader.readLine();
-      List<String> tokens = new ArrayList<>();
-      if (line != null) {
-        Matcher m = Pattern.compile("\"([^\"]*)\"|(\\S+)").matcher(line);
-        while (m.find()) {
-          if (m.group(1) != null) {
-            tokens.add("\"" + m.group(1) + "\"");
-          } else {
-            tokens.add(m.group(2));
-          }
-        }
-        starMethods.checkArgs(tokens);
-      } else {
-        break;
-      }
+    String[] commands = {"load_kd", "create_bf"};
+    REPL reader = new REPL("\"([^\"]*)\"|(\\S+)", commands);
+    reader.runREPL();
     }
-  }
 
   private void runSparkServer(int port) {
     // set port to run the server on
