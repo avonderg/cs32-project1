@@ -1,21 +1,23 @@
 package edu.brown.cs.student.main;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.BitSet;
+import java.util.List;
 
 
-public class BloomFilterClass<T> implements BloomFilter {
-    private int r; // false positive rate
+public class BloomFilterClass implements BloomFilter {
+    private double r; // false positive rate
     private int n; // maximum size
     private BitSet set;
 
-    public BloomFilterClass(int r, int n, BitSet set) {
+    public BloomFilterClass(double r, int n, BitSet set) {
         this.r = r;
         this.n = n;
         this.set = set;
     }
 
-    public int getR() {
+    public double getR() {
         return this.r;
     }
 
@@ -27,9 +29,25 @@ public class BloomFilterClass<T> implements BloomFilter {
         return this.set;
     }
 
+    public void handleBloomArgs(List<String> tokens) throws NoSuchAlgorithmException {
+        if (tokens.get(0).equals("create_bf")) { // create bf command
+             double posRate = Double.parseDouble(tokens.get(1));
+             int size = Integer.parseInt(tokens.get(1));
+             createBf(posRate, size);
+        }
+        else if (tokens.get(0).equals("insert_bf")) { // create bf command
+            byte[] array = tokens.get(1).getBytes();
+            insertBf(array);
+        }
+        else if (tokens.get(0).equals("query_bf")) { // create bf command
+            byte[] array = tokens.get(1).getBytes();
+            queryBf(array);
+        }
+
+    }
 
     @Override
-    public String createBf(int r, int n) {
+    public String createBf(double r, int n) {
         BitSet set = new BitSet(n); // initializes it to all zeros
         BloomFilterClass bloom = new BloomFilterClass(r, n, set);
         BloomHashes hash = new BloomHashes();
