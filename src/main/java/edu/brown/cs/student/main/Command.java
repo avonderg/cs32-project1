@@ -1,11 +1,10 @@
 package main.java.edu.brown.cs.student.main;
 
+import java.util.List;
+
 public interface Command {
 
-  String getCommand();
+  boolean checkCommand(List<String> tokens);
 
-  void loadData();
-
-  void getResults();
 
 }

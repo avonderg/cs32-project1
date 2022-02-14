@@ -56,10 +56,10 @@ public final class Main {
       runSparkServer((int) options.valueOf("port"));
     }
 
-    String[] commands = {"load_kd", "create_bf"};
+    Command[] commands = {new BloomFilter, new KDTree};
     REPL reader = new REPL("\"([^\"]*)\"|(\\S+)", commands);
     reader.runREPL();
-    }
+  }
 
   private void runSparkServer(int port) {
     // set port to run the server on

@@ -11,14 +11,14 @@ import java.util.regex.Pattern;
 public class REPL {
 
   private String regex;
-  private String[] commands;
+  private Command[] commands;
 
   /**
    * Class constructor.
    * @param regex command delimeter; used to split the line into separate tokens.
    * @param commands array of Strings of possible commands
    */
-  public REPL(String regex, String[] commands) {
+  public REPL(String regex, Command[] commands) {
     this.regex = regex;
     this.commands = commands;
   }
@@ -40,9 +40,8 @@ public class REPL {
             tokens.add(m.group(i));
           }
         }
-        for (String command : commands) {
-          if (tokens.contains(command)) {
-            Reader reader = new Reader(tokens, command);
+        for (Command command : commands) {
+          if (command.checkCommand(tokens)) {
             break;
           }
         }
