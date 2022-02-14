@@ -1,4 +1,4 @@
-package main.java.edu.brown.cs.student.main;
+package edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
 import java.io.BufferedReader;
