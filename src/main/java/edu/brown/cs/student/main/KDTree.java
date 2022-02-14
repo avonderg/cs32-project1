@@ -12,9 +12,13 @@ public class KDTree<T extends KDNode> {
 
   public KDTree(List<KDNode> elementList, int dims) {
     // Less concise, but also in-place strategy: anonymous class
-    this.dims = dims;
+    if (elementList.isEmpty()) {
+      System.out.println("ERROR: List of students is empty");
+    } else {
+      this.dims = dims;
 //    this.depth = 0;
-    this.root = this.createKDTree(elementList, 0);
+      this.root = this.createKDTree(elementList, 0);
+    }
   }
 
   public KDNode createKDTree(List<KDNode> elementList, int depth) {
