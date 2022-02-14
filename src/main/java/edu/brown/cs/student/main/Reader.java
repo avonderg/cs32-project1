@@ -13,10 +13,17 @@ public class Reader {
   private List<String> tokens;
   private HashMap<String, Student> data;
 
+  /**
+   * Class constructor.
+   */
   public Reader() { //List<String> tokens, String fileName
     //this.tokens = tokens;
   }
 
+  /**
+   * Reads data from CSV file with given file name and stores it in data hashmap.
+   * @param fileName
+   */
   public void loadData(String fileName) {
 //    if (tokens.size() == 1) {
 //      System.out.println("ERROR: no file name found");
@@ -31,11 +38,16 @@ public class Reader {
         Student student = new Student(line);
         data.put(student.getID(), student);
       }
+      System.out.println("Read " + data.size() + " students from " + fileName);
     } catch (IOException ie) {
       System.out.println("ERROR: File not found.");
     }
   }
 
+  /**
+   * Returns hashmap storing the data.
+   * @return
+   */
   public HashMap<String, Student> getData() {
     return data;
   }

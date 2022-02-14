@@ -2,7 +2,6 @@ package edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
 import java.io.IOException;
-
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import spark.Spark;
@@ -49,6 +48,7 @@ public final class Main {
       runSparkServer((int) options.valueOf("port"));
     }
 
+    // CSV Reader and REPL:
     Reader csvReader = new Reader();
     csvReader.loadData("proj1_small.csv");
 

@@ -36,9 +36,7 @@ public class REPL {
       if (line != null) {
         Matcher m = Pattern.compile(regex).matcher(line);
         while (m.find()) {
-          for (int i=0; i<m.groupCount(); i++) {
-            tokens.add(m.group(i));
-          }
+          tokens.add(m.group());
         }
         for (Command command : commands) {
           if (command.checkCommand(tokens)) {
