@@ -1,6 +1,7 @@
-package java.edu.brown.cs.student.main;
 
-import edu.brown.cs.student.main.Student;
+package edu.brown.cs.student.main;
+
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
