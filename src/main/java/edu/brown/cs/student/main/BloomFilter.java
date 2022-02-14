@@ -61,34 +61,39 @@ public class BloomFilter  {
     }
 
     public String printSet(BitSet set) {
-        String str = "";
-//        System.out.println(set.length());
-        for( int i = 0; i < this.getBitSize(); i++) {
-            if (set.get(i)) {
-                str = str + "1";
-            }
-            else {
-                str = str + "0";
-            }
-        }
-        System.out.println(str);
-        return str;
+//        String str = "";
+////        System.out.println(set.length());
+//        for( int i = 0; i < this.getBitSize(); i++) {
+//            if (set.get(i)) {
+//                str = str + "1";
+//            }
+//            else {
+//                str = str + "0";
+//            }
+//        }
+//        System.out.println(str);
+//        return str;
+        int nbits = this.getBitSize();
+        final StringBuilder buffer = new StringBuilder(nbits);
+        IntStream.range(0, nbits).mapToObj(i -> this.getSet().get(i) ? '1' : '0').forEach(buffer::append);
+        System.out.println(buffer.toString());
+        return buffer.toString();
     }
 
-    public String createBf(double r, int n) {
+    private String createBf(double r, int n) {
         BitSet set = new BitSet(n); // initializes it to all zeros
         this.r = r;
         this.n = n;
         this.set = set;
         BloomFilter bloom = new BloomFilter(r, n, set, 0,0);
-        calculateSize(bloom); // changes bloom size and k
+        calculateSize(bloom); // changes bloom size and k, changes above fields
         BloomHashes hash = new BloomHashes();
 //        studentBlooms.put(id, bloom); // insert into hashmap by student ID
         String str = printSet(bloom.getSet());
         return str;
     }
 
-    public String insertBf(byte[] value) throws NoSuchAlgorithmException {
+    private String insertBf(byte[] value) throws NoSuchAlgorithmException {
 //        BloomFilter curr =  studentBlooms.get(id);
         if (this.getSet() == null) { // error checking
             System.out.println("ERROR: cannot insert into null bloom filter");
@@ -106,7 +111,7 @@ public class BloomFilter  {
         return str;
     }
 
-    public String queryBf(byte[] value) throws NoSuchAlgorithmException {
+    private String queryBf(byte[] value) throws NoSuchAlgorithmException {
         BloomHashes hash = new BloomHashes();
         int size = this.getBitSize();
         int k = this.getK();
@@ -127,37 +132,41 @@ public class BloomFilter  {
         return ret + " might be in the set.";
     }
 
-    public void handleBloomArgs(List<String> tokens) throws NoSuchAlgorithmException {
+    public boolean checkCommand(List<String> tokens) throws NoSuchAlgorithmException {
         if (tokens.get(0).equals("create_bf")) { // create bf command
             if (tokens.size() == 3) {
                 double posRate = Double.parseDouble(tokens.get(1));
                 int size = Integer.parseInt(tokens.get(2));
                 createBf(posRate, size);
+                return true;
             }
             else {
                 System.out.println("ERROR: invalid arguments");
-                return;
+                return false;
             }
         }
         else if (tokens.get(0).equals("insert_bf")) { // create bf command
             if (tokens.size() == 2) {
                 byte[] array = tokens.get(1).getBytes();
                 insertBf(array);
+                return true;
             }
             else {
                 System.out.println("ERROR: invalid arguments");
-                return;
+                return false;
             }
         }
         else if (tokens.get(0).equals("query_bf")) { // create bf command
             if (tokens.size() == 2) {
                 byte[] array = tokens.get(1).getBytes();
                 queryBf(array);
+                return true;
             }
             else {
                 System.out.println("ERROR: invalid arguments");
-                return;
+                return false;
             }
         }
+        return false;
     }
 }
