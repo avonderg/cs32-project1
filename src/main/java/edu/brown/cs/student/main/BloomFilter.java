@@ -6,6 +6,7 @@ import java.util.BitSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.lang.Math;
 
 /**
  * BloomFilter class containing all the methods needed to create a new bloom filter
@@ -84,8 +85,8 @@ public class BloomFilter implements Command{
         double r = bloom.getR();
         int k = calculateK(bloom);
         int m;
-        int top = k * n;
-        m = (int)Math.floor(top / Math.log(2));
+        double top = k * n;
+        m = (int)(Math.ceil(top / Math.log(2)));
         this.bitSize = m;
         return m;
     }
@@ -98,7 +99,9 @@ public class BloomFilter implements Command{
     public int calculateK(BloomFilter bloom) {
         double r = bloom.getR();
         int k;
-        k = (int)Math.floor(-1 * (Math.log(r) / Math.log(2)));
+        double frac = (Math.log(r) / Math.log(2));
+        double mult = -1 * frac;
+        k = (int)Math.ceil(mult);
         this.k = k;
         return k;
     }
