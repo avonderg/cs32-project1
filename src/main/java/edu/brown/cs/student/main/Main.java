@@ -52,7 +52,7 @@ public final class Main {
     Reader csvReader = new Reader();
 //    csvReader.loadData("proj1_small.csv");
 
-    Command[] commands = {new KDTree<Student>()};
+    Command[] commands = {new KDTreeCommand()};
     REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|
     reader.runREPL();
   }

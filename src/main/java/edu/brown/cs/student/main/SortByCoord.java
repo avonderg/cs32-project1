@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 /**
  * This is the class that implements the Comparator interface, used to sort
- * the PriorityQueue in the LoadedStarsData class
+ * the list of students inputted to the KDTree class
  */
 public class SortByCoord implements Comparator<KDNode> {
 
@@ -14,8 +14,7 @@ public class SortByCoord implements Comparator<KDNode> {
   }
 
   /**
-   * This method, from the Comparator interface, handles the actual sorting of stars. In the case of
-   * a tie, the stars are sorted randomly using the Math.random() function
+   * This method, from the Comparator interface, handles the actual sorting of KDNodes.
    * @param node1
    * @param node2
    * @return 1 if node1's currdim>, -1 if node2's currdim >, 0 if equal

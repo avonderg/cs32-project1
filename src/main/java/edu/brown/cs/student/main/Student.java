@@ -153,28 +153,48 @@ public class Student implements KDNode {
     return interests;
   }
 
+  /**
+   * KDNode interface method.
+   * @return double of coords from three attributes
+   */
   @Override
   public double[] getCoords() {
     return new double[]{Double.parseDouble(this.yearsExperience),
         Double.parseDouble(this.weeklyAvailHours), Double.parseDouble(this.softwareEngnConfidence)};
   }
 
+  /**
+   * Simple getter from KDNode interface
+   * @return leftChild of the student in the tree
+   */
   @Override
   public KDNode getLeft() {
     return this.leftChild;
   }
 
+  /**
+   * Simple getter from KDNode interface
+   * @return rightChild of student in tree
+   */
   @Override
   public KDNode getRight() {
     return this.rightChild;
   }
 
+  /**
+   * Simple setter from KDNode interface
+   * @param leftNode
+   */
   @Override
   public void setLeft(KDNode leftNode) {
     this.leftChild = leftNode;
 
   }
 
+  /**
+   * Simple setter from KDNode interface
+   * @param rightNode
+   */
   @Override
   public void setRight(KDNode rightNode) {
     this.rightChild = rightNode;

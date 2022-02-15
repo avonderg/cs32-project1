@@ -2,6 +2,7 @@ package edu.brown.cs.student.main;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -26,8 +27,7 @@ public class KDTreeTest {
     KDNode node5 = new KDNodeTestClass(new double[]{7.0, 4.0, 6.0});
     List<KDNode> kdNodeList = Arrays.asList(node1, node2, node3, node4, node5);
 
-    KDTree<Student> kdTree = new KDTree<Student>();
-    kdTree.treeBuildHelper(kdNodeList);
+    KDTree<Student> kdTree = new KDTree<Student>(kdNodeList, 3);
 
     assertEquals(kdTree.getRoot(), node4);
     assertEquals(kdTree.getRoot().getLeft(), node1);
@@ -36,6 +36,17 @@ public class KDTreeTest {
     assertNull(kdTree.getRoot().getLeft().getRight());
     assertNull(kdTree.getRoot().getRight().getRight());
     assertEquals(kdTree.getRoot().getRight().getLeft(), node5);
+
+  }
+
+  /**
+   * Tests that an empty KDTree can be instantiated, but that the root will be null.
+   */
+  @Test
+  public void testEmptyTree() {
+    List<KDNode> kdNodeList = new ArrayList<KDNode>();
+    KDTree<Student> kdTree = new KDTree<Student>(kdNodeList, 3);
+    assertNull(kdTree.getRoot());
 
   }
 

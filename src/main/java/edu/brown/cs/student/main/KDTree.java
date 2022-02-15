@@ -5,18 +5,38 @@ import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class KDTree<T extends KDNode> implements Command {
+/**
+ * This class models a KDTree and handles its construction from a CSV file (insertion of KDNode
+ * objects into the tree). The k-nearest neighbors algorithm is also implemented in this class.
+ * @param <T>
+ */
+public class KDTree<T extends KDNode> {
 
   private int dims;
   private KDNode root;
 //private int depth;
 
-  public KDTree() {
+  /**
+   * Constructor for an instance of KDTree: no parameters, because the tree is actually
+   * constructed through the checkCommand, createKDTree, and treeBuildHelper methods.
+   */
+  public KDTree(List<KDNode> elementList, int dims) {
     // Less concise, but also in-place strategy: anonymous class
-    this.dims = 3;
-    this.root = null;
+    if (elementList.isEmpty()) {
+      System.out.println("ERROR: List of students is empty");
+    } else {
+      this.dims = dims;
+      //    this.depth = 0;
+      this.root = this.createKDTree(elementList, 0);
+    }
   }
 
+  /**
+   * This method handles inserting elements into the KDTree from a given list of KDNodes.
+   * @param elementList - the list of KDNodes to be inserted
+   * @param depth - the initial depth of the tree
+   * @return the root of the KDTree
+   */
   public KDNode createKDTree(List<KDNode> elementList, int depth) {
     KDNode currNode;
 
@@ -37,30 +57,13 @@ public class KDTree<T extends KDNode> implements Command {
     return currNode;
   }
 
+  /**
+   * Simple getter for the root of the tree
+   * @return the root of the tree
+   */
   public KDNode getRoot() {
     return this.root;
   }
 
-  public KDNode treeBuildHelper(List<KDNode> elementList) {
-    this.root = this.createKDTree(elementList, 0);
-    return this.root;
-  }
 
-
-  @Override
-  public boolean checkCommand(List<String> tokens) {
-    if (tokens.get(0).equals("load_kd")) {
-      Reader studentReader = new Reader();
-      studentReader.loadData(tokens.get(1));
-      HashMap<String, Student> studentHashMap = studentReader.getData();
-      List<KDNode> studentList = new ArrayList<>(studentHashMap.values());
-      this.treeBuildHelper(studentList);
-      this.dims = 3;
-      System.out.println("Read " + studentList.size() + " students from" + tokens.get(1));
-      return true;
-    } else {
-      System.out.println("ERROR: invalid command");
-      return false;
-    }
-  }
 }
