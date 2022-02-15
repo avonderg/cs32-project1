@@ -1,8 +1,9 @@
-package main.java.edu.brown.cs.student.main;
+package edu.brown.cs.student.main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -27,7 +28,7 @@ public class REPL {
    * Runs the REPL (uses BufferedReader).
    * @throws IOException
    */
-  public void runREPL() throws IOException {
+  public void runREPL() throws IOException, NoSuchAlgorithmException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     while (true) {
@@ -36,9 +37,7 @@ public class REPL {
       if (line != null) {
         Matcher m = Pattern.compile(regex).matcher(line);
         while (m.find()) {
-          for (int i=0; i<m.groupCount(); i++) {
-            tokens.add(m.group(i));
-          }
+          tokens.add(m.group());
         }
         for (Command command : commands) {
           if (command.checkCommand(tokens)) {

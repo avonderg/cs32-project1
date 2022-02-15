@@ -7,14 +7,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
-public class BloomFilter  {
+/**
+ * BloomFilter class containing all the methods needed to create a new bloom filter
+ */
+public class BloomFilter implements Command{
     private double r; // false positive rate
     private int n; // maximum size
     private BitSet set;
     private int bitSize;
     private int k;
 
+    /**
+     * Bloom Filter Constructor
+     * @param r - desired false positive rate
+     * @param n - maximum number of elements
+     * @param set - corresponding bitset for filter
+     * @param bitSize - size of bitset
+     * @param k - number of hash functions
+     */
     public BloomFilter(double r, int n, BitSet set, int bitSize, int k) {
         this.r = r;
         this.n = n;
@@ -23,24 +33,52 @@ public class BloomFilter  {
         this.k = k;
     }
 
+    /**
+     * Gets the false positive rate
+     * @return r
+     */
     public double getR() {
         return this.r;
     }
 
+    /**
+     * Gets the maximum number of elements
+     * @return n
+     */
     public int getN() {
         return this.n;
     }
 
+    /**
+     * Gets the bitset for a bloom filter
+     * @return set
+     */
     public BitSet getSet() {
         return this.set;
     }
+
+    /**
+     * Gets the size of the bitset for a bloom filter
+     *
+     * @return bitSize
+     */
     public int getBitSize() {
         return this.bitSize;
     }
+
+    /**
+     * Gets the k number of hash functions
+     * @return k
+     */
     public int getK() {
         return this.k;
     }
 
+    /**
+     * Calculates the size, m, of a bloom filter's bitset
+     * @param bloom - Bloom filter
+     * @return m - size of bitset
+     */
     public int calculateSize(BloomFilter bloom) {
         int n = bloom.getN();
         double r = bloom.getR();
@@ -52,6 +90,11 @@ public class BloomFilter  {
         return m;
     }
 
+    /**
+     * Calculates the number of hash functions, k
+     * @param bloom - Bloom filter
+     * @return k - number of hash functions
+     */
     public int calculateK(BloomFilter bloom) {
         double r = bloom.getR();
         int k;
@@ -60,6 +103,11 @@ public class BloomFilter  {
         return k;
     }
 
+    /**
+     * Prints out the bitset of any given bloom filter
+     * @param set - input bitset
+     * @return bitset converted to string
+     */
     public String printSet(BitSet set) {
 //        String str = "";
 ////        System.out.println(set.length());
@@ -80,6 +128,14 @@ public class BloomFilter  {
         return buffer.toString();
     }
 
+    /**
+     * Constructs an empty, generic Bloom filter given r, a desired false positive rate, and n,
+     * the expected maximum number of elements the Bloom filter will contain
+     *
+     * @param r - desired false positive rate
+     * @param n - expected maximum number of elements
+     * @return - Bloom filter's bitset, converted to a string
+     */
     private String createBf(double r, int n) {
         BitSet set = new BitSet(n); // initializes it to all zeros
         this.r = r;
@@ -93,6 +149,13 @@ public class BloomFilter  {
         return str;
     }
 
+    /**
+     * Inserts elements into a bloom filter's bitset
+     *
+     * @param value - element to be inserted
+     * @return bitset of the bloom filter, converted to a string
+     * @throws NoSuchAlgorithmException
+     */
     private String insertBf(byte[] value) throws NoSuchAlgorithmException {
 //        BloomFilter curr =  studentBlooms.get(id);
         if (this.getSet() == null) { // error checking
@@ -111,6 +174,13 @@ public class BloomFilter  {
         return str;
     }
 
+    /**
+     * Queries a Bloom filter to see whether it might contain a given element
+     *
+     * @param value - element to be searched for
+     * @return - message indicating if element in set
+     * @throws NoSuchAlgorithmException
+     */
     private String queryBf(byte[] value) throws NoSuchAlgorithmException {
         BloomHashes hash = new BloomHashes();
         int size = this.getBitSize();
@@ -132,6 +202,15 @@ public class BloomFilter  {
         return ret + " might be in the set.";
     }
 
+    /**
+     * Checks the command-line user input for the following commands: create_bf, insert_bf, query_bf,
+     * and calls appropriate functions handling each.
+     *
+     * @param tokens - tokenized command line user input
+     * @return - boolean indicating whether or not a command was found
+     * @throws NoSuchAlgorithmException
+     */
+    @Override
     public boolean checkCommand(List<String> tokens) throws NoSuchAlgorithmException {
         if (tokens.get(0).equals("create_bf")) { // create bf command
             if (tokens.size() == 3) {

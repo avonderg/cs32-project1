@@ -1,9 +1,10 @@
-package main.java.edu.brown.cs.student.main;
+package edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +28,7 @@ public final class Main {
    *
    * @param args An array of command line arguments
    */
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
     new Main(args).run();
   }
 
@@ -40,7 +41,7 @@ public final class Main {
   /**
    * @throws IOException
    */
-  private void run() throws IOException {
+  private void run() throws IOException, NoSuchAlgorithmException {
     // set up parsing of command line flags
     OptionParser parser = new OptionParser();
 
@@ -57,10 +58,10 @@ public final class Main {
     }
 
     Reader csvReader = new Reader();
-    csvReader.loadData("proj1_small.csv");
+    //csvReader.loadData("proj1_small.csv");
 
-    Command[] commands = {};
-    REPL reader = new REPL("\"([^\"]*)\"|(\\S+)", commands);
+    Command[] commands = {new BloomFilter(0,0,null,0,0)};
+    REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|
     reader.runREPL();
   }
 
