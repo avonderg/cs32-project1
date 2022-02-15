@@ -26,7 +26,8 @@ public class KDTreeTest {
     KDNode node5 = new KDNodeTestClass(new double[]{7.0, 4.0, 6.0});
     List<KDNode> kdNodeList = Arrays.asList(node1, node2, node3, node4, node5);
 
-    KDTree<Student> kdTree = new KDTree<Student>(kdNodeList, 3);
+    KDTree<Student> kdTree = new KDTree<Student>();
+    kdTree.treeBuildHelper(kdNodeList);
 
     assertEquals(kdTree.getRoot(), node4);
     assertEquals(kdTree.getRoot().getLeft(), node1);
