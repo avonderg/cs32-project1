@@ -1,5 +1,6 @@
 package edu.brown.cs.student.main;
 
+import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.List;
 import java.util.*;
@@ -21,7 +22,6 @@ public class KDTree<T extends KDNode> {
    * constructed through the checkCommand, createKDTree, and treeBuildHelper methods.
    */
   public KDTree(List<KDNode> elementList, int dims) {
-    // Less concise, but also in-place strategy: anonymous class
     if (elementList.isEmpty()) {
       System.out.println("ERROR: List of students is empty");
     } else {
@@ -63,6 +63,32 @@ public class KDTree<T extends KDNode> {
    */
   public KDNode getRoot() {
     return this.root;
+  }
+
+  /**
+   * Function to implememt the k-d tree k-nearest neighbors algorithm. To be implemented for week 2.
+   * @return an arraylist with the k nearest neighbors
+   * @param targetNode - the node to find nearest neighbors on
+   * @param k - number of nearest neighbors to find
+   */
+  public ArrayList<KDNode> findKNeighbors(KDNode targetNode, int k) {
+    ArrayList<KDNode> neighborsList = new ArrayList<KDNode>();
+    return neighborsList;
+  }
+
+
+  /**
+   * Function to get the euclidian distance between two nodes of given dimension.
+   * @param node1 - first node
+   * @param node2 - 2nd node
+   * @return - the euclidian distance between the two given nodes.
+   */
+  public double getNodeEuclidianDist(KDNode node1, KDNode node2) {
+    double distance = 0;
+    for (int i = 0; i < this.dims; i++) {
+      distance += Math.pow(node1.getCoords()[i] - Math.pow(node1.getCoords()[i], 2);
+    }
+    return Math.sqrt(distance);
   }
 
 
