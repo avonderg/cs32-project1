@@ -36,12 +36,12 @@ public class REPL {
       if (line != null) {
         Matcher m = Pattern.compile(regex).matcher(line);
         while (m.find()) {
-          for (int i=0; i<m.groupCount(); i++) {
-            tokens.add(m.group(i));
-          }
+          tokens.add(m.group());
         }
         for (Command command : commands) {
-          if (command.checkCommand(tokens)) {
+          String output = command.checkCommand(tokens);
+          if (!output.equals(null)) { // if the command is matched,  print the output
+            System.out.println(output);
             break;
           }
         }
