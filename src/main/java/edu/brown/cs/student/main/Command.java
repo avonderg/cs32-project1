@@ -1,5 +1,6 @@
 package edu.brown.cs.student.main;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface Command {
    * @return - boolean indicating whether or not a command was found
    * @throws NoSuchAlgorithmException
    */
-  boolean checkCommand(List<String> tokens) throws NoSuchAlgorithmException;
+  boolean checkCommand(List<String> tokens) throws NoSuchAlgorithmException, IOException, IllegalAccessException;
 
 
 }

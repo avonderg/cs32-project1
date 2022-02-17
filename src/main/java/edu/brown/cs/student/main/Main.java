@@ -28,7 +28,7 @@ public final class Main {
    *
    * @param args An array of command line arguments
    */
-  public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
+  public static void main(String[] args) throws IOException, NoSuchAlgorithmException, IllegalAccessException {
     new Main(args).run();
   }
 
@@ -41,7 +41,7 @@ public final class Main {
   /**
    * @throws IOException
    */
-  private void run() throws IOException, NoSuchAlgorithmException {
+  private void run() throws IOException, NoSuchAlgorithmException, IllegalAccessException {
     // set up parsing of command line flags
     OptionParser parser = new OptionParser();
 
@@ -58,7 +58,7 @@ public final class Main {
     }
 
     Reader csvReader = new Reader();
-    //csvReader.loadData("proj1_small.csv");
+//    csvReader.loadData("proj1_small.csv");
 
     Command[] commands = {new BloomFilter(0,0,null,0,0)};
     REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|

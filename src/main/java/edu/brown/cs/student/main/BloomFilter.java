@@ -1,8 +1,11 @@
 package edu.brown.cs.student.main;
+import java.io.IOException;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.BitSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,12 +14,14 @@ import java.lang.Math;
 /**
  * BloomFilter class containing all the methods needed to create a new bloom filter
  */
-public class BloomFilter implements Command{
+public class BloomFilter implements Command {
     private double r; // false positive rate
     private int n; // maximum size
     private BitSet set;
     private int bitSize;
     private int k;
+    public HashMap<String, Student> students = new HashMap<String, Student>();
+    BloomData data = new BloomData(new HashMap<>(), new HashMap<>());
 
     /**
      * Bloom Filter Constructor
@@ -112,18 +117,6 @@ public class BloomFilter implements Command{
      * @return bitset converted to string
      */
     public String printSet(BitSet set) {
-//        String str = "";
-////        System.out.println(set.length());
-//        for( int i = 0; i < this.getBitSize(); i++) {
-//            if (set.get(i)) {
-//                str = str + "1";
-//            }
-//            else {
-//                str = str + "0";
-//            }
-//        }
-//        System.out.println(str);
-//        return str;
         int nbits = this.getBitSize();
         final StringBuilder buffer = new StringBuilder(nbits);
         IntStream.range(0, nbits).mapToObj(i -> this.getSet().get(i) ? '1' : '0').forEach(buffer::append);
@@ -139,7 +132,7 @@ public class BloomFilter implements Command{
      * @param n - expected maximum number of elements
      * @return - Bloom filter's bitset, converted to a string
      */
-    private String createBf(double r, int n) {
+    public void createBf(double r, int n) {
         BitSet set = new BitSet(n); // initializes it to all zeros
         this.r = r;
         this.n = n;
@@ -148,8 +141,8 @@ public class BloomFilter implements Command{
         calculateSize(bloom); // changes bloom size and k, changes above fields
         BloomHashes hash = new BloomHashes();
 //        studentBlooms.put(id, bloom); // insert into hashmap by student ID
-        String str = printSet(bloom.getSet());
-        return str;
+//        String str = printSet(bloom.getSet());
+//        return str;
     }
 
     /**
@@ -159,11 +152,12 @@ public class BloomFilter implements Command{
      * @return bitset of the bloom filter, converted to a string
      * @throws NoSuchAlgorithmException
      */
-    private String insertBf(byte[] value) throws NoSuchAlgorithmException {
+    public void insertBf(byte[] value) throws NoSuchAlgorithmException {
 //        BloomFilter curr =  studentBlooms.get(id);
         if (this.getSet() == null) { // error checking
             System.out.println("ERROR: cannot insert into null bloom filter");
-            return "error";
+//            return "error";
+            return;
         }
         BloomHashes hash = new BloomHashes();
         int size = this.getBitSize();
@@ -173,8 +167,8 @@ public class BloomFilter implements Command{
             int val = func.mod(BigInteger.valueOf(size)).intValue(); // index in bitset
             this.getSet().set(val, true); // changes the bit
         }
-        String str = printSet(this.getSet());
-        return str;
+//        String str = printSet(this.getSet());
+//        return str;
     }
 
     /**
@@ -184,7 +178,7 @@ public class BloomFilter implements Command{
      * @return - message indicating if element in set
      * @throws NoSuchAlgorithmException
      */
-    private String queryBf(byte[] value) throws NoSuchAlgorithmException {
+    public String queryBf(byte[] value) throws NoSuchAlgorithmException {
         BloomHashes hash = new BloomHashes();
         int size = this.getBitSize();
         int k = this.getK();
@@ -214,28 +208,22 @@ public class BloomFilter implements Command{
      * @throws NoSuchAlgorithmException
      */
     @Override
-    public boolean checkCommand(List<String> tokens) throws NoSuchAlgorithmException {
+    public boolean checkCommand(List<String> tokens) throws NoSuchAlgorithmException, IOException, IllegalAccessException {
         if (tokens.get(0).equals("create_bf")) { // create bf command
             if (tokens.size() == 3) {
                 double posRate = Double.parseDouble(tokens.get(1));
                 int size = Integer.parseInt(tokens.get(2));
                 createBf(posRate, size);
+                String str = printSet(this.getSet());
                 return true;
             }
-            else {
-                System.out.println("ERROR: invalid arguments");
-                return false;
-            }
         }
-        else if (tokens.get(0).equals("insert_bf")) { // create bf command
+        else if (tokens.get(0).equals("insert_bf") ) { // create bf command
             if (tokens.size() == 2) {
                 byte[] array = tokens.get(1).getBytes();
                 insertBf(array);
+                String str = printSet(this.getSet());
                 return true;
-            }
-            else {
-                System.out.println("ERROR: invalid arguments");
-                return false;
             }
         }
         else if (tokens.get(0).equals("query_bf")) { // create bf command
@@ -244,11 +232,23 @@ public class BloomFilter implements Command{
                 queryBf(array);
                 return true;
             }
-            else {
-                System.out.println("ERROR: invalid arguments");
-                return false;
+        }
+        else if (tokens.get(0).equals("load_bf") || tokens.get(0).equals("similar_bf")) {
+            if (tokens.get(0).equals("load_bf")) {
+                Reader studentReader = new Reader();
+                studentReader.loadData(tokens.get(1));
+                students.clear();
+                this.students = studentReader.getData();
+                data.handleBlooms(1, this.students, tokens);
+                System.out.println("Read " + this.students.size() + " students from " + tokens.get(1));
+                return true;
+            }
+            else if (tokens.get(0).equals("similar_bf")) {
+                data.handleBlooms(2, this.students, tokens);
+                return true;
             }
         }
-        return false;
+            System.out.println("ERROR: invalid arguments");
+            return false;
     }
 }

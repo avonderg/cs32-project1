@@ -3,6 +3,7 @@ package Test.java.edu.brown.cs.student.main;
 import edu.brown.cs.student.main.BloomFilter;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -71,7 +72,7 @@ public class BloomFilterTest {
     }
 
     @Test
-    public void checkCommand() throws NoSuchAlgorithmException {
+    public void checkCommand() throws NoSuchAlgorithmException, IOException, IllegalAccessException {
         List<String> tokens1 = new ArrayList<String>();
         tokens1.add("create_bf");
         tokens1.add("0.1");
@@ -90,7 +91,7 @@ public class BloomFilterTest {
     }
 
     @Test
-    public void createBf() throws NoSuchAlgorithmException {
+    public void createBf() throws NoSuchAlgorithmException, IOException, IllegalAccessException {
         BloomFilter bloom1 = new BloomFilter(0,0,null,0,0);
         List<String> tokens1 = new ArrayList<String>();
         tokens1.add("create_bf");

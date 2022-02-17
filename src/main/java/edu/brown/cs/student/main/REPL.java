@@ -28,7 +28,7 @@ public class REPL {
    * Runs the REPL (uses BufferedReader).
    * @throws IOException
    */
-  public void runREPL() throws IOException, NoSuchAlgorithmException {
+  public void runREPL() throws IOException, NoSuchAlgorithmException, IllegalAccessException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     while (true) {

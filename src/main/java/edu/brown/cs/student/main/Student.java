@@ -2,6 +2,7 @@ package edu.brown.cs.student.main;
 
 import org.checkerframework.checker.regex.qual.Regex;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
