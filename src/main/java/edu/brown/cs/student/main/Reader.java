@@ -11,13 +11,13 @@ import java.util.List;
 public class Reader {
 
   private List<String> tokens;
-  private HashMap<String, Student> data;
+  private Data data;
 
   /**
    * Class constructor.
    */
-  public Reader() { //List<String> tokens, String fileName
-    //this.tokens = tokens;
+  public Reader(Data data) { //List<String> tokens, String fileName
+    this.data = data;
   }
 
   /**
@@ -25,20 +25,15 @@ public class Reader {
    * @param fileName
    */
   public void loadData(String fileName) {
-//    if (tokens.size() == 1) {
-//      System.out.println("ERROR: no file name found");
-//      return;
-//    }
-//    String fileName = tokens.get(1);
     Path filePath  = Paths.get(fileName);
     try (BufferedReader reader = Files.newBufferedReader(filePath)) { // read file
       data.clear(); // clears out old hashmap
       String line = reader.readLine(); // read header first, don't add to hashmap
       while ((line = reader.readLine()) != null) {
-        Student student = new Student(line);
-        data.put(student.getID(), student);
+        //Student student = new Student(line);
+        data.insert(line);
       }
-      System.out.println("Read " + data.size() + " students from " + fileName);
+      System.out.println("Read " + data.size() + " lines from " + fileName);
     } catch (IOException ie) {
       System.out.println("ERROR: File not found.");
     }
@@ -48,7 +43,7 @@ public class Reader {
    * Returns hashmap storing the data.
    * @return
    */
-  public HashMap<String, Student> getData() {
+  public Data getData() {
     return data;
   }
 }

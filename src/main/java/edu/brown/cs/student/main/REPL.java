@@ -39,7 +39,9 @@ public class REPL {
           tokens.add(m.group());
         }
         for (Command command : commands) {
-          if (command.checkCommand(tokens)) {
+          String output = command.checkCommand(tokens);
+          if (!output.equals(null)) { // if the command is matched,  print the output
+            System.out.println(output);
             break;
           }
         }

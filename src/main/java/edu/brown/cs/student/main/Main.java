@@ -2,6 +2,8 @@ package edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
 import java.io.IOException;
+import java.util.ArrayList;
+
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import spark.Spark;
@@ -49,11 +51,11 @@ public final class Main {
     }
 
     // CSV Reader and REPL:
-    Reader csvReader = new Reader();
+    Reader csvReader = new Reader((Data) new ArrayList<String>());
     csvReader.loadData("proj1_small.csv");
 
     Command[] commands = {};
-    REPL reader = new REPL("\"([^\"]*)\"|(\\S+)", commands);
+    REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|s
     reader.runREPL();
   }
 
