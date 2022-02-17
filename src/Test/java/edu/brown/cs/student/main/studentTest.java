@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 package edu.brown.cs.student.main;
 
+=======
+
+package edu.brown.cs.student.main;
+
+
+>>>>>>> c9b652fd4929bf60089ae00ada67b9f433db81ff
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

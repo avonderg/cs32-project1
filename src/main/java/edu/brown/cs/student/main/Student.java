@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Student {
+public class Student implements KDNode {
   private String id;
   private String name;
   private String email;
@@ -24,6 +24,8 @@ public class Student {
   private String[] weaknesses;
   private String[] skills;
   private String[] interests;
+  private KDNode leftChild;
+  private KDNode rightChild;
 
   /**
    * Class constructor. Parses String parameter line and stores attributes.
@@ -72,6 +74,9 @@ public class Student {
     m.find();
     interests = m.group().split(",");
     interests = this.cleanList(interests);
+
+    this.leftChild = null;
+    this.rightChild = null;
   }
 
   /**
@@ -219,5 +224,33 @@ public class Student {
    */
   public String[] getInterests() {
     return interests;
+  }
+
+  @Override
+  public double[] getCoords() {
+    return new double[]{Double.parseDouble(this.yearsExperience),
+        Double.parseDouble(this.weeklyAvailHours), Double.parseDouble(this.softwareEngnConfidence)};
+  }
+
+  @Override
+  public KDNode getLeft() {
+    return this.leftChild;
+  }
+
+  @Override
+  public KDNode getRight() {
+    return this.rightChild;
+  }
+
+  @Override
+  public void setLeft(KDNode leftNode) {
+    this.leftChild = leftNode;
+
+  }
+
+  @Override
+  public void setRight(KDNode rightNode) {
+    this.rightChild = rightNode;
+
   }
 }
