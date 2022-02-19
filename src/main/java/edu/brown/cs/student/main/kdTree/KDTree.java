@@ -99,6 +99,9 @@ public class KDTree<T extends KDInsertable> {
    * @return the root of the tree
    */
   public KDInsertable getRoot() {
+    if (this.root == null) {
+      return null;
+    }
     return this.root.nodeData;
   }
 

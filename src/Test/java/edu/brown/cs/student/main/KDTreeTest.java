@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 
 public class KDTreeTest {
@@ -44,10 +45,10 @@ public class KDTreeTest {
   }
 
   /**
-   * Tests that the k-nearest neighbors of a KD tree are correctly found.
+   * Tests that the k-nearest neighbors of a KD tree are correctly found when 1 neighbor is requested.
    */
   @Test
-  public void testKNearestNeighbors() {
+  public void test1NearestNeighbor() {
     KDInsertable node1 = new KDNodeTestClass(new double[]{1.0, 3.0, 6.0}, "1");
     KDInsertable node2 = new KDNodeTestClass(new double[]{1.0, 2.0, 5.0}, "2");
     KDInsertable node3 = new KDNodeTestClass(new double[]{10.0, 4.0, 15.0}, "3");
@@ -60,8 +61,46 @@ public class KDTreeTest {
     ArrayList<String> kNeighborsIDList = kdTree.findKNeighbors("2", 1);
     assertEquals("1", kNeighborsIDList.remove(0));
 //    assertEquals("5", kNeighborsIDQueue.remove());
-
   }
+
+  /**
+   * Tests that the k-nearest neighbors of a KD tree are correctly found when multiple neighbors are requested.
+   */
+  @Test
+  public void testkNearestNeighbors() {
+    KDInsertable node1 = new KDNodeTestClass(new double[]{1.0, 3.0, 6.0}, "1");
+    KDInsertable node2 = new KDNodeTestClass(new double[]{1.0, 2.0, 5.0}, "2");
+    KDInsertable node3 = new KDNodeTestClass(new double[]{10.0, 4.0, 15.0}, "3");
+    KDInsertable node4 = new KDNodeTestClass(new double[]{5.0, 11.0, 2.0}, "4");
+    KDInsertable node5 = new KDNodeTestClass(new double[]{7.0, 4.0, 6.0}, "5");
+    List<KDInsertable> kdDataList = Arrays.asList(node1, node2, node3, node4, node5);
+
+    KDTree<Student> kdTree = new KDTree<Student>(kdDataList, new EuclidianDistance(), 3);
+
+    ArrayList<String> kNeighborsIDList = kdTree.findKNeighbors("2", 3);
+    assertEquals("1", kNeighborsIDList.get(0));
+    assertEquals("5", kNeighborsIDList.get(1));
+    assertEquals("4", kNeighborsIDList.get(2));
+  }
+
+  /**
+   * Tests that no elementID's are returned when 0 nearest neighbors are requested.
+   */
+  @Test
+  public void test0NearestNeighbor() {
+    KDInsertable node1 = new KDNodeTestClass(new double[]{1.0, 3.0, 6.0}, "1");
+    KDInsertable node2 = new KDNodeTestClass(new double[]{1.0, 2.0, 5.0}, "2");
+    KDInsertable node3 = new KDNodeTestClass(new double[]{10.0, 4.0, 15.0}, "3");
+    KDInsertable node4 = new KDNodeTestClass(new double[]{5.0, 11.0, 2.0}, "4");
+    KDInsertable node5 = new KDNodeTestClass(new double[]{7.0, 4.0, 6.0}, "5");
+    List<KDInsertable> kdDataList = Arrays.asList(node1, node2, node3, node4, node5);
+
+    KDTree<Student> kdTree = new KDTree<Student>(kdDataList, new EuclidianDistance(), 3);
+
+    ArrayList<String> kNeighborsIDList = kdTree.findKNeighbors("2", 0);
+    assertTrue("1", kNeighborsIDList.size() == 0);
+  }
+
 
 
   /**
@@ -71,7 +110,7 @@ public class KDTreeTest {
   public void testEmptyTree() {
     List<KDInsertable> kdNodeList = new ArrayList<KDInsertable>();
     KDTree<Student> kdTree = new KDTree<Student>(kdNodeList, new EuclidianDistance(), 3);
-//    assertNull(kdTree.getRoot());
+    assertNull(kdTree.getRoot());
 
   }
 

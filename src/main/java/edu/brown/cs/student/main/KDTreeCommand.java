@@ -42,7 +42,7 @@ public class KDTreeCommand implements Command {
       return true;
     } else if (tokens.get(0).equals("similar_kd")) {
       if (this.tree == null) {
-        System.out.println("Error: No tree data has been loaded");
+        System.out.println("ERROR: No tree data has been loaded");
         return true;
       }
       int k = Integer.parseInt(tokens.get(1));
