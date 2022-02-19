@@ -55,7 +55,7 @@ public final class Main {
     Reader csvReader = new Reader((Data) new ArrayList<String>());
     csvReader.loadData("proj1_small.csv");
 
-    Command[] commands = {};
+    Command[] commands = {new KDTreeCommand()};
     REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|s
 
     reader.runREPL();
