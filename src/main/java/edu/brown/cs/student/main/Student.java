@@ -1,5 +1,6 @@
 package edu.brown.cs.student.main;
 
+
 import edu.brown.cs.student.main.kdTree.KDInsertable;
 
 import java.util.ArrayList;
@@ -29,6 +30,10 @@ public class Student implements KDInsertable {
 //  private KDNode leftChild;
 //  private KDNode rightChild;
 
+  /**
+   * Class constructor. Parses String parameter line and stores attributes.
+   * @param line
+   */
   public Student(String line) {
     List<String> tokens = new ArrayList<>();
     Matcher m = Pattern.compile("(\".*?\")|([^\",*?\"]+)").matcher(line);
@@ -77,6 +82,11 @@ public class Student implements KDInsertable {
 //    this.rightChild = null;
   }
 
+  /**
+   * Removes extra quotations and spaces.
+   * @param items list of Strings to clean
+   * @return cleaned list
+   */
   private String[] cleanList(String[] items){
     String[] cleanList = new String[items.length];
     for (int i=0; i<items.length; i++) {
@@ -85,71 +95,138 @@ public class Student implements KDInsertable {
     return cleanList;
   }
 
+  /**
+   * @return id
+   */
   @Override
+
   public String getID() {
     return id;
   }
 
+  /**
+   * @return name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Returns String email.
+   * @return
+   */
   public String getEmail() {
     return email;
   }
 
+  /**
+   * Returns String gender.
+   * @return
+   */
   public String getGender() {
     return gender;
   }
 
+  /**
+   * Returns String class year.
+   * @return
+   */
   public String getClassYear() {
     return classYear;
   }
 
+  /**
+   * Returns String nationality.
+   * @return
+   */
   public String getNationality() {
     return nationality;
   }
 
+  /**
+   * Returns String race.
+   * @return
+   */
   public String getRace() {
     return race;
   }
 
+  /**
+   * Returns String years experience.
+   * @return
+   */
   public String getYearsExperience() {
     return yearsExperience;
   }
 
+  /**
+   * Returns String communication style.
+   * @return
+   */
   public String getCommunicationStyle() {
     return communicationStyle;
   }
 
+  /**
+   * Returns String weekly available hours.
+   * @return
+   */
   public String getWeeklyAvailHours() {
     return weeklyAvailHours;
   }
 
+  /**
+   * Returns String meeting style.
+   * @return
+   */
   public String getMeetingStyle() {
     return meetingStyle;
   }
 
+  /**
+   * Returns String meeting time.
+   * @return
+   */
   public String getMeetingTime() {
     return meetingTime;
   }
 
+  /**
+   * Returns String software engineering confidence.
+   * @return
+   */
   public String getSoftwareEngnConfidence() {
     return softwareEngnConfidence;
   }
 
+  /**
+   * Returns String array of strengths.
+   * @return
+   */
   public String[] getStrengths() {
     return strengths;
   }
 
+  /**
+   * Returns String array of weaknesses.
+   * @return
+   */
   public String[] getWeaknesses() {
     return weaknesses;
   }
 
+  /**
+   * Returns String array of skills.
+   * @return
+   */
   public String[] getSkills() {
     return skills;
   }
 
+  /**
+   * Returns String array of interests.
+   * @return
+   */
   public String[] getInterests() {
     return interests;
   }

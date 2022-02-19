@@ -2,6 +2,7 @@ package edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
 import java.io.IOException;
+import java.util.ArrayList;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -49,11 +50,14 @@ public final class Main {
       runSparkServer((int) options.valueOf("port"));
     }
 
-    Reader csvReader = new Reader();
-//    csvReader.loadData("proj1_small.csv");
 
-    Command[] commands = {new KDTreeCommand()};
-    REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|
+    // CSV Reader and REPL:
+    Reader csvReader = new Reader((Data) new ArrayList<String>());
+    csvReader.loadData("proj1_small.csv");
+
+    Command[] commands = {};
+    REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|s
+
     reader.runREPL();
   }
 
