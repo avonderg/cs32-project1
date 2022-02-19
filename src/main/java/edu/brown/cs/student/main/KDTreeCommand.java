@@ -32,28 +32,32 @@ public class KDTreeCommand implements Command {
    */
   @Override
   public boolean checkCommand(List<String> tokens) {
-    if (tokens.get(0).equals("load_kd")) {
-      Reader studentReader = new Reader();
-      studentReader.loadData(tokens.get(1));
-      HashMap<String, Student> studentHashMap = studentReader.getData();
-      List<KDInsertable> studentList = new ArrayList<>(studentHashMap.values());
-      this.tree = new KDTree<Student>(studentList, new EuclidianDistance(), 3);
-      System.out.println("Read " + studentList.size() + " students from " + tokens.get(1));
-      return true;
-    } else if (tokens.get(0).equals("similar_kd")) {
-      if (this.tree == null) {
-        System.out.println("ERROR: No tree data has been loaded");
-        return true;
-      }
-      int k = Integer.parseInt(tokens.get(1));
-      String targetID = tokens.get(2);
-      ArrayList<String> kNeighborsIDs = this.tree.findKNeighbors(targetID, k);
-      for (String kNeighborsID : kNeighborsIDs) {
-        System.out.println(kNeighborsID);
-      }
-      return true;
-    } else {
-      return false;
+    return false;
     }
+//  @Override
+//  public boolean checkCommand(List<String> tokens) {
+//    if (tokens.get(0).equals("load_kd")) {
+//      Reader studentReader = new Reader();
+//      studentReader.loadData(tokens.get(1));
+//      HashMap<String, Student> studentHashMap = studentReader.getData();
+//      List<KDInsertable> studentList = new ArrayList<>(studentHashMap.values());
+//      this.tree = new KDTree<Student>(studentList, new EuclidianDistance(), 3);
+//      System.out.println("Read " + studentList.size() + " students from " + tokens.get(1));
+//      return true;
+//    } else if (tokens.get(0).equals("similar_kd")) {
+//      if (this.tree == null) {
+//        System.out.println("ERROR: No tree data has been loaded");
+//        return true;
+//      }
+//      int k = Integer.parseInt(tokens.get(1));
+//      String targetID = tokens.get(2);
+//      ArrayList<String> kNeighborsIDs = this.tree.findKNeighbors(targetID, k);
+//      for (String kNeighborsID : kNeighborsIDs) {
+//        System.out.println(kNeighborsID);
+//      }
+//      return true;
+//    } else {
+//      return false;
+//    }
   }
 }
