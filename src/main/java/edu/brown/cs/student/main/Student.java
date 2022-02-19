@@ -1,13 +1,13 @@
 package edu.brown.cs.student.main;
 
-import org.checkerframework.checker.regex.qual.Regex;
+import edu.brown.cs.student.main.kdTree.KDInsertable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Student implements KDNode {
+public class Student implements KDInsertable {
   private String id;
   private String name;
   private String email;
@@ -26,8 +26,8 @@ public class Student implements KDNode {
   private String[] weaknesses;
   private String[] skills;
   private String[] interests;
-  private KDNode leftChild;
-  private KDNode rightChild;
+//  private KDNode leftChild;
+//  private KDNode rightChild;
 
   public Student(String line) {
     List<String> tokens = new ArrayList<>();
@@ -73,8 +73,8 @@ public class Student implements KDNode {
     interests = m.group().split(",");
     interests = this.cleanList(interests);
 
-    this.leftChild = null;
-    this.rightChild = null;
+//    this.leftChild = null;
+//    this.rightChild = null;
   }
 
   private String[] cleanList(String[] items){
@@ -85,6 +85,7 @@ public class Student implements KDNode {
     return cleanList;
   }
 
+  @Override
   public String getID() {
     return id;
   }
@@ -163,41 +164,4 @@ public class Student implements KDNode {
         Double.parseDouble(this.weeklyAvailHours), Double.parseDouble(this.softwareEngnConfidence)};
   }
 
-  /**
-   * Simple getter from KDNode interface
-   * @return leftChild of the student in the tree
-   */
-  @Override
-  public KDNode getLeft() {
-    return this.leftChild;
-  }
-
-  /**
-   * Simple getter from KDNode interface
-   * @return rightChild of student in tree
-   */
-  @Override
-  public KDNode getRight() {
-    return this.rightChild;
-  }
-
-  /**
-   * Simple setter from KDNode interface
-   * @param leftNode
-   */
-  @Override
-  public void setLeft(KDNode leftNode) {
-    this.leftChild = leftNode;
-
-  }
-
-  /**
-   * Simple setter from KDNode interface
-   * @param rightNode
-   */
-  @Override
-  public void setRight(KDNode rightNode) {
-    this.rightChild = rightNode;
-
-  }
 }
