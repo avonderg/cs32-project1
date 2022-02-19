@@ -50,12 +50,14 @@ public final class Main {
       runSparkServer((int) options.valueOf("port"));
     }
 
+
     // CSV Reader and REPL:
     Reader csvReader = new Reader((Data) new ArrayList<String>());
     csvReader.loadData("proj1_small.csv");
 
     Command[] commands = {};
     REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|s
+
     reader.runREPL();
   }
 

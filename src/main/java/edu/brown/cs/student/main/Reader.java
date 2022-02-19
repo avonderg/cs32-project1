@@ -10,7 +10,9 @@ import java.util.List;
 public class Reader {
 
   private List<String> tokens;
+
   private Data data;
+
 
   /**
    * Class constructor.
@@ -26,7 +28,9 @@ public class Reader {
   public void loadData(String fileName) {
     Path filePath  = Paths.get(fileName);
     try (BufferedReader reader = Files.newBufferedReader(filePath)) { // read file
-      data.clear(); // clears out old hashmap
+      if (this.data.size() == 0) {
+        data.clear(); // clears out old hashmap
+      }
       String line = reader.readLine(); // read header first, don't add to hashmap
       while ((line = reader.readLine()) != null) {
         //Student student = new Student(line);
