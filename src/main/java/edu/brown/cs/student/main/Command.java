@@ -13,10 +13,10 @@ public interface Command {
    * Function checking if a command has been found
    *
    * @param tokens - tokenized command line user input
-   * @return - boolean indicating whether or not a command was found
+   * @return - String indicating whether or not a command was found
    * @throws NoSuchAlgorithmException
    */
-  boolean checkCommand(List<String> tokens) throws NoSuchAlgorithmException, IOException, IllegalAccessException;
+  String checkCommand(List<String> tokens) throws NoSuchAlgorithmException, IOException, IllegalAccessException;
 
 
 }

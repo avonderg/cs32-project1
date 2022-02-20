@@ -200,55 +200,57 @@ public class BloomFilter implements Command {
     }
 
     /**
-     * Checks the command-line user input for the following commands: create_bf, insert_bf, query_bf,
-     * and calls appropriate functions handling each.
+     * Checks the command-line user input for the following commands: create_bf, insert_bf, query_bf, load_bf,
+     * and similar_bf, and calls appropriate functions handling each.
      *
      * @param tokens - tokenized command line user input
-     * @return - boolean indicating whether or not a command was found
+     * @return - String indicating whether or not a command was found
      * @throws NoSuchAlgorithmException
      */
     @Override
-    public boolean checkCommand(List<String> tokens) throws NoSuchAlgorithmException, IOException, IllegalAccessException {
+    public String checkCommand(List<String> tokens) throws NoSuchAlgorithmException, IOException, IllegalAccessException {
         if (tokens.get(0).equals("create_bf")) { // create bf command
             if (tokens.size() == 3) {
                 double posRate = Double.parseDouble(tokens.get(1));
                 int size = Integer.parseInt(tokens.get(2));
                 createBf(posRate, size);
-                String str = printSet(this.getSet());
-                return true;
+                printSet(this.getSet());
+                return "found";
             }
         }
         else if (tokens.get(0).equals("insert_bf") ) { // create bf command
             if (tokens.size() == 2) {
                 byte[] array = tokens.get(1).getBytes();
                 insertBf(array);
-                String str = printSet(this.getSet());
-                return true;
+                printSet(this.getSet());
+                return "found";
             }
         }
         else if (tokens.get(0).equals("query_bf")) { // create bf command
             if (tokens.size() == 2) {
                 byte[] array = tokens.get(1).getBytes();
                 queryBf(array);
-                return true;
+                return "found";
             }
         }
         else if (tokens.get(0).equals("load_bf") || tokens.get(0).equals("similar_bf")) {
             if (tokens.get(0).equals("load_bf")) {
-                Reader studentReader = new Reader();
+//                Data readerUse = new BloomFilter(0,0,null,0,0);
+                HashMapData readerUse = new HashMapData();
+                Reader studentReader = new Reader(readerUse);
                 studentReader.loadData(tokens.get(1));
                 students.clear();
-                this.students = studentReader.getData();
+                this.students = studentReader.getData().getData();
                 data.handleBlooms(1, this.students, tokens);
                 System.out.println("Read " + this.students.size() + " students from " + tokens.get(1));
-                return true;
+                return "found";
             }
             else if (tokens.get(0).equals("similar_bf")) {
                 data.handleBlooms(2, this.students, tokens);
-                return true;
+                return "found";
             }
         }
             System.out.println("ERROR: invalid arguments");
-            return false;
+            return null;
     }
 }

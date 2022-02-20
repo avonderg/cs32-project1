@@ -78,16 +78,16 @@ public class BloomFilterTest {
         tokens1.add("0.1");
         tokens1.add("5");
         BloomFilter bloom1 = new BloomFilter(0,0,null,0,0);
-        assertEquals(bloom1.checkCommand(tokens1), true);
+        assertEquals(bloom1.checkCommand(tokens1), "found");
         BloomFilter bloom2 = new BloomFilter(0,0,null,0,0);
         List<String> tokens2 = new ArrayList<String>();
         tokens2.add("create_bf");
-        assertEquals(bloom2.checkCommand(tokens2), false);
+        assertEquals(bloom2.checkCommand(tokens2), null);
         BloomFilter bloom3 = new BloomFilter(0,0,null,0,0);
         List<String> tokens3 = new ArrayList<String>();
         tokens3.add("insert_bf");
         tokens3.add("alex");
-        assertEquals(bloom1.checkCommand(tokens1), true);
+        assertEquals(bloom1.checkCommand(tokens1), "found");
     }
 
     @Test
