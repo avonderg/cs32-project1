@@ -44,7 +44,7 @@ public class Reader {
       }
 
       // prints output describing how much data was read from given file
-      System.out.println("Read " + data.size() + " lines from " + fileName);
+      // System.out.println("Read " + data.size() + " lines from " + fileName);
     } catch (IOException ie) {
 
       // if file cannot be read, print out error statement

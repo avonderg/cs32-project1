@@ -58,7 +58,9 @@ public class REPL {
 
             // if the command is found, print the output and
             // exit the loop (don't check for any more commands)
-            System.out.println(output);
+            if (!output.equals("")) {
+              System.out.println(output);
+            }
             break;
           }
         }
