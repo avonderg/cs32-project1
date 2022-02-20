@@ -127,10 +127,10 @@ public class KDTree<T extends KDInsertable> {
    */
   public ArrayList<String> findKNeighbors(String targetID, int k) {
     ArrayList<String> kNeighborsIDList = new ArrayList<String>();
-    if (k < 0) {
-      System.out.print("ERROR: k must be greater than 0");
-      return kNeighborsIDList;
-    }
+//    if (k < 0) {
+//      System.out.print("ERROR: k must be greater than 0");
+//      return kNeighborsIDList;
+//    }
     if (k == 0) {
 //      System.out.print("Error: k must be greater than 0");
       return kNeighborsIDList;

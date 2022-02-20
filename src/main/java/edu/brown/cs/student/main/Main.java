@@ -51,9 +51,9 @@ public final class Main {
     }
 
 
-    // CSV Reader and REPL:
-    Reader csvReader = new Reader((Data) new ArrayList<String>());
-    csvReader.loadData("proj1_small.csv");
+    // CSVReader and REPL:
+    HashMapData data = new HashMapData();
+    Reader csvReader = new Reader(data);
 
     Command[] commands = {new KDTreeCommand()};
     REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|s
