@@ -40,7 +40,7 @@ public class REPL {
         }
         for (Command command : commands) {
           String output = command.checkCommand(tokens);
-          if (!output.equals(null)) { // if the command is matched,  print the output
+          if (!output.equals(null) && !output.equals("")) { // if the command is matched,  print the output
             System.out.println(output);
             break;
           }

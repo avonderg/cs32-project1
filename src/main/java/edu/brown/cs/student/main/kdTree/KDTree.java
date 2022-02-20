@@ -127,12 +127,11 @@ public class KDTree<T extends KDInsertable> {
    */
   public ArrayList<String> findKNeighbors(String targetID, int k) {
     ArrayList<String> kNeighborsIDList = new ArrayList<String>();
-//    if (k < 0) {
-//      System.out.print("ERROR: k must be greater than 0");
-//      return kNeighborsIDList;
-//    }
+
     if (k == 0) {
-//      System.out.print("Error: k must be greater than 0");
+      return kNeighborsIDList;
+    }    if (k < 0) {
+      System.out.print("ERROR: k must be greater than 0");
       return kNeighborsIDList;
     }
     this.nodeToDistMap.clear();
@@ -154,6 +153,8 @@ public class KDTree<T extends KDInsertable> {
     Collections.reverse(kNeighborsIDList);
     return kNeighborsIDList;
   }
+
+
 
   private void kNNhelper(KDNode targetNode, KDNode searchNode, int k, int depth) {
     //if the node we search happens to be the target node, don't add it to the PQ, but recur on both children

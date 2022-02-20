@@ -36,7 +36,7 @@ public class Reader {
         //Student student = new Student(line);
         data.insert(line);
       }
-      System.out.println("Read " + data.size() + " lines from " + fileName);
+//      System.out.println("Read " + data.size() + " students from " + fileName);
     } catch (IOException ie) {
       System.out.println("ERROR: File not found.");
     }

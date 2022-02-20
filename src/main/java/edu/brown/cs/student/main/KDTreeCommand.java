@@ -45,17 +45,16 @@ public class KDTreeCommand implements Command {
         return ("ERROR: No tree data has been loaded");
       }
       int k = Integer.parseInt(tokens.get(1));
-      if (k < 0) {
-        return ("ERROR: k must be greater than 0");
-      }
+
       String targetID = tokens.get(2);
       ArrayList<String> kNeighborsIDs = this.tree.findKNeighbors(targetID, k);
-      StringBuilder kNearestNeighbors = new StringBuilder();
-      for (String kNeighborsID : kNeighborsIDs) {
-        String idToAdd = kNeighborsID + "\n";
-        kNearestNeighbors.append(idToAdd);
+//      StringBuilder kNearestNeighbors = new StringBuilder();
+      for (String neighborID : kNeighborsIDs) {
+//        String idToAdd = neighborID + "\n";
+//        kNearestNeighbors.append(idToAdd);
+        System.out.println(neighborID);
       }
-      return kNearestNeighbors.toString();
+      return "";
     } else {
       return null;
     }
