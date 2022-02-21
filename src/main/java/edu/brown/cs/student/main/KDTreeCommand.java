@@ -58,9 +58,8 @@ public class KDTreeCommand implements Command {
     } else {
       return null;
     }
-    }
-//  @Override
-//  public boolean checkCommand(List<String> tokens) {
+  }
+
 
 }
 
