@@ -16,22 +16,42 @@ public class BloomFilter {
     public HashMap<String, Student> students = new HashMap<String, Student>();
     BloomData data = new BloomData(new HashMap<>(), new HashMap<>());
 
+    /**
+     * Setter method for the false positive rate, r
+     * @param r
+     */
     public void setR(double r) {
         this.r = r;
     }
 
+    /**
+     * Setter method for the maximum size, n
+     * @param n
+     */
     public void setN(int n) {
         this.n = n;
     }
 
+    /**
+     * Setter method for the bit set
+     * @param set
+     */
     public void setSet(BitSet set) {
         this.set = set;
     }
 
+    /**
+     * Setter method for the size of the bit set
+     * @param bitSize
+     */
     public void setBitSize(int bitSize) {
         this.bitSize = bitSize;
     }
 
+    /**
+     * Setter method for the number of hash methods, k
+     * @param k
+     */
     public void setK(int k) {
         this.k = k;
     }
@@ -135,5 +155,4 @@ public class BloomFilter {
         System.out.println(buffer.toString());
         return buffer.toString();
     }
-
 }

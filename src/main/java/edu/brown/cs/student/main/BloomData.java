@@ -33,10 +33,10 @@ public class BloomData {
      * @throws IllegalAccessException
      */
     public void handleBlooms(int determinant, HashMap<String, Student> students,  List<String> tokens) throws NoSuchAlgorithmException, IllegalAccessException {
-        if (determinant == 1) {
+        if (determinant == 1) { // if load_bf should be called
             loadBf(students);
         }
-        else if (determinant == 2) {
+        else if (determinant == 2) { // if similar_bf should be called
             similarBf(tokens);
         }
     }
