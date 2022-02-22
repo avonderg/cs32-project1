@@ -1,5 +1,7 @@
 package edu.brown.cs.student.main;
 
+import edu.brown.cs.student.main.Command;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -55,9 +57,9 @@ public class REPL {
           String output = command.checkCommand(tokens);
 
           // checkCommand returns null if the command is not found in the tokens
-          if (!output.equals(null)) {
+          if (output != null) {
 
-            // if the command is found, print the output and
+            // if the command is found, print the output (if there is one) and
             // exit the loop (don't check for any more commands)
             if (!output.equals("")) {
               System.out.println(output);
