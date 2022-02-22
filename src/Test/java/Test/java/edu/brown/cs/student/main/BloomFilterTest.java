@@ -1,5 +1,6 @@
 package Test.java.edu.brown.cs.student.main;
 
+import edu.brown.cs.student.main.BloomCommand;
 import edu.brown.cs.student.main.BloomFilter;
 import org.junit.Test;
 
@@ -77,9 +78,11 @@ public class BloomFilterTest {
         tokens1.add("create_bf");
         tokens1.add("0.1");
         tokens1.add("5");
-        BloomFilter bloom1 = new BloomFilter(0,0,null,0,0);
-        assertEquals(bloom1.checkCommand(tokens1), "found");
-        BloomFilter bloom2 = new BloomFilter(0,0,null,0,0);
+//        BloomFilter bloom1 = new BloomFilter(0,0,null,0,0);
+        BloomCommand bloom1 = new BloomCommand();
+        assertEquals(bloom1.checkCommand(tokens1), "");
+//        BloomFilter bloom2 = new BloomFilter(0,0,null,0,0);
+        BloomCommand bloom2 = new BloomCommand();
         List<String> tokens2 = new ArrayList<String>();
         tokens2.add("create_bf");
         assertEquals(bloom2.checkCommand(tokens2), null);
@@ -87,19 +90,20 @@ public class BloomFilterTest {
         List<String> tokens3 = new ArrayList<String>();
         tokens3.add("insert_bf");
         tokens3.add("alex");
-        assertEquals(bloom1.checkCommand(tokens1), "found");
+        assertEquals(bloom1.checkCommand(tokens1), "");
     }
 
     @Test
     public void createBf() throws NoSuchAlgorithmException, IOException, IllegalAccessException {
-        BloomFilter bloom1 = new BloomFilter(0,0,null,0,0);
+//        BloomFilter bloom1 = new BloomFilter(0,0,null,0,0);
+        BloomCommand bloom1 = new BloomCommand();
         List<String> tokens1 = new ArrayList<String>();
         tokens1.add("create_bf");
         tokens1.add("0.1");
         tokens1.add("5");
         bloom1.checkCommand(tokens1);
-        assertEquals(bloom1.getR(), 0.1, 0.1);
-        assertEquals(bloom1.getN(), 5);
+        assertEquals(bloom1.bloom.getBloom().getR(), 0.1, 0.1);
+        assertEquals(bloom1.bloom.getBloom().getN(), 5);
     }
 
 

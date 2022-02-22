@@ -61,7 +61,7 @@ public final class Main {
     // CSV Reader and REPL:
     HashMapData data = new HashMapData();
     Reader csvReader = new Reader(data);
-    Command[] commands = {new BloomFilter(0,0,null,0,0)};
+    Command[] commands = {new BloomCommand()};
     REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|s
     reader.runREPL();
   }
