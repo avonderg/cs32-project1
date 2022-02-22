@@ -64,7 +64,7 @@ public class REPL {
             }
             break;
           } else {
-            System.out.println("ERROR: Invalid Argument");
+//            System.out.println("ERROR: Invalid Argument");
           }
         }
       } else {
