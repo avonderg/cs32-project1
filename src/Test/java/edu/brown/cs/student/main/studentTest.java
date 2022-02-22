@@ -31,7 +31,7 @@ public class studentTest {
     assertEquals("Female", testStudent.getGender());
     assertEquals("senior", testStudent.getClassYear());
     assertEquals("Tunisia", testStudent.getNationality());
-    //assertEquals("and Native Hawaiian or Other Pacific Islander", testStudent.getRace());
+    assertEquals("and Native Hawaiian or Other Pacific Islander", testStudent.getRace());
     assertEquals("10", testStudent.getYearsExperience());
     assertEquals("slack", testStudent.getCommunicationStyle());
     assertEquals("16", testStudent.getWeeklyAvailHours());
@@ -46,6 +46,10 @@ public class studentTest {
     assertEquals("dishonest", testStudent.getWeaknesses()[1]);
     assertEquals("data structures", testStudent.getSkills()[0]);
     assertEquals("politics", testStudent.getInterests()[0]);
+    assertEquals(10, testStudent.getCoords()[0], 0.01);
+    assertEquals(16, testStudent.getCoords()[1], 0.01);
+    assertEquals(32, testStudent.getCoords()[2], 0.01);
+
 
     // initialize new object Student with line from CSV file (proj1_small.csv)
     Student testStudent1 = new Student("5,Zelda Cosham,zcosham4@europa.eu,Female,freshman" +
