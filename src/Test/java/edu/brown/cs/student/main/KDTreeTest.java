@@ -19,7 +19,7 @@ public class KDTreeTest {
 
   /**
    * Tests that a KDTree with multiple elements is correctly constructed, specifically testing
-   * the createKDTree() method.
+   * the createKDTree() method. It also tests the getRight and getLeft methods of the KDTree class.
    */
   @Test
   public void testCreateKDTree() {
@@ -60,7 +60,6 @@ public class KDTreeTest {
 
     ArrayList<String> kNeighborsIDList = kdTree.findKNeighbors("2", 1);
     assertEquals("1", kNeighborsIDList.remove(0));
-//    assertEquals("5", kNeighborsIDQueue.remove());
   }
 
   /**

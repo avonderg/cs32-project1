@@ -1,5 +1,6 @@
 package edu.brown.cs.student.main;
 
+
 /**
  * The Reader class will only accept objects that extend this interface.
  * Allows for storing data in various data structures.

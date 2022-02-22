@@ -105,6 +105,11 @@ public class KDTree<T extends KDInsertable> {
     return this.root.nodeData;
   }
 
+  /**
+   * This getter method gets the left child of a specified node
+   * @param node - to get left child of
+   * @return the left child
+   */
   public KDInsertable getLeft(KDInsertable node) {
     if (this.dataToNodeMap.get(node).getLeft() == null) {
       return null;
@@ -112,6 +117,11 @@ public class KDTree<T extends KDInsertable> {
     return this.dataToNodeMap.get(node).getLeft().getDataObject();
   }
 
+  /**
+   * This getter method gets the right child of a specifed node.
+   * @param node - node to get right child of
+   * @return the right child
+   */
   public KDInsertable getRight(KDInsertable node) {
     if (this.dataToNodeMap.get(node).getRight() == null) {
       return null;
@@ -155,7 +165,14 @@ public class KDTree<T extends KDInsertable> {
   }
 
 
-
+  /**
+   * This recursive helper function performs the actual search of the k-d tree for its k-nearest
+   * neighbors.
+   * @param targetNode - node to find neighbors of
+   * @param searchNode - node currently searching
+   * @param k - the number of nearest neighbors to find
+   * @param depth - the depth of the searchNode
+   */
   private void kNNhelper(KDNode targetNode, KDNode searchNode, int k, int depth) {
     //if the node we search happens to be the target node, don't add it to the PQ, but recur on both children
     if (targetNode == searchNode) {
