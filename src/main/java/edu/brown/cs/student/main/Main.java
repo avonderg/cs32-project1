@@ -3,6 +3,7 @@ package edu.brown.cs.student.main;
 // look into using these imports for your REPL!
 import java.io.IOException;
 
+import edu.brown.cs.student.main.bloom.BloomCommand;
 import edu.brown.cs.student.main.csvReader.HashMapData;
 import edu.brown.cs.student.main.csvReader.Reader;
 import edu.brown.cs.student.main.kdTree.KDTreeCommand;
@@ -60,7 +61,7 @@ public final class Main {
     Reader csvReader = new Reader(data);
 
     // Initialize a command object to pass into the REPL object
-    Command[] commands = {new KDTreeCommand()};
+    Command[] commands = {new BloomCommand(), new KDTreeCommand()};
     REPL reader = new REPL("(\\S+)", commands);
 
     // Run the repl.
