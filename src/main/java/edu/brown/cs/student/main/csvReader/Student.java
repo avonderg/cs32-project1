@@ -1,6 +1,5 @@
 package edu.brown.cs.student.main.csvReader;
 
-
 import edu.brown.cs.student.main.kdTree.KDInsertable;
 
 import java.util.ArrayList;
@@ -27,8 +26,6 @@ public class Student implements KDInsertable {
   private String[] weaknesses;
   private String[] skills;
   private String[] interests;
-//  private KDNode leftChild;
-//  private KDNode rightChild;
 
   /**
    * Class constructor. Parses String parameter line and stores attributes.
