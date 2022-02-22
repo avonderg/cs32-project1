@@ -1,14 +1,8 @@
 package edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -20,8 +14,7 @@ import spark.Spark;
 public final class Main {
 
   // use port 4567 by default when running server
-  private static final int DEFAULT_PORT = 4567;
-  private HashMap<Integer, Star> starData = new HashMap<Integer, Star>();
+   private static final int DEFAULT_PORT = 4567;
 
   /**
    * The initial method called when execution begins.
@@ -57,26 +50,15 @@ public final class Main {
       runSparkServer((int) options.valueOf("port"));
     }
 
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    StarMethods starMethods = new StarMethods(starData);
 
-    while (true) { // REPL
-      String line = reader.readLine();
-      List<String> tokens = new ArrayList<>();
-      if (line != null) {
-        Matcher m = Pattern.compile("\"([^\"]*)\"|(\\S+)").matcher(line);
-        while (m.find()) {
-          if (m.group(1) != null) {
-            tokens.add("\"" + m.group(1) + "\"");
-          } else {
-            tokens.add(m.group(2));
-          }
-        }
-        starMethods.checkArgs(tokens);
-      } else {
-        break;
-      }
-    }
+    // CSVReader and REPL:
+    HashMapData data = new HashMapData();
+    Reader csvReader = new Reader(data);
+
+    Command[] commands = {new KDTreeCommand()};
+    REPL reader = new REPL("(\\S+)", commands); //"([^"]*)"|s
+
+    reader.runREPL();
   }
 
   private void runSparkServer(int port) {
