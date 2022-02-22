@@ -41,6 +41,16 @@ public class BloomData {
         }
     }
 
+    public int attrSize(Student student) {
+        Field[] fields = student.getClass().getDeclaredFields();
+        int count = 0;
+        for (Field field: fields) { // loops through all the fields in the input student object
+            field.setAccessible(true); // sets field to accessible
+            count++;
+        }
+        return count;
+    }
+
     /**
      * Given a hashmap mapping students to their IDs, generates a unique bloom filter for each student based off of
      * their attributes
@@ -56,10 +66,9 @@ public class BloomData {
             String key = set.getKey(); // gets current key
             Student value = set.getValue(); // gets current value
             BloomMaker bloom = new BloomMaker(); // creates an instance of the BloomMaker class
-            bloom.createBf(0.1,18); // Creates a bloom filter for the student, where n is the number of attributes
+            bloom.createBf(0.1, attrSize(value)); // Creates a bloom filter for the student, where n is the number of attributes
             this.studentBlooms.put(key, fillBloom(value, bloom)); // maps bloom filter to student ID
         }
-
     }
 
     /**
@@ -91,6 +100,7 @@ public class BloomData {
      * @param tokens - tokenized command line user input
      */
     private void similarBf(List<String> tokens) {
+        similarities.clear();
         SimilarBlooms similar = new SimilarBlooms(studentBlooms, similarities); // creates an instance of SimilarBlooms class
         // error checking
         if (tokens.size() != 3) {
