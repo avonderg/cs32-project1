@@ -1,6 +1,5 @@
 package Test.java.edu.brown.cs.student.main;
 
-import edu.brown.cs.student.main.csvReader.Student;
 import edu.brown.cs.student.main.bloom.BitwiseComparator;
 import edu.brown.cs.student.main.bloom.BloomData;
 import edu.brown.cs.student.main.bloom.BloomFilter;
