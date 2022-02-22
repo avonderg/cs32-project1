@@ -242,8 +242,10 @@ public class Student implements KDInsertable {
    */
   @Override
   public double[] getCoords() {
-    return new double[]{Double.parseDouble(this.yearsExperience),
-        Double.parseDouble(this.weeklyAvailHours), Double.parseDouble(this.softwareEngnConfidence)};
+    return new double[]{
+        Double.parseDouble(this.yearsExperience),
+        Double.parseDouble(this.weeklyAvailHours),
+        Double.parseDouble(this.softwareEngnConfidence)};
   }
 
 }

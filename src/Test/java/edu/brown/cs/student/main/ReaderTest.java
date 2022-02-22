@@ -1,6 +1,5 @@
 package edu.brown.cs.student.main;
 
-import edu.brown.cs.student.main.csvReader.Data;
 import edu.brown.cs.student.main.csvReader.HashMapData;
 import edu.brown.cs.student.main.csvReader.Reader;
 import edu.brown.cs.student.main.csvReader.Student;
