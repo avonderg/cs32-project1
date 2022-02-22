@@ -14,7 +14,7 @@ import spark.Spark;
 public final class Main {
 
   // use port 4567 by default when running server
-   private static final int DEFAULT_PORT = 4567;
+  private static final int DEFAULT_PORT = 4567;
 
   /**
    * The initial method called when execution begins.
@@ -50,14 +50,17 @@ public final class Main {
       runSparkServer((int) options.valueOf("port"));
     }
 
-    // intialize csv reader
-    Reader csvReader = new Reader((Data) new ArrayList<String>());
-    csvReader.loadData("proj1_small.csv");
 
-    // initialize REPL
-    Command[] commands = {};
-    REPL repl = new REPL("(\\S+)", commands); //"([^"]*)"|s
-    repl.runREPL();
+//    // Initialize a Data object to pass into a Reader object
+//    HashMapData data = new HashMapData();
+//    Reader csvReader = new Reader(data);
+//
+//    // Initialize a command object to pass into the REPL object
+//    Command[] commands = {new KDTreeCommand()};
+//    REPL reader = new REPL("(\\S+)", commands);
+//
+//    // Run the repl.
+//    reader.runREPL();
   }
 
   private void runSparkServer(int port) {

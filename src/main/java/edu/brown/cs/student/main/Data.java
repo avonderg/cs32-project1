@@ -4,7 +4,7 @@ package edu.brown.cs.student.main;
  * The Reader class will only accept objects that extend this interface.
  * Allows for storing data in various data structures.
  */
-public interface Data {
+public interface Data<T> {
 
   /**
    * Parses the line from the csv and stores it in a data structure.
@@ -22,5 +22,10 @@ public interface Data {
    * @return
    */
   public int size();
+
+  /**
+   * Returns the data structure object.
+   */
+  public T getData();
 
 }

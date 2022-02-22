@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * This class is used in Reader. Stores CSV data in a hashmap of Student ID's to Student objects.
  */
-public class HashMapData implements Data{
+public class HashMapData implements Data<HashMap<String, Student>> {
 
   HashMap<String, Student> hash;
 
@@ -36,6 +36,7 @@ public class HashMapData implements Data{
     return hash.size();
   }
 
+  @Override
   public HashMap<String, Student> getData() {
     return hash;
   }

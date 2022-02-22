@@ -42,8 +42,9 @@ public class REPL {
 
         // uses the regex passed into the constructor to parse the input line
         Matcher m = Pattern.compile(regex).matcher(line);
+
+        // adds each item matched by the regex to the tokens list
         while (m.find()) {
-          // adds each item matched by the regex to the tokens list
           tokens.add(m.group());
         }
 
