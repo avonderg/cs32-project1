@@ -62,10 +62,15 @@ public class BloomCommand implements Command {
                 Data readerUse = new HashMapData();
                 Reader studentReader = new Reader(readerUse);
                 studentReader.loadData(tokens.get(1));
+
                 // generalizing over
                 students.clear();
-                this.students = studentReader.getData().getData(); // fills hashmap student ID to student
-                data.handleBlooms(1, this.students, tokens); // determinant used to specify which function to call
+
+                // fills hashmap student ID to student
+                this.students = (HashMap<String, Student>) studentReader.getData().getData();
+
+                // determinant used to specify which function to call
+                data.handleBlooms(1, this.students, tokens);
                 System.out.println("Read " + this.students.size() + " students from " + tokens.get(1));
                 return "";
             }

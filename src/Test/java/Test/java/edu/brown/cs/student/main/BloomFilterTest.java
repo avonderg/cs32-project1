@@ -14,6 +14,9 @@ import static org.junit.Assert.assertEquals;
 
 public class BloomFilterTest {
 
+    /**
+     * Method to test the getR() method in the BloomFilter class
+     */
     @Test
     public void testGetR() {
         BloomFilter bloom1 = new BloomFilter(0.1,0,null,0,0);
@@ -22,6 +25,9 @@ public class BloomFilterTest {
         assertEquals(bloom2.getR(),100.2, 0.1);
     }
 
+    /**
+     * Method to test the getN() method in the BloomFilter class
+     */
     @Test
     public void testGetN() {
         BloomFilter bloom1 = new BloomFilter(0.1,0,null,0,0);
@@ -30,6 +36,9 @@ public class BloomFilterTest {
         assertEquals(bloom2.getN(),66);
     }
 
+    /**
+     * Method to test the getSet() method in the BloomFilter class
+     */
     @Test
     public void testGetSet() {
         BloomFilter bloom1 = new BloomFilter(0.1,0,null,0,0);
@@ -39,6 +48,9 @@ public class BloomFilterTest {
         assertEquals(bloom2.getSet(),set1);
     }
 
+    /**
+     * Method to test the getBitSize() method in the BloomFilter class
+     */
     @Test
     public void testGetBitSize() {
         BloomFilter bloom1 = new BloomFilter(0.1,0,null,0,0);
@@ -47,6 +59,9 @@ public class BloomFilterTest {
         assertEquals(bloom2.getBitSize(),39);
     }
 
+    /**
+     * Method to test the getK() method in the BloomFilter class
+     */
     @Test
     public void testGetK() {
         BloomFilter bloom1 = new BloomFilter(0.1,0,null,0,0);
@@ -55,6 +70,9 @@ public class BloomFilterTest {
         assertEquals(bloom2.getK(),7);
     }
 
+    /**
+     * Method to test the calculateK() method in the BloomFilter class
+     */
     @Test
     public void testCalculateK() {
         BloomFilter bloom1 = new BloomFilter(0.1,0,null,0,0);
@@ -65,6 +83,9 @@ public class BloomFilterTest {
         assertEquals(res2,1);
     }
 
+    /**
+     * Method to test the calculateSize() method in the BloomFilter class
+     */
     @Test
     public void testCalculateSize() {
         BloomFilter bloom1 = new BloomFilter(0.1,5,null,0,0);
@@ -72,6 +93,12 @@ public class BloomFilterTest {
         assertEquals(res1,29);
     }
 
+    /**
+     * Method to test the checkCommand method in the BloomCommand class
+     * @throws NoSuchAlgorithmException
+     * @throws IOException
+     * @throws IllegalAccessException
+     */
     @Test
     public void testCheckCommand() throws NoSuchAlgorithmException, IOException, IllegalAccessException {
         List<String> tokens1 = new ArrayList<String>();
@@ -103,6 +130,12 @@ public class BloomFilterTest {
         List<String> tokens7 = new ArrayList<String>();
     }
 
+    /**
+     * Method to test the createBF method in the BloomMaker class
+     * @throws NoSuchAlgorithmException
+     * @throws IOException
+     * @throws IllegalAccessException
+     */
     @Test
     public void testCreateBf() throws NoSuchAlgorithmException, IOException, IllegalAccessException {
         BloomCommand bloom1 = new BloomCommand();
