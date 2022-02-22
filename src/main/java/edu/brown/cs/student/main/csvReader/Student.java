@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.csvReader;
 
 
 import edu.brown.cs.student.main.kdTree.KDInsertable;

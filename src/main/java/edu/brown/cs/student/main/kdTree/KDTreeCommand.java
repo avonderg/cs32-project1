@@ -1,9 +1,9 @@
 package edu.brown.cs.student.main.kdTree;
 
-import edu.brown.cs.student.main.Command;
-import edu.brown.cs.student.main.HashMapData;
-import edu.brown.cs.student.main.Reader;
-import edu.brown.cs.student.main.Student;
+import edu.brown.cs.student.main.repl.Command;
+import edu.brown.cs.student.main.csvReader.HashMapData;
+import edu.brown.cs.student.main.csvReader.Reader;
+import edu.brown.cs.student.main.csvReader.Student;
 
 import java.util.ArrayList;
 import java.util.HashMap;
