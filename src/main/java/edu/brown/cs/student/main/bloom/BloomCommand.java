@@ -1,6 +1,10 @@
 package edu.brown.cs.student.main.bloom;
 
-import edu.brown.cs.student.main.*;
+import edu.brown.cs.student.main.csvReader.Data;
+import edu.brown.cs.student.main.csvReader.HashMapData;
+import edu.brown.cs.student.main.csvReader.Reader;
+import edu.brown.cs.student.main.csvReader.Student;
+import edu.brown.cs.student.main.repl.Command;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -31,7 +35,10 @@ public class BloomCommand implements Command {
      * @throws NoSuchAlgorithmException
      */
     @Override
-    public String checkCommand(List<String> tokens) throws NoSuchAlgorithmException, IOException, IllegalAccessException {
+    public String checkCommand(List<String> tokens) {
+
+
+
         if (tokens.get(0).equals("create_bf")) { // create bf command
             if (tokens.size() == 3) {
                 double posRate = Double.parseDouble(tokens.get(1));
@@ -44,7 +51,11 @@ public class BloomCommand implements Command {
         else if (tokens.get(0).equals("insert_bf") ) { // create bf command
             if (tokens.size() == 2) {
                 byte[] array = tokens.get(1).getBytes();
-                bloom.insertBf(array); // inserts input value into bit set
+                try {
+                    bloom.insertBf(array); // inserts input value into bit set
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
                 bloom.getBloom().printSet(bloom.getBloom().getSet()); // prints out bloom filter
                 return "";
             }
@@ -52,7 +63,11 @@ public class BloomCommand implements Command {
         else if (tokens.get(0).equals("query_bf")) { // create bf command
             if (tokens.size() == 2) {
                 byte[] array = tokens.get(1).getBytes();
-                bloom.queryBf(array); // queries for value
+                try {
+                    bloom.queryBf(array); // queries for value
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
                 return "";
             }
         }
@@ -70,16 +85,34 @@ public class BloomCommand implements Command {
                 this.students = (HashMap<String, Student>) studentReader.getData().getData();
 
                 // determinant used to specify which function to call
-                data.handleBlooms(1, this.students, tokens);
+                try {
+                    data.handleBlooms(1, this.students, tokens);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
                 System.out.println("Read " + this.students.size() + " students from " + tokens.get(1));
                 return "";
             }
             else if (tokens.get(0).equals("similar_bf")) {
-                data.handleBlooms(2, this.students, tokens); // determinant used to specify which function to call
+                try {
+                    data.handleBlooms(2, this.students, tokens); // determinant used to specify which function to call
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
                 return "";
             }
         }
         System.out.println("ERROR: invalid arguments");
         return null;
     }
+
+    private void checkCommandWithExceptions() {
+
+    }
+
+
 }

@@ -1,4 +1,6 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.csvReader;
+
+import edu.brown.cs.student.main.csvReader.Data;
 
 import java.io.BufferedReader;
 import java.io.IOException;

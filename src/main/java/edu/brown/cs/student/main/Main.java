@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 import edu.brown.cs.student.main.bloom.BloomCommand;
+import edu.brown.cs.student.main.csvReader.HashMapData;
+import edu.brown.cs.student.main.csvReader.Reader;
+import edu.brown.cs.student.main.repl.Command;
+import edu.brown.cs.student.main.repl.REPL;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import spark.Spark;

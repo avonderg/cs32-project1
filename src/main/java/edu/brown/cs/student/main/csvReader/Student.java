@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.csvReader;
 
 import org.checkerframework.checker.regex.qual.Regex;
 

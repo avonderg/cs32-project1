@@ -1,8 +1,8 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.csvReader;
 
 import java.util.HashMap;
 
-public class HashMapData implements Data{
+public class HashMapData implements Data {
 
     HashMap<String, Student> hash;
 
