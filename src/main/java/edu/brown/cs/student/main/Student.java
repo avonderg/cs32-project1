@@ -78,8 +78,6 @@ public class Student implements KDInsertable {
     interests = m.group().split(",");
     interests = this.cleanList(interests);
 
-//    this.leftChild = null;
-//    this.rightChild = null;
   }
 
   /**
