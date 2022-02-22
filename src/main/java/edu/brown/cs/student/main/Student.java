@@ -78,8 +78,6 @@ public class Student implements KDInsertable {
     interests = m.group().split(",");
     interests = this.cleanList(interests);
 
-//    this.leftChild = null;
-//    this.rightChild = null;
   }
 
   /**
@@ -88,10 +86,17 @@ public class Student implements KDInsertable {
    * @return cleaned list
    */
   private String[] cleanList(String[] items){
+    // initializes a new array that will store the same Strings, but without extra characters
     String[] cleanList = new String[items.length];
+
+    // iterates through each String in the list items
     for (int i=0; i<items.length; i++) {
+
+      // removes extra quotation marks and spaces from each String
       cleanList[i] = items[i].replace("\"", "").trim();
     }
+
+    // return the new, cleaned list
     return cleanList;
   }
 
