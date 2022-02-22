@@ -1,4 +1,5 @@
 package Test.java.edu.brown.cs.student.main;
+import edu.brown.cs.student.main.bloom.BitwiseComparator;
 import edu.brown.cs.student.main.bloom.BloomData;
 import edu.brown.cs.student.main.bloom.BloomFilter;
 import edu.brown.cs.student.main.Student;
@@ -7,6 +8,7 @@ import org.junit.Test;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,5 +55,9 @@ public class BloomDataTest {
         maker.createBf(0.1,18);
         assertEquals(maker.getBloom().getBitSize(), bloom.getBitSize());
     }
+
+
+
+
 
 }

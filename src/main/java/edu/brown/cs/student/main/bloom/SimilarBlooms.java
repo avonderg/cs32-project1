@@ -24,9 +24,10 @@ public class SimilarBlooms {
     /**
      * Allows access to private methods within this class
      * @param k - number of similar students to find
+     * @return - 1 on success, -1 on failure
      */
-    public void caller(int k) {
-        findKNearest(k);
+    public int caller(int k) {
+        return findKNearest(k);
     }
 
     /**
@@ -34,11 +35,12 @@ public class SimilarBlooms {
      * bloom set cardinalities. K must be non-negative, otherwise, an error will be thrown.
      *
      * @param k - number of similar students to find
+     * @return - (-1) on failure, 1 on success
      */
-    private void findKNearest(int k) {
+    private int findKNearest(int k) {
         if (k < 0) {
             System.out.println("ERROR: k must be non-negative");
-            return;
+            return -1;
         }
         // now, we can sort distances hashmap by using a list
         List<Integer> similaritiesSorted = new ArrayList<>(similarities.values());
@@ -54,6 +56,7 @@ public class SimilarBlooms {
             System.out.println(this.getKey(similarities, score));
             i++;
         }
+        return 1;
     }
 
     /**

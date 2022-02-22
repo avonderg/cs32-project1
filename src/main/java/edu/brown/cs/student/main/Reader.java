@@ -10,13 +10,12 @@ import java.util.List;
 
 public class Reader {
 
-  private List<String> tokens;
-  private HashMapData data;
+  private Data data;
 
   /**
    * Class constructor.
    */
-  public Reader(HashMapData data) { //List<String> tokens, String fileName
+  public Reader(Data data) { //List<String> tokens, String fileName
     this.data = data;
   }
 
@@ -43,7 +42,7 @@ public class Reader {
    * Returns hashmap storing the data.
    * @return
    */
-  public HashMapData getData() {
+  public Data getData() {
     return data;
   }
 }

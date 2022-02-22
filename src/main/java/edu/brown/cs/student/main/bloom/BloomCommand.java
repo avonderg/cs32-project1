@@ -59,7 +59,7 @@ public class BloomCommand implements Command {
         else if (tokens.get(0).equals("load_bf") || tokens.get(0).equals("similar_bf")) {
             if (tokens.get(0).equals("load_bf")) {
                 // in order to generalize for any type of object
-                HashMapData readerUse = new HashMapData();
+                Data readerUse = new HashMapData();
                 Reader studentReader = new Reader(readerUse);
                 studentReader.loadData(tokens.get(1));
                 // generalizing over
