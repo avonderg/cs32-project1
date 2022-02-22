@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.bloom;
 
 import java.util.BitSet;
 

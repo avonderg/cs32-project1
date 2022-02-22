@@ -1,4 +1,6 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.bloom;
+import edu.brown.cs.student.main.Student;
+
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.stream.IntStream;

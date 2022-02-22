@@ -1,16 +1,10 @@
 package edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import edu.brown.cs.student.main.bloom.BloomCommand;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import spark.Spark;

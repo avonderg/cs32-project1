@@ -1,5 +1,7 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.bloom;
 
+
+import edu.brown.cs.student.main.Student;
 
 import java.lang.reflect.Field;
 import java.security.NoSuchAlgorithmException;
@@ -32,13 +34,16 @@ public class BloomData {
      * @throws NoSuchAlgorithmException
      * @throws IllegalAccessException
      */
-    public void handleBlooms(int determinant, HashMap<String, Student> students,  List<String> tokens) throws NoSuchAlgorithmException, IllegalAccessException {
+    public int handleBlooms(int determinant, HashMap<String, Student> students, List<String> tokens) throws NoSuchAlgorithmException, IllegalAccessException {
         if (determinant == 1) { // if load_bf should be called
             loadBf(students);
+            return 1;
         }
         else if (determinant == 2) { // if similar_bf should be called
             similarBf(tokens);
+            return 2;
         }
+        return 0;
     }
 
     public int attrSize(Student student) {
@@ -81,7 +86,7 @@ public class BloomData {
      * @throws NoSuchAlgorithmException
      * @throws IllegalAccessException
      */
-    private BloomFilter fillBloom(Student student, BloomMaker bloom) throws NoSuchAlgorithmException, IllegalAccessException {
+    public BloomFilter fillBloom(Student student, BloomMaker bloom) throws NoSuchAlgorithmException, IllegalAccessException {
         Field[] fields = student.getClass().getDeclaredFields();
         for (Field field: fields) { // loops through all the fields in the input student object
             field.setAccessible(true); // sets field to accessible

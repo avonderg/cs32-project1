@@ -1,4 +1,7 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.bloom;
+
+import edu.brown.cs.student.main.bloom.BloomFilter;
+import edu.brown.cs.student.main.bloom.BloomHashes;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -87,11 +90,11 @@ public class BloomMaker {
         for (BigInteger func: hashFunctions) {
             int val = func.mod(BigInteger.valueOf(size)).intValue(); // index in bitset
             if (!bloom.getSet().get(val)) { // if value not in set
-                System.out.println(ret + " is definitely not in the set.");
-                return ret + " is definitely not in the set.";
+                System.out.println("\""+ret+ "\""+ " is definitely not in the set.");
+                return "\""+ret+ "\"" + " is definitely not in the set.";
             }
         }
-        System.out.println(ret + " might be in the set.");
-        return ret + " might be in the set.";
+        System.out.println("\""+ret+ "\"" + " might be in the set.");
+        return "\""+ret+ "\"" + " might be in the set.";
     }
 }
