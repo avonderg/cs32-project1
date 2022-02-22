@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * The class for testing the Student object.
  */
-public class studentTest {
+public class StudentTest {
 
   /**
    * Tests that the Student object parses the line of attributes

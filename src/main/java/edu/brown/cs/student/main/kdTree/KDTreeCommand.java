@@ -5,6 +5,8 @@ import edu.brown.cs.student.main.HashMapData;
 import edu.brown.cs.student.main.Reader;
 import edu.brown.cs.student.main.Student;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
