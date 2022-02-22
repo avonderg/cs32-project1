@@ -1,8 +1,9 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.kdTree;
 
-import edu.brown.cs.student.main.kdTree.EuclidianDistance;
-import edu.brown.cs.student.main.kdTree.KDInsertable;
-import edu.brown.cs.student.main.kdTree.KDTree;
+import edu.brown.cs.student.main.Command;
+import edu.brown.cs.student.main.HashMapData;
+import edu.brown.cs.student.main.Reader;
+import edu.brown.cs.student.main.Student;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,10 +49,8 @@ public class KDTreeCommand implements Command {
 
       String targetID = tokens.get(2);
       ArrayList<String> kNeighborsIDs = this.tree.findKNeighbors(targetID, k);
-//      StringBuilder kNearestNeighbors = new StringBuilder();
+
       for (String neighborID : kNeighborsIDs) {
-//        String idToAdd = neighborID + "\n";
-//        kNearestNeighbors.append(idToAdd);
         System.out.println(neighborID);
       }
       return "";

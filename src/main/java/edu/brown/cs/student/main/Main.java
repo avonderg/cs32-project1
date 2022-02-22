@@ -2,8 +2,8 @@ package edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
 import java.io.IOException;
-import java.util.ArrayList;
 
+import edu.brown.cs.student.main.kdTree.KDTreeCommand;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import spark.Spark;
