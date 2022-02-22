@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.csvReader;
 
 
 import edu.brown.cs.student.main.kdTree.KDInsertable;
@@ -242,8 +242,10 @@ public class Student implements KDInsertable {
    */
   @Override
   public double[] getCoords() {
-    return new double[]{Double.parseDouble(this.yearsExperience),
-        Double.parseDouble(this.weeklyAvailHours), Double.parseDouble(this.softwareEngnConfidence)};
+    return new double[]{
+        Double.parseDouble(this.yearsExperience),
+        Double.parseDouble(this.weeklyAvailHours),
+        Double.parseDouble(this.softwareEngnConfidence)};
   }
 
 }

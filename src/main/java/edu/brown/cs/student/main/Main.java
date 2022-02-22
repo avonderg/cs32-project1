@@ -3,7 +3,11 @@ package edu.brown.cs.student.main;
 // look into using these imports for your REPL!
 import java.io.IOException;
 
+import edu.brown.cs.student.main.csvReader.HashMapData;
+import edu.brown.cs.student.main.csvReader.Reader;
 import edu.brown.cs.student.main.kdTree.KDTreeCommand;
+import edu.brown.cs.student.main.repl.Command;
+import edu.brown.cs.student.main.repl.REPL;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import spark.Spark;

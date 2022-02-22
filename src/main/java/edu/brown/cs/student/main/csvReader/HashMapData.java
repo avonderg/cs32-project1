@@ -1,7 +1,6 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.csvReader;
 
 import java.util.HashMap;
-
 
 /**
  * This class is used in Reader. Stores CSV data in a hashmap of Student ID's to Student objects.

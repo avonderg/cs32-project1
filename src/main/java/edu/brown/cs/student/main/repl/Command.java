@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main;
+package edu.brown.cs.student.main.repl;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;

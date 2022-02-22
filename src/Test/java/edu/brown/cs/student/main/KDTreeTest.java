@@ -1,4 +1,5 @@
 package edu.brown.cs.student.main;
+import edu.brown.cs.student.main.csvReader.Student;
 import edu.brown.cs.student.main.kdTree.EuclidianDistance;
 import edu.brown.cs.student.main.kdTree.KDInsertable;
 import edu.brown.cs.student.main.kdTree.KDNodeTestClass;

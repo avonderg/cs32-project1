@@ -1,5 +1,8 @@
 package edu.brown.cs.student.main;
 
+import edu.brown.cs.student.main.csvReader.HashMapData;
+import edu.brown.cs.student.main.csvReader.Reader;
+import edu.brown.cs.student.main.csvReader.Student;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -20,14 +23,14 @@ public class ReaderTest {
   @Test
   public void testReader() {
     // Initialize data object and reader object.
-    Data data = new HashMapData();
+    HashMapData data = new HashMapData();
     Reader reader = new Reader(data);
 
     // call loadData() and pass in proj1_small.csv file for CSV Parser to read
     reader.loadData("data/project1/proj1_small.csv");
 
     // store data stored in the Data object in a hashmap named hash
-    HashMap<String, Student> hash = (HashMap<String, Student>) reader.getData().getData();
+    HashMap<String, Student> hash = data.getData();
 
     // check that the hashmap stores student IDs and student information (name) correctly
     assertEquals(hash.get("1").getName(), "Stanton Swalough");
