@@ -51,16 +51,16 @@ public final class Main {
     }
 
 
-//    // Initialize a Data object to pass into a Reader object
-//    HashMapData data = new HashMapData();
-//    Reader csvReader = new Reader(data);
-//
-//    // Initialize a command object to pass into the REPL object
-//    Command[] commands = {new KDTreeCommand()};
-//    REPL reader = new REPL("(\\S+)", commands);
-//
-//    // Run the repl.
-//    reader.runREPL();
+    // Initialize a Data object to pass into a Reader object
+    HashMapData data = new HashMapData();
+    Reader csvReader = new Reader(data);
+
+    // Initialize a command object to pass into the REPL object
+    Command[] commands = {new KDTreeCommand()};
+    REPL reader = new REPL("(\\S+)", commands);
+
+    // Run the repl.
+    reader.runREPL();
   }
 
   private void runSparkServer(int port) {
