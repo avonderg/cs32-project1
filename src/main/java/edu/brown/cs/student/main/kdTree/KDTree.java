@@ -222,7 +222,7 @@ public class KDTree<T extends KDInsertable> {
   }
 
 
-  class KDNode {
+  private class KDNode {
     private KDNode leftChild;
     private KDNode rightChild;
     private KDInsertable nodeData;
