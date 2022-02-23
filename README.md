@@ -8,4 +8,4 @@
     
 - To run system tests we created for kdTree and bloomFilters run: 
     -  ./cs32-test tests/sprint-1/created/kdTree/*.test
-    -  ./cs32-test tests/sprint-1/created/bloomFilter/*.test
+    -  ./cs32-test tests/sprint-1/created/bloom/*.test
