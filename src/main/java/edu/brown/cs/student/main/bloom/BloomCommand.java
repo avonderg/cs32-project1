@@ -109,6 +109,10 @@ public class BloomCommand implements Command {
                     return null;
                 }
                 try {
+                    if (this.students.size() == 0) { // if load_bf has not yet been called
+                        System.out.println("ERROR: no data loaded from CSV");
+                        return null;
+                    }
                     data.handleBlooms(2, this.students, tokens); // determinant used to specify which function to call
                 }
                 // catching exceptions
