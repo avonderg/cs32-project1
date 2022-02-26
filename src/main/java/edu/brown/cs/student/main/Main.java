@@ -8,6 +8,7 @@ import edu.brown.cs.student.main.csvReader.HashMapData;
 import edu.brown.cs.student.main.csvReader.Reader;
 import edu.brown.cs.student.main.kdTree.KDTreeCommand;
 import edu.brown.cs.student.main.repl.Command;
+import edu.brown.cs.student.main.repl.HeadersCommand;
 import edu.brown.cs.student.main.repl.REPL;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -61,7 +62,7 @@ public final class Main {
     Reader csvReader = new Reader(data);
 
     // Initialize a command object to pass into the REPL object
-    Command[] commands = {new BloomCommand(), new KDTreeCommand()};
+    Command[] commands = {new BloomCommand(), new KDTreeCommand(), new HeadersCommand()};
     REPL reader = new REPL("(\\S+)", commands);
 
     // Run the repl.
