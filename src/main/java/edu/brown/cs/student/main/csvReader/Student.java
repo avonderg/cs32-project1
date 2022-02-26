@@ -2,8 +2,6 @@ package edu.brown.cs.student.main.csvReader;
 
 import edu.brown.cs.student.main.kdTree.KDInsertable;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +30,6 @@ public class Student implements KDInsertable {
    * @param line
    */
   public Student(String line) {
-    List<String> tokens = new ArrayList<>();
     Matcher m = Pattern.compile("(\".*?\")|([^\",*?\"]+)").matcher(line);
     m.find();
     id = m.group();
@@ -74,7 +71,6 @@ public class Student implements KDInsertable {
     m.find();
     interests = m.group().split(",");
     interests = this.cleanList(interests);
-
   }
 
   /**

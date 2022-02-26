@@ -24,31 +24,35 @@ public class Reader {
    * Reads data from CSV file with given file name and stores it in Data object.
    * @param fileName -- name of the csv file to be read
    */
-  public void loadData(String fileName) {
-    // store the filePath object from given file name
-    Path filePath  = Paths.get(fileName);
+  public void loadData(String[] fileName) {
+    // clear out old data
+    data.clear();
 
-    // initialize bufferedReader to read the file
-    try (BufferedReader reader = Files.newBufferedReader(filePath)) {
-      // clear out old data
-      data.clear();
+    // iterate through given files to reader
+    for (String f : fileName) {
+      // store the filePath object from given file name
+      Path filePath  = Paths.get(f);
 
-      // read header first, so don't store header information as data
-      String line = reader.readLine();
+      // initialize bufferedReader to read the file
+      try (BufferedReader reader = Files.newBufferedReader(filePath)) {
+        // read header first, so don't store header information as data
+        String line = reader.readLine();
+        data.readHeaders(line);
 
-      // iterate through lines of csv until reached the end (null)
-      while ((line = reader.readLine()) != null) {
+        // iterate through lines of csv until reached the end (null)
+        while ((line = reader.readLine()) != null) {
 
-        // calls data object's insert method to store information in current line of the csv file
-        data.insert(line);
+          // calls data object's insert method to store information in current line of the csv file
+          data.insert(line);
+        }
+
+        // prints output describing how much data was read from given file
+        // System.out.println("Read " + data.size() + " lines from " + fileName);
+      } catch (IOException ie) {
+
+        // if file cannot be read, print out error statement
+        System.out.println("ERROR: File not found.");
       }
-
-      // prints output describing how much data was read from given file
-      // System.out.println("Read " + data.size() + " lines from " + fileName);
-    } catch (IOException ie) {
-
-      // if file cannot be read, print out error statement
-      System.out.println("ERROR: File not found.");
     }
   }
 

@@ -79,7 +79,7 @@ public class BloomCommand implements Command {
                 // in order to generalize for any type of object
                 Data readerUse = new HashMapData();
                 Reader studentReader = new Reader(readerUse);
-                studentReader.loadData(tokens.get(1));
+                studentReader.loadData(new String[]{tokens.get(1)});
 
                 // generalizing over
                 students.clear();
