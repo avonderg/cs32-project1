@@ -26,8 +26,8 @@ public class ApiClient {
         try {
             HttpResponse<String> apiResponse = client.send(req, HttpResponse.BodyHandlers.ofString());
             JsonParser.printMessage(apiResponse.body());
-            System.out.println("Status " + apiResponse.statusCode());
-            System.out.println(apiResponse.body());
+//            System.out.println("Status " + apiResponse.statusCode());
+//            System.out.println(apiResponse.body());
 
         } catch (IOException ioe) {
             System.out.println("An I/O error occurred when sending or receiving data.");

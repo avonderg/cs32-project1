@@ -1,6 +1,11 @@
 package edu.brown.cs.student.main.api.json;
 
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * JSONParser class to learn about JSONs in Java.
@@ -14,8 +19,8 @@ public class JsonParser {
      * @param jsonObject stores the message.
      */
     public static void printMessage(String jsonObject) {
-        Gson parser = new Gson();
-        Message myMessage = parser.fromJson(jsonObject, Message.class);
-        System.out.println(myMessage.getMessage());
+        Type collectionType = new TypeToken<Collection<String>>(){}.getType();
+        Collection<String> enums = new Gson().fromJson(jsonObject, collectionType);
+        System.out.println(enums);
     }
 }

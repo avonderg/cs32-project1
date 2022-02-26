@@ -1,18 +1,20 @@
 package edu.brown.cs.student.main.api.json;
 
+import java.util.List;
+
 /**
  * Simple Message class for interacting with JSON parsers.
  *
  */
 public class Message {
 
-    private String[] message;
+    private String message;
 
     /**
      * Simple constructor.
      * @param message the message extracted from the JSON object.
      */
-    public Message(String[] message) {
+    public Message(String message) {
         this.message = message;
     }
 
@@ -20,7 +22,7 @@ public class Message {
      * Returns the extracted message.
      * @return the extracted message.
      */
-    public String[] getMessage() {
+    public String getMessage() {
         return this.message;
     }
 }
