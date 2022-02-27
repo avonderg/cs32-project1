@@ -30,6 +30,7 @@ public class Reader {
 
     // iterate through given files to reader
     for (String f : fileName) {
+      //System.out.println(f);
       // store the filePath object from given file name
       Path filePath  = Paths.get(f);
 
@@ -49,13 +50,11 @@ public class Reader {
         // prints output describing how much data was read from given file
         // System.out.println("Read " + data.size() + " lines from " + fileName);
       } catch (IOException ie) {
-
         // if file cannot be read, print out error statement
         System.out.println("ERROR: File not found.");
       }
-    }
+    } //System.out.println("data: " + data.getData());
   }
-
   /**
    * Returns object storing the data.
    * @return

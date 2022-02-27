@@ -147,9 +147,11 @@ We have also written a range of unit tests for each non-void method in our algor
   - To run the given system tests for kdTree and bloomFilters, run
     -  ./cs32-test tests/sprint-1/given/kdTree/*.test
     -  ./cs32-test tests/sprint-1/given/bloomFilter/*.test
-  - To run system tests we created for kdTree and bloomFilters run:
+  - To run system tests we created for kdTree, bloomFilters, and recommender, run:
     - ./cs32-test tests/sprint-1/created/kdTree/*.test
     - ./cs32-test tests/sprint-1/created/bloom/*.test
+    - ./cs32-test tests/sprint-1/created/recommender/*.test
+  - 
 
 **- Testing Plan**
 

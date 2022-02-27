@@ -40,6 +40,8 @@ public class REPL {
       List<String> tokens = new ArrayList<>();
       if (line != null) {
 
+        line = line.replaceAll("(\\n)+", " ");
+
         // uses the regex passed into the constructor to parse the input line
         Matcher m = Pattern.compile(regex).matcher(line);
 

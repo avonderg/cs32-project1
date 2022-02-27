@@ -5,6 +5,9 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * HeadersData class that is passed into reader to store header information appropriately.
+ */
 public class HeadersData implements Data<HashMap<String, String>>{
 
   // Maps header information: attribute --> qualitative or quantitative
@@ -19,12 +22,12 @@ public class HeadersData implements Data<HashMap<String, String>>{
     m.find();
     String attribute = m.group();
 
-    // store next item in line as type (qualitative or quantitative)
-    m.find();
+    // store next item in line as type (qualitative or quantitative) and
     // set as lower case (inconsistent capitalization in csv file)
-    String type = m.group().toLowerCase(Locale.ROOT);
+    m.find();
+    String type = m.group().toLowerCase(Locale.ROOT).replaceAll(" ", "");
 
-    // store attribute and type in global hashmap
+    // store attribute name and type information in global hashmap
     headersHash.put(attribute, type);
   }
 

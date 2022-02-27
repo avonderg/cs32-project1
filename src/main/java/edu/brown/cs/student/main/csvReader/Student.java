@@ -2,6 +2,8 @@ package edu.brown.cs.student.main.csvReader;
 
 import edu.brown.cs.student.main.kdTree.KDInsertable;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -71,6 +73,36 @@ public class Student implements KDInsertable {
     m.find();
     interests = m.group().split(",");
     interests = this.cleanList(interests);
+  }
+
+  public Student(HashMap<String, Object> attributes, String id) {
+    this.id = id;
+    this.name = (String) attributes.get("name");
+    this.email = (String) attributes.get("email");
+    this.gender = (String) attributes.get("gender");
+    this.classYear = (String) attributes.get("class_year");
+    this.nationality = (String) attributes.get("nationality");
+    this.race = (String) attributes.get("race");
+    this.yearsExperience = (String) attributes.get("years_experience");
+    this.communicationStyle = (String) attributes.get("communication_style");
+    this.weeklyAvailHours = (String) attributes.get("weekly_avail_hours");
+    this.meetingStyle = (String) attributes.get("meeting_style");
+    this.meetingTime = (String) attributes.get("meeting_time");
+    this.softwareEngnConfidence = (String) attributes.get("software_engn_confidence");
+
+    this.strengths = convertList(attributes.get("strengths"));
+    this.weaknesses = convertList(attributes.get("weaknesses"));
+    this.skills = convertList(attributes.get("skills"));
+    this.interests = convertList(attributes.get("interests"));
+  }
+
+  private String[] convertList (Object vals) {
+    if (vals instanceof ArrayList<?>) {
+      ArrayList<String> list = (ArrayList<String>) ((ArrayList<?>) vals);
+      return list.toArray(new String[list.size()]);
+    } else {
+      return new String[]{(String) vals};
+    }
   }
 
   /**
