@@ -16,12 +16,12 @@ public class Student implements KDInsertable {
   private String ssn;
   private String nationality;
   private String race;
-  private String yearsExperience;
+  private Double yearsExperience;
   private String communicationStyle;
-  private String weeklyAvailHours;
+  private Double weeklyAvailHours;
   private String meetingStyle;
   private String meetingTime;
-  private String softwareEngnConfidence;
+  private Double softwareEngnConfidence;
   private String[] strengths;
   private String[] weaknesses;
   private String[] skills;
@@ -50,17 +50,17 @@ public class Student implements KDInsertable {
     m.find();
     race = m.group();
     m.find();
-    yearsExperience = m.group();
+    yearsExperience = Double.parseDouble(m.group());
     m.find();
     communicationStyle = m.group();
     m.find();
-    weeklyAvailHours = m.group();
+    weeklyAvailHours = Double.parseDouble(m.group());
     m.find();
     meetingStyle = m.group();
     m.find();
     meetingTime = m.group();
     m.find();
-    softwareEngnConfidence = m.group();
+    softwareEngnConfidence = Double.parseDouble(m.group());
     m.find();
     strengths = m.group().split(",");
     strengths = this.cleanList(strengths);
@@ -83,12 +83,13 @@ public class Student implements KDInsertable {
     this.classYear = (String) attributes.get("class_year");
     this.nationality = (String) attributes.get("nationality");
     this.race = (String) attributes.get("race");
-    this.yearsExperience = (String) attributes.get("years_experience");
+    this.yearsExperience = Double.parseDouble((String) attributes.get("years_experience"));
     this.communicationStyle = (String) attributes.get("communication_style");
-    this.weeklyAvailHours = (String) attributes.get("weekly_avail_hours");
+    this.weeklyAvailHours = Double.parseDouble((String) attributes.get("weekly_avail_hours"));
     this.meetingStyle = (String) attributes.get("meeting_style");
     this.meetingTime = (String) attributes.get("meeting_time");
-    this.softwareEngnConfidence = (String) attributes.get("software_engn_confidence");
+    this.softwareEngnConfidence = Double.parseDouble(
+        (String) attributes.get("software_engn_confidence"));
 
     this.strengths = convertList(attributes.get("strengths"));
     this.weaknesses = convertList(attributes.get("weaknesses"));
@@ -185,7 +186,7 @@ public class Student implements KDInsertable {
    * Returns String years experience.
    * @return
    */
-  public String getYearsExperience() {
+  public Double getYearsExperience() {
     return yearsExperience;
   }
 
@@ -201,7 +202,7 @@ public class Student implements KDInsertable {
    * Returns String weekly available hours.
    * @return
    */
-  public String getWeeklyAvailHours() {
+  public Double getWeeklyAvailHours() {
     return weeklyAvailHours;
   }
 
@@ -225,7 +226,7 @@ public class Student implements KDInsertable {
    * Returns String software engineering confidence.
    * @return
    */
-  public String getSoftwareEngnConfidence() {
+  public Double getSoftwareEngnConfidence() {
     return softwareEngnConfidence;
   }
 
@@ -268,9 +269,9 @@ public class Student implements KDInsertable {
   @Override
   public double[] getCoords() {
     return new double[]{
-        Double.parseDouble(this.yearsExperience),
-        Double.parseDouble(this.weeklyAvailHours),
-        Double.parseDouble(this.softwareEngnConfidence)};
+        this.yearsExperience,
+        this.weeklyAvailHours,
+        this.softwareEngnConfidence};
   }
 
 }

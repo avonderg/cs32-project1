@@ -54,6 +54,7 @@ public class REPL {
         for (Command command : commands) {
 
           // if the command is matched,  print the output
+          System.out.println(tokens);
           String output = command.checkCommand(tokens);
 
           // checkCommand returns null if the command is not found in the tokens

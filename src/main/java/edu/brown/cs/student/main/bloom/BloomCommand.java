@@ -35,9 +35,6 @@ public class BloomCommand implements Command {
      */
     @Override
     public String checkCommand(List<String> tokens) {
-
-
-
         if (tokens.get(0).equals("create_bf")) { // create bf command
             if (tokens.size() == 3) {
                 double posRate = Double.parseDouble(tokens.get(1));
@@ -113,7 +110,8 @@ public class BloomCommand implements Command {
                         System.out.println("ERROR: no data loaded from CSV");
                         return null;
                     }
-                    data.handleBlooms(2, this.students, tokens); // determinant used to specify which function to call
+                    data.handleBlooms(2, this.students, tokens);
+                    // determinant used to specify which function to call
                 }
                 // catching exceptions
                 catch (NoSuchAlgorithmException e) {

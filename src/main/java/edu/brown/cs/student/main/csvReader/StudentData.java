@@ -77,7 +77,7 @@ public class StudentData implements Data<HashMap<String, HashMap<String, Object>
     // if attribute type is quantitative
     if (headersHash.get(attr+"s") == "quantitative") {
       // insert values as an integer
-      data.get(id).put(attr, Integer.parseInt(val));
+      data.get(id).put(attr, Double.parseDouble(val));
     } else { // otherwise, attribute type is qualitative
 
       // if attribute is already stored

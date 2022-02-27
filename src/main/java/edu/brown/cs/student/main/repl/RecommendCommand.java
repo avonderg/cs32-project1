@@ -2,7 +2,6 @@ package edu.brown.cs.student.main.repl;
 
 import edu.brown.cs.student.main.csvReader.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -68,13 +67,20 @@ public class RecommendCommand implements Command{
 
       // check for recommend command (produce recommendations given target student)
     } else if (tokens.get(0).equals("recommend")) {
-
+      if (students.size()<=0) {
+        // if no students are stored, return appropriate message
+        return "No students found";
+      } else if (!students.containsKey(tokens.get(2))) { // if target student is not in hashmap,
+        // return appropriate message
+        return "Target student not found";
+      }
       // initialize new recommender object and pass in k value, students hashmap,
-      // and target student id
-      Recommender recommender = new Recommender(tokens.get(1), students, tokens.get(2));
+      // and target student object
+      Recommender recommender =
+          new Recommender(tokens.get(1), students, tokens.get(2));
 
       // store recommendations in an array list
-      ArrayList<String> recommendations = recommender.getRecommendations();
+      String[] recommendations = recommender.getRecommendations();
 
       // initialize output string as empty string
       String output = "";
@@ -97,7 +103,6 @@ public class RecommendCommand implements Command{
    * @param data hashmap information to parse into student objects
    */
   private void parseStudents(HashMap<String, HashMap<String, Object>> data) {
-
     // iterate through each student (ids numbered 1-n)
     for (int i=1; i<=data.size(); i++) {
 

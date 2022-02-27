@@ -34,16 +34,15 @@ public class BloomData {
      * @throws NoSuchAlgorithmException
      * @throws IllegalAccessException
      */
-    public int handleBlooms(int determinant, HashMap<String, Student> students, List<String> tokens) throws NoSuchAlgorithmException, IllegalAccessException {
+    public ArrayList<String> handleBlooms(int determinant, HashMap<String, Student> students, List<String> tokens) throws NoSuchAlgorithmException, IllegalAccessException {
         if (determinant == 1) { // if load_bf should be called
             loadBf(students);
-            return 1;
+            return null;
         }
         else if (determinant == 2) { // if similar_bf should be called
-            similarBf(tokens);
-            return 2;
+            return similarBf(tokens);
         }
-        return 0;
+        return null;
     }
 
     public int attrSize(Student student) {
@@ -104,17 +103,17 @@ public class BloomData {
      *
      * @param tokens - tokenized command line user input
      */
-    private void similarBf(List<String> tokens) {
+    private ArrayList<String> similarBf(List<String> tokens) {
         similarities.clear();
         SimilarBlooms similar = new SimilarBlooms(studentBlooms, similarities); // creates an instance of SimilarBlooms class
         // error checking
         if (tokens.size() != 3) {
             System.out.println("ERROR: invalid arguments");
-            return;
+            return null;
         }
         else if (this.studentBlooms == null) {
             System.out.println("ERROR: no data has been loaded");
-            return;
+            return null;
         }
         // done error checking
         int k = Integer.parseInt(tokens.get(1)); // parses for k
@@ -134,8 +133,7 @@ public class BloomData {
                 similarities.put(match, result.cardinality()); // maps cardinalities to student ID
             }
         }
-        similar.caller(k); // calculates the k most similar bloom filter bit sets
-        return;
+        return similar.caller(k); // calculates the k most similar bloom filter bit sets
     }
 
 }

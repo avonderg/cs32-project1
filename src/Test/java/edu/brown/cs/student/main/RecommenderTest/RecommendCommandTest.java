@@ -3,7 +3,6 @@ package edu.brown.cs.student.main.RecommenderTest;
 import edu.brown.cs.student.main.csvReader.*;
 import edu.brown.cs.student.main.repl.*;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +17,6 @@ public class RecommendCommandTest {
     tokens.add("data/project1/header_types.csv");
 
     RecommendCommand recCom = new RecommendCommand();
-
     assertEquals(recCom.checkCommand(tokens), "Loaded header types");
 
     HeadersData hData = new HeadersData();
@@ -45,5 +43,29 @@ public class RecommendCommandTest {
     assertEquals(recCom.checkCommand(tokens), "Headers not loaded");
     assertEquals(recCom.checkCommand(tokens1), "Loaded header types");
     assertEquals(recCom.checkCommand(tokens), "Loaded Recommender with k student(s).");
+  }
+
+  @Test
+  public void testRecommend() {
+    ArrayList<String> headersCom = new ArrayList<String>();
+    headersCom.add("headers_load");
+    headersCom.add("data/project1/header_types.csv");
+
+    ArrayList<String> recsysCom = new ArrayList<String>();
+    recsysCom.add("recsys_load");
+    recsysCom.add("data/project1/proj1_sprint2_small_1.csv");
+    recsysCom.add("data/project1/proj1_sprint2_small_2.csv");
+    recsysCom.add("data/project1/proj1_sprint2_small_3.csv");
+    recsysCom.add("data/project1/proj1_sprint2_small_4.csv");
+
+    ArrayList<String> recommendCommand = new ArrayList<String>();
+    recommendCommand.add("recommend");
+    recommendCommand.add("3");
+    recommendCommand.add("3");
+
+    RecommendCommand recCom = new RecommendCommand();
+    assertEquals(recCom.checkCommand(headersCom), "Loaded header types");
+    assertEquals(recCom.checkCommand(recsysCom), "Loaded Recommender with k student(s).");
+    assertEquals(recCom.checkCommand(recommendCommand), "");
   }
 }

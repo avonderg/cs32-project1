@@ -1,12 +1,9 @@
 package edu.brown.cs.student.main.csvParserTest;
 
-import edu.brown.cs.student.main.csvReader.HashMapData;
-import edu.brown.cs.student.main.csvReader.Reader;
-import edu.brown.cs.student.main.csvReader.Student;
+import edu.brown.cs.student.main.csvReader.*;
 import org.junit.Test;
 
 import java.util.HashMap;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -46,6 +43,6 @@ public class ReaderTest {
 
     // make sure Reader object clears old data and stores new data correctly
     assertEquals(hash.get("1").getName(), "Wyatan Luce");
-  }
 
+  }
 }
