@@ -39,17 +39,16 @@ public class StudentData implements Data<HashMap<String, HashMap<String, Object>
       data.put(id, new HashMap<String, Object>());
     }
 
+    // iterate through all the headers (read in readHeaders function, stored in global variable)
     for (String attr : headers ) {
       // skip the first attr (id) because we've already stored it
       if ( attr.equals("id")) {
         continue;
       }
 
+      // look at the next matched token in the line
       m.find();
       String val = m.group();
-
-      //System.out.println(line);
-      //System.out.println("attr: " + attr + ", val: " + val+ ", id :" + id);
 
       // headers are in different formatting, so check for all ("s" at the end or not)
       if (headersHash.containsKey(attr)){
@@ -58,8 +57,15 @@ public class StudentData implements Data<HashMap<String, HashMap<String, Object>
         insertAttribute(attr+"s", id, val);
       } else if (headersHash.containsKey(attr.substring(0, attr.length()-1))) {
         insertAttribute(attr.substring(0, attr.length()-1), id, val);
-      } else { // if header is not contained in header arrayList, then its the 2nd csv file
+      } else {
+        // if header is not contained in header arrayList, then its the 2nd csv file,
+        // which stores attributes differently
+
+        // sanitize string (set to lower case and remove extra blank spaces)
         String attrVal = val.toLowerCase(Locale.ROOT).replace(" ", "");
+
+        // retrive the attribute value from the next matched token,
+        // and insert the attribute and its value
         m.find();
         insertAttribute(attrVal, id, m.group());
         break;

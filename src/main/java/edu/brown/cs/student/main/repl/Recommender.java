@@ -6,6 +6,11 @@ import edu.brown.cs.student.main.kdTree.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+/**
+ * Recommender class. Called from RecommendCommand. Produces k recommendations
+ * given a k value, a hashmap of students containing student information, and a
+ * target student ID.
+ */
 public class Recommender {
 
   private int k;
@@ -14,6 +19,12 @@ public class Recommender {
   private List<Student> selectedStudents;
   private HashMap<String, Integer> similarities;
 
+  /**
+   * Class constructor.
+   * @param k number of recommendations that will be returned
+   * @param students hashmap that maps IDs to student objects
+   * @param target student ID for whom recommendations are for
+   */
   public Recommender(String k, HashMap<String, Student> students, String target) {
     this.k = Integer.parseInt(k);
     this.students = students;
@@ -31,9 +42,10 @@ public class Recommender {
     HashMap<String, Double> vectorDistances = new HashMap<String, Double>();
     HashMap<String, Double> euclideanDistances = new HashMap<String, Double>();
 
+    // initialize Euclidean Distance object to use to calculate euclidean distances
     EuclidianDistance ed = new EuclidianDistance();
 
-    // calculate euclidean distance for each student
+    // store euclidean and vector distances for each student in hashmaps
     for (Student s : selectedStudents) {
       euclideanDistances.put(s.getID(), ed.getDist(s.getCoords(), target.getCoords(), 3));
       vectorDistances.put(s.getID(),
@@ -55,16 +67,17 @@ public class Recommender {
       }
     }
 
+    // if list size is equal to k, convert the list to array and return
     if( topKStudents.size() == k ) {
       return topKStudents.toArray();
     }
 
-    // remove extra ids (if list is longer than k)
+    // if list is longer than k, trim extra items in list and store in array
     String[] trimTopKStudents = new String[k];
     for (int i=0; i<k; i++) {
       trimTopKStudents[i] = topKStudents.get(i);
     }
-
+    // return trimmed array
     return trimTopKStudents;
   }
 
@@ -114,9 +127,9 @@ public class Recommender {
   }
 
   /**
-   * Sort HashMap by distances.
+   * Sort HashMap of student IDs to distances by distances.
    * @param idToDistances
-   * @return Set of sorted, ascending distances
+   * @return Set of sorted, ascending distances (without ID information)
    */
   private Set<Double> sort(HashMap<String, Double> idToDistances) {
     //create ascending list of distances without duplicates
