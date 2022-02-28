@@ -3,7 +3,7 @@ package edu.brown.cs.student.main;
 // look into using these imports for your REPL!
 import java.io.IOException;
 
-import edu.brown.cs.student.main.api.APICommand;
+import edu.brown.cs.student.main.api.core.APICommand;
 import edu.brown.cs.student.main.bloom.BloomCommand;
 import edu.brown.cs.student.main.csvReader.HashMapData;
 import edu.brown.cs.student.main.csvReader.Reader;
