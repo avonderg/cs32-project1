@@ -7,11 +7,14 @@ import edu.brown.cs.student.main.repl.Command;
 
 import java.util.List;
 
+/**
+ * Class for handling commands interacting with the project's API functionality
+ */
 public class APICommand implements Command {
 
 
     /**
-     * Returns a String output if tokens contain certain command. Returns null otherwise.
+     * Returns a String output indicating if tokens contain certain command. Returns null otherwise.
      *
      * @param tokens -- list of REPL input Strings
      * @return String output if command is found, null otherwise
@@ -39,15 +42,17 @@ public class APICommand implements Command {
             String url = tokens.get(2);
             if (method.toLowerCase().equals("get")){
 //                client.makeRequest(ClientRequestGenerator.getSecuredGetRequest(url));
+                if (tokens.size () < 3) {
+                    System.out.println("ERROR: invalid args");
+                    return null;
+                }
                 client.makeRequest(ClientRequestGenerator.makeGetRequest(url,tokens.get(3)));
             }
             else if (method.toLowerCase().equals("post")) {
-//                String[] params = new String[10];
-//                int j = 0;
-//                for (int i = 3; i < tokens.size(); i++) {
-//                    params[j] = tokens.get(i);
-//                    j++;
-//                }
+                if (tokens.size () < 3) {
+                    System.out.println("ERROR: invalid args");
+                    return null;
+                }
                 client.makeRequest(ClientRequestGenerator.makePostRequest(url, tokens.get(3)));
             }
             else {

@@ -59,6 +59,7 @@ public class ClientRequestGenerator {
      * @return
      */
     // FORMAT: key=<key>;auth=<cslogin>
+    // FORMAT: auth=<cslogin>;key=<key>
     public static HttpRequest makeGetRequest(String url, String params) {
         StringBuilder urlParams = new StringBuilder("?");
         String[] parameters = params.split(";"); // finds parameters
