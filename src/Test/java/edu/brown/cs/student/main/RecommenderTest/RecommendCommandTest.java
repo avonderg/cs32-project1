@@ -61,11 +61,19 @@ public class RecommendCommandTest {
     ArrayList<String> recommendCommand = new ArrayList<String>();
     recommendCommand.add("recommend");
     recommendCommand.add("3");
-    recommendCommand.add("3");
+    recommendCommand.add("1000");
+
+    ArrayList<String> recommendCommand2 = new ArrayList<String>();
+    recommendCommand2.add("recommend");
+    recommendCommand2.add("3");
+    recommendCommand2.add("3");
 
     RecommendCommand recCom = new RecommendCommand();
     assertEquals(recCom.checkCommand(headersCom), "Loaded header types");
+    assertEquals(recCom.checkCommand(recommendCommand), "No students found");
     assertEquals(recCom.checkCommand(recsysCom), "Loaded Recommender with k student(s).");
-    assertEquals(recCom.checkCommand(recommendCommand), "");
+    assertEquals(recCom.checkCommand(recommendCommand), "Target student not found");
+    // assertEquals(recCom.checkCommand(recommendCommand2), "19\n6\n5");
+
   }
 }

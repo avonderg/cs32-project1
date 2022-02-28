@@ -79,19 +79,18 @@ public class RecommendCommand implements Command{
       Recommender recommender =
           new Recommender(tokens.get(1), students, tokens.get(2));
 
-      // store recommendations in an array list
-      String[] recommendations = recommender.getRecommendations();
-
       // initialize output string as empty string
       String output = "";
 
       // add recommendation ids to the string
-      for (String r : recommendations) {
-        output = output + r + "\n";
+      Object[] recs = recommender.getRecommendations();
+      for (Object r : recs) {
+        String id = r.toString();
+        output = output + id + "\n";
       }
 
       // return string with stored recommendation ids
-      return output;
+      return output.trim();
     }
 
     // if none of the commands are matched, return null

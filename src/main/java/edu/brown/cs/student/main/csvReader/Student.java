@@ -13,7 +13,6 @@ public class Student implements KDInsertable {
   private String email;
   private String gender;
   private String classYear;
-  private String ssn;
   private String nationality;
   private String race;
   private Double yearsExperience;
@@ -44,7 +43,7 @@ public class Student implements KDInsertable {
     m.find();
     classYear = m.group();
     m.find();
-    ssn = m.group();
+    String ssn = m.group();
     m.find();
     nationality = m.group();
     m.find();

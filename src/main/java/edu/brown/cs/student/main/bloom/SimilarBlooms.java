@@ -54,7 +54,7 @@ public class SimilarBlooms {
                 break;
             }
             topK.add(this.getKey(similarities, score));
-            System.out.println(this.getKey(similarities, score));
+            //System.out.println(this.getKey(similarities, score));
             i++;
         }
         return topK;

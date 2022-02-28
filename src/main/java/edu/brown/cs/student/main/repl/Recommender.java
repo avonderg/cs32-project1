@@ -21,9 +21,9 @@ public class Recommender {
     similarities = new HashMap<String, Integer>();
   }
 
-  public String[] getRecommendations() {
+  public Object[] getRecommendations() {
     // combined two lists into one
-    Set<Student> set = new LinkedHashSet<>(); //getBloomRecommendations());
+    Set<Student> set = new LinkedHashSet<>(getBloomRecommendations());
     set.addAll(getKDRecommendations());
     selectedStudents = new ArrayList<>(set);
 
@@ -36,7 +36,8 @@ public class Recommender {
     // calculate euclidean distance for each student
     for (Student s : selectedStudents) {
       euclideanDistances.put(s.getID(), ed.getDist(s.getCoords(), target.getCoords(), 3));
-      vectorDistances.put(s.getID(), vectorDistances.get(s.getID()));
+      vectorDistances.put(s.getID(),
+          Double.parseDouble(String.valueOf(similarities.get(s.getID()))));
     }
 
     // hashmap of normalized and averaged distance information
@@ -53,8 +54,18 @@ public class Recommender {
         break;
       }
     }
+
+    if( topKStudents.size() == k ) {
+      return topKStudents.toArray();
+    }
+
     // remove extra ids (if list is longer than k)
-    return (String[]) Arrays.copyOf(topKStudents.toArray(), k);
+    String[] trimTopKStudents = new String[k];
+    for (int i=0; i<k; i++) {
+      trimTopKStudents[i] = topKStudents.get(i);
+    }
+
+    return trimTopKStudents;
   }
 
   /**
@@ -99,7 +110,6 @@ public class Recommender {
       double normE = (euclideanDistances.get(s.getID())-minE) / (maxE-minE);
       idToDistances.put(s.getID(), (normV+normE)/2);
     }
-
     return idToDistances;
   }
 
