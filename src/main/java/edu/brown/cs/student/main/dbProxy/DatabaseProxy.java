@@ -114,7 +114,7 @@ public class DatabaseProxy {
    * for the SQL keyword to be used on that table.
    * @param requiredPermissions the permissions required by the SQL keyword
    * @param givenPermissions the permissions the proxy has for the table in question
-   * @throws InvalidPermissionsException
+   * @throws InvalidPermissionsException if the given permissions don't match the required permissions
    */
   private Boolean validPermissions(String requiredPermissions, String givenPermissions) {
     if (requiredPermissions.equals("RW") && !givenPermissions.equals("RW")) {
@@ -136,7 +136,6 @@ public class DatabaseProxy {
    */
   private String getTable(String[] sqlTokens) {
     for (String word: sqlTokens) {
-
       if (this.tableToPermissions.containsKey(word.toLowerCase())) {
         return word;
       }

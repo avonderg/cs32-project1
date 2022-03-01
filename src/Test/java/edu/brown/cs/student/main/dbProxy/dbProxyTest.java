@@ -60,8 +60,15 @@ public class dbProxyTest {
     db.validCommand("UPDATE names SET id= '13' WHERE name = 'Ben'");
   }
 
+  /**
+   * This test checks that a command with invalid SQL syntax correctly has an exception thrown for it.
+   * @throws SQLException
+   * @throws ClassNotFoundException
+   * @throws InvalidQueryException
+   * @throws InvalidPermissionsException
+   */
   @Test(expected = InvalidQueryException.class)
-  public void testValidCommandThrowsQueryException() throws SQLException, ClassNotFoundException,
+  public void testInvalidCommandThrowsQueryException() throws SQLException, ClassNotFoundException,
       InvalidQueryException, InvalidPermissionsException {
     HashMap<String, String> tables = new HashMap<String,String>() {
       {
@@ -78,6 +85,13 @@ public class dbProxyTest {
 
   }
 
+  /**
+   * This test checks that a valid command is correctly processed.
+   * @throws SQLException
+   * @throws ClassNotFoundException
+   * @throws InvalidQueryException
+   * @throws InvalidPermissionsException
+   */
   @Test
   public void testValidCommand() throws SQLException, ClassNotFoundException,
       InvalidQueryException, InvalidPermissionsException {
@@ -91,10 +105,10 @@ public class dbProxyTest {
     };
 
     DatabaseProxy db = new DatabaseProxy("data/recommendation_data/sql/data.sqlite3", tables);
-    Boolean rs = db.validCommand("SELECT email FROM names");
+    Boolean validCommand = db.validCommand("SELECT email FROM names");
 
     //assert that the command is valid s
-    Assert.assertTrue(rs);
+    Assert.assertTrue(validCommand);
   }
 
 

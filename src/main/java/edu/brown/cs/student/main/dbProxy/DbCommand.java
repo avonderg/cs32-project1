@@ -7,9 +7,19 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This command class demonstrates the standard db proxy functionality and handles 2 different commands,
+ * "load_db_data, which connects to the data.sqlite3 database, and query_db, which takes different
+ * SQL query options (1-8) as the 2nd input and queries the connected database.
+ */
 public class DbCommand implements Command {
   DatabaseProxy dataDB;
 
+  /**
+   * Implemented from the command class
+   * @param tokens -- list of REPL input Strings
+   * @return null if command is not found, some string if command checks out.
+   */
   @Override
   public String checkCommand(List<String> tokens) {
     if (tokens.get(0).equals("load_db_data")) {
@@ -46,6 +56,11 @@ public class DbCommand implements Command {
     return null;
   }
 
+  /**
+   * Helper method that includes different SQL query options to test.
+   * @param inputChoice - the user chosen query number
+   * @return the string form of the query chosen
+   */
   private String getQuery(String inputChoice) {
     String query = "";
     switch (inputChoice) {
@@ -83,6 +98,10 @@ public class DbCommand implements Command {
   }
 
 
+  /**
+   * Helper to print user-inputted ResultSet.
+   * @param rs -  result set
+   */
   private void printResultSet(ResultSet rs) {
     try {
       if (rs!= null) {
