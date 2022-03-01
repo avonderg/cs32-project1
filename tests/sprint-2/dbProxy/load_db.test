@@ -1,0 +1,5 @@
+INPUT
+load_db_data
+OUTPUT
+Successfully loaded data_tester.sqlite3
+END

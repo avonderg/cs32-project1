@@ -1,0 +1,5 @@
+INPUT
+query_db 1
+OUTPUT
+ERROR: cannot call query_db before loading the database
+END
