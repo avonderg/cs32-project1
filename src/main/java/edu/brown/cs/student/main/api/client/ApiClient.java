@@ -22,13 +22,19 @@ public class ApiClient {
                 .version(HttpClient.Version.HTTP_2).connectTimeout(Duration.ofSeconds(60)).build();
     }
 
-    public void makeRequest(HttpRequest req) {
+    /**
+     *
+     * @param req
+     * @return 1 on success, 0 on failure
+     */
+    public int makeRequest(HttpRequest req) {
         try {
             HttpResponse<String> apiResponse = client.send(req, HttpResponse.BodyHandlers.ofString());
 //            String val = JsonParser.printMessage(apiResponse.body());
 //            System.out.println(val);
 //            System.out.println("Status " + apiResponse.statusCode());
             System.out.println(apiResponse.body());
+            return 1;
 
         } catch (IOException ioe) {
             System.out.println("An I/O error occurred when sending or receiving data.");
@@ -47,5 +53,6 @@ public class ApiClient {
             System.out.println("There was a security configuration error.");
             System.out.println(se.getMessage());
         }
+        return 0;
     }
 }

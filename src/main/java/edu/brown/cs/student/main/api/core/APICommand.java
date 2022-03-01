@@ -25,6 +25,7 @@ public class APICommand implements Command {
         if (tokens.get(0).equals("active")) {
             if (tokens.size() != 2) {
                 System.out.println("ERROR: invalid arguments");
+                return null;
             }
             String type = tokens.get(1);
             String req = "";
@@ -38,21 +39,17 @@ public class APICommand implements Command {
             return "";
         }
         else if (tokens.get(0).equals("api")) {
+            if (tokens.size () < 3) {
+                System.out.println("ERROR: invalid args");
+                return null;
+            }
             String method = tokens.get(1);
             String url = tokens.get(2);
             if (method.toLowerCase().equals("get")){
 //                client.makeRequest(ClientRequestGenerator.getSecuredGetRequest(url));
-                if (tokens.size () < 3) {
-                    System.out.println("ERROR: invalid args");
-                    return null;
-                }
                 client.makeRequest(ClientRequestGenerator.makeGetRequest(url,tokens.get(3)));
             }
             else if (method.toLowerCase().equals("post")) {
-                if (tokens.size () < 3) {
-                    System.out.println("ERROR: invalid args");
-                    return null;
-                }
                 client.makeRequest(ClientRequestGenerator.makePostRequest(url, tokens.get(3)));
             }
             else {
