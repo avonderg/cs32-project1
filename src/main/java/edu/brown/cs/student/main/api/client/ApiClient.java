@@ -1,7 +1,7 @@
 package edu.brown.cs.student.main.api.client;
 
 
-import edu.brown.cs.student.main.api.json.JsonParser;
+import edu.brown.cs.student.main.api.aggregator.APIAggregator;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -25,17 +25,20 @@ public class ApiClient {
     /**
      *
      * @param req
-     * @return 1 on success, 0 on failure
+     * @return a HttpResponse<String>, or null on failure
      */
-    public int makeRequest(HttpRequest req) {
+    public HttpResponse<String> makeRequest(HttpRequest req, int flag) {
+        HttpResponse<String> apiResponse = null;
         try {
-            HttpResponse<String> apiResponse = client.send(req, HttpResponse.BodyHandlers.ofString());
-//            String val = JsonParser.printMessage(apiResponse.body());
-//            System.out.println(val);
-//            System.out.println("Status " + apiResponse.statusCode());
-            System.out.println(apiResponse.body());
-            return 1;
-
+            apiResponse = client.send(req, HttpResponse.BodyHandlers.ofString());
+            if (flag == 1) {  // if we need to aggregate, flag is set to 1
+                APIAggregator agg = new APIAggregator();
+                String toParse = apiResponse.body();
+                agg.loadData(toParse); // loadData method is called, which controls aggregating
+            }
+            if (flag == 0) { // otherwise, print out api response body
+                System.out.println(apiResponse.body());
+            }
         } catch (IOException ioe) {
             System.out.println("An I/O error occurred when sending or receiving data.");
             System.out.println(ioe.getMessage());
@@ -53,6 +56,6 @@ public class ApiClient {
             System.out.println("There was a security configuration error.");
             System.out.println(se.getMessage());
         }
-        return 0;
+        return apiResponse;
     }
 }
