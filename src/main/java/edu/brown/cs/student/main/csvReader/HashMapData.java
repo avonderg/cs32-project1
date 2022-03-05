@@ -40,4 +40,8 @@ public class HashMapData implements Data<HashMap<String, Student>> {
   public HashMap<String, Student> getData() {
     return hash;
   }
+
+  @Override
+  public void readHeaders(String line) {
+  }
 }

@@ -35,9 +35,6 @@ public class BloomCommand implements Command {
      */
     @Override
     public String checkCommand(List<String> tokens) {
-
-
-
         if (tokens.get(0).equals("create_bf")) { // create bf command
             if (tokens.size() == 3) {
                 double posRate = Double.parseDouble(tokens.get(1));
@@ -72,10 +69,14 @@ public class BloomCommand implements Command {
         }
         else if (tokens.get(0).equals("load_bf") || tokens.get(0).equals("similar_bf")) {
             if (tokens.get(0).equals("load_bf")) {
+                if (tokens.size() != 2) {
+                    System.out.println("ERROR: invalid arguments");
+                    return null;
+                }
                 // in order to generalize for any type of object
                 Data readerUse = new HashMapData();
                 Reader studentReader = new Reader(readerUse);
-                studentReader.loadData(tokens.get(1));
+                studentReader.loadData(new String[]{tokens.get(1)});
 
                 // generalizing over
                 students.clear();
@@ -86,18 +87,34 @@ public class BloomCommand implements Command {
                 // determinant used to specify which function to call
                 try {
                     data.handleBlooms(1, this.students, tokens);
-                } catch (NoSuchAlgorithmException e) {
+                }
+                // catching exceptions
+                catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Read " + this.students.size() + " students from " + tokens.get(1));
-                return "";
+                if (students.size() != 0) { // if there was no error reading the provided CSV file
+                    System.out.println("Read " + this.students.size() + " students from " + tokens.get(1));
+                    return "";
+                }
+                return null; // otherwise, if there was an error- return null
             }
             else if (tokens.get(0).equals("similar_bf")) {
+                if (tokens.size() != 3) {
+                    System.out.println("ERROR: invalid arguments");
+                    return null;
+                }
                 try {
-                    data.handleBlooms(2, this.students, tokens); // determinant used to specify which function to call
-                } catch (NoSuchAlgorithmException e) {
+                    if (this.students.size() == 0) { // if load_bf has not yet been called
+                        System.out.println("ERROR: no data loaded from CSV");
+                        return null;
+                    }
+                    data.handleBlooms(2, this.students, tokens);
+                    // determinant used to specify which function to call
+                }
+                // catching exceptions
+                catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();

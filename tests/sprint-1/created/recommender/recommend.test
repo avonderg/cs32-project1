@@ -1,0 +1,11 @@
+INPUT
+headers_load data/project1/header_types.csv
+recsys_load data/project1/proj1_sprint2_small_1.csv data/project1/proj1_sprint2_small_2.csv data/project1/proj1_sprint2_small_3.csv data/project1/proj1_sprint2_small_4.csv
+recommend 3 3
+OUTPUT
+Loaded header types
+Loaded Recommender with k student(s).
+19
+6
+5
+END

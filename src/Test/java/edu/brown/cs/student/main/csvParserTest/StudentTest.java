@@ -33,12 +33,12 @@ public class StudentTest {
     assertEquals("senior", testStudent.getClassYear());
     assertEquals("Tunisia", testStudent.getNationality());
     assertEquals("and Native Hawaiian or Other Pacific Islander", testStudent.getRace());
-    assertEquals("10", testStudent.getYearsExperience());
+    assertEquals(10.0, testStudent.getYearsExperience(), 0.5);
     assertEquals("slack", testStudent.getCommunicationStyle());
-    assertEquals("16", testStudent.getWeeklyAvailHours());
+    assertEquals(16.0, testStudent.getWeeklyAvailHours(), 0.5);
     assertEquals("in person", testStudent.getMeetingStyle());
     assertEquals("night", testStudent.getMeetingTime());
-    assertEquals("32", testStudent.getSoftwareEngnConfidence());
+    assertEquals(32.0, testStudent.getSoftwareEngnConfidence(), 0.5);
 
     // tests that list items are stored correctly
     assertEquals("good leader", testStudent.getStrengths()[0]);

@@ -1,0 +1,7 @@
+INPUT
+load_bf data/project1/proj1_small.csv hi
+load_bf wrongfile
+OUTPUT
+ERROR: invalid arguments
+ERROR: File not found.
+END

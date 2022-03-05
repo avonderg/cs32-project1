@@ -1,0 +1,5 @@
+INPUT
+headers_load data/project1/header_types.csv
+OUTPUT
+Loaded header types
+END

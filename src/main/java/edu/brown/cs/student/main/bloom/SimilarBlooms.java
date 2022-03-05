@@ -1,7 +1,5 @@
 package edu.brown.cs.student.main.bloom;
 
-import edu.brown.cs.student.main.bloom.BloomFilter;
-
 import java.util.*;
 
 /**
@@ -26,7 +24,7 @@ public class SimilarBlooms {
      * @param k - number of similar students to find
      * @return - 1 on success, -1 on failure
      */
-    public int caller(int k) {
+    public ArrayList<String> caller(int k) {
         return findKNearest(k);
     }
 
@@ -37,10 +35,12 @@ public class SimilarBlooms {
      * @param k - number of similar students to find
      * @return - (-1) on failure, 1 on success
      */
-    private int findKNearest(int k) {
+    private ArrayList<String> findKNearest(int k) {
+        ArrayList<String> topK = new ArrayList<String>();
+
         if (k < 0) {
             System.out.println("ERROR: k must be non-negative");
-            return -1;
+            return null;
         }
         // now, we can sort distances hashmap by using a list
         List<Integer> similaritiesSorted = new ArrayList<>(similarities.values());
@@ -53,11 +53,14 @@ public class SimilarBlooms {
             if (i >= k) {
                 break;
             }
-            System.out.println(this.getKey(similarities, score));
+            topK.add(this.getKey(similarities, score));
+            //System.out.println(this.getKey(similarities, score));
             i++;
         }
-        return 1;
+        return topK;
     }
+
+
 
     /**
      *  Given a map and value to find, returns the respective key of that value

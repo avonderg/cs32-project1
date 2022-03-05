@@ -1,0 +1,65 @@
+INPUT
+api_aggregate match
+OUTPUT
+Students:
+1, Petr Dillingstone, Female, 281-66-4039, Egypt, and Native Hawaiian or Other Pacific Islander, 41
+2, Gerri Enterle, Female, 193-55-9443, Saudi Arabia, Black or African American, 76
+3, Fitzgerald Mulbery, Male, 308-76-2615, Indonesia, Asian, 97
+4, Trumaine Dodson, Female, 185-68-8484, Senegal, White, 92
+5, Victoria Autry, Male, 542-62-4953, Montenegro, Asian, 79
+6, Bee Glisenan, Male, 198-41-5015, South Korea, Black or African American, 76
+7, Antonetta Gadaud, Male, 184-08-0944, Indonesia, Black or African American, 91
+8, Ugo Bellanger, Male, 257-43-8975, Croatia, Asian, 68
+9, Cobby Cauley, Polygender, 103-17-8677, Philippines, White, 46
+10, Kendal Garretts, Female, 569-99-4590, Chile, Asian, 11
+11, Rozanne Uridge, Male, 775-72-8353, Thailand, White, 11
+12, Gregoor Huckerby, Agender, 646-29-9958, Vietnam, and Native Hawaiian or Other Pacific Islander, 28
+13, Desmond Hyslop, Female, 187-85-1970, Sweden, American Indian or Alaska Native, 42
+14, Fallon Sheward, Female, 595-08-4465, Philippines, and Native Hawaiian or Other Pacific Islander, 73
+15, Nance Fawbert, Male, 629-04-5056, Palestinian Territory, American Indian or Alaska Native, 84
+16, Darline Reily, Male, 887-53-2789, Ukraine, and Native Hawaiian or Other Pacific Islander, 69
+17, Filippo McGerraghty, Male, 568-64-7099, Argentina, and Native Hawaiian or Other Pacific Islander, 38
+18, Rachele Sheldon, Bigender, 676-62-3654, Mauritius, and Native Hawaiian or Other Pacific Islander, 53
+19, Pamella McCudden, Male, 730-92-0661, Ukraine, American Indian or Alaska Native, 49
+20, Miquela Fidgett, Male, 560-62-2632, Russia, Black or African American, 66
+21, Fran Empson, Male, 885-05-5392, Brazil, Asian, 54
+22, Mitch Freegard, Bigender, 809-39-0801, Indonesia, White, 6
+23, Gerick Millins, Female, 393-27-7467, Uzbekistan, American Indian or Alaska Native, 47
+24, Giles Shorton, Female, 276-38-6954, Spain, Asian, 77
+25, Anthe Baseley, Male, 413-43-8402, Brazil, White, 49
+26, Sheff Hillaby, Male, 644-90-1792, Brazil, White, 27
+27, Aila Border, Female, 617-60-3974, Poland, Black or African American, 51
+28, Paulita Mainds, Male, 759-23-0122, South Korea, American Indian or Alaska Native, 77
+29, Mal Antonchik, Male, 598-11-8738, China, Asian, 66
+30, Tasha McSporon, Female, 381-92-7295, Philippines, Black or African American, 15
+31, Karolina Gronno, Male, 732-45-5913, Malta, American Indian or Alaska Native, 81
+32, Free Cook, Female, 316-03-1559, Indonesia, White, 77
+33, Malissia Kubat, Female, 126-76-3945, China, White, 98
+34, Eleen Preto, Male, 760-86-3711, China, Asian, 62
+35, Ashlin Wettern, Male, 647-25-3348, China, Black or African American, 60
+36, Delia Boice, Female, 586-40-4668, Thailand, Asian, 14
+37, Spenser Giannassi, Male, 688-86-9962, Georgia, White, 76
+38, Anne Bruyntjes, Male, 863-98-1368, Spain, Asian, 45
+39, Viola Sheirlaw, Female, 534-64-6497, China, and Native Hawaiian or Other Pacific Islander, 95
+40, Kirbie Garnul, Female, 533-61-3001, China, Asian, 8
+41, Melvin Arendt, Female, 649-86-5652, France, Asian, 30
+42, Pamelina Couper, Male, 359-31-9685, France, Asian, 48
+43, Newton Berkley, Female, 404-65-4197, China, American Indian or Alaska Native, 23
+44, Alexandro Clayworth, Female, 103-23-9779, Philippines, American Indian or Alaska Native, 15
+45, Olivero Brangan, Male, 855-62-6339, China, and Native Hawaiian or Other Pacific Islander, 19
+46, Creigh Fike, Male, 331-11-0865, Tajikistan, Asian, 4
+47, Jocelyne Wheatley, Male, 394-93-2196, China, Asian, 93
+48, Rebekah Gresley, Female, 893-08-3432, China, White, 94
+49, Ella Kitman, Male, 160-04-5061, Brazil, and Native Hawaiian or Other Pacific Islander, 14
+50, Dannye Abramchik, Male, 832-82-5842, Brazil, and Native Hawaiian or Other Pacific Islander, 33
+51, Heidie Antonias, Female, 575-55-6867, South Africa, and Native Hawaiian or Other Pacific Islander, 11
+52, Lanae Petric, Female, 825-09-0094, Dominican Republic, and Native Hawaiian or Other Pacific Islander, 14
+53, Farrell Ellesmere, Female, 494-18-2846, Japan, American Indian or Alaska Native, 96
+54, Tore Giorgetti, Male, 715-95-8676, Poland, Asian, 22
+55, Daisy Sewell, Male, 718-39-2516, Ireland, Black or African American, 97
+56, Maude Sweatland, Female, 773-54-9217, Honduras, and Native Hawaiian or Other Pacific Islander, 82
+57, Graig Wardle, Female, 653-52-2749, Bolivia, White, 80
+58, Jack Sommerled, Genderfluid, 810-04-0757, Poland, American Indian or Alaska Native, 10
+59, Jess Miettinen, Female, 396-31-2578, China, Asian, 94
+60, Sibelle Slafford, Male, 394-16-6392, Vietnam, White, 32
+END

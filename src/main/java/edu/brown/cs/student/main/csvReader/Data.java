@@ -29,4 +29,8 @@ public interface Data<T> {
    */
   public T getData();
 
+  /**
+   * Readers the first line of the csv, the headers.
+   */
+  public void readHeaders(String line);
 }

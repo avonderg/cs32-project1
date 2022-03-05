@@ -1,12 +1,9 @@
 package edu.brown.cs.student.main.csvParserTest;
 
-import edu.brown.cs.student.main.csvReader.HashMapData;
-import edu.brown.cs.student.main.csvReader.Reader;
-import edu.brown.cs.student.main.csvReader.Student;
+import edu.brown.cs.student.main.csvReader.*;
 import org.junit.Test;
 
 import java.util.HashMap;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -27,7 +24,7 @@ public class ReaderTest {
     Reader reader = new Reader(data);
 
     // call loadData() and pass in proj1_small.csv file for CSV Parser to read
-    reader.loadData("data/project1/proj1_small.csv");
+    reader.loadData(new String[]{"data/project1/proj1_small.csv"});
 
     // store data stored in the Data object in a hashmap named hash
     HashMap<String, Student> hash = data.getData();
@@ -39,13 +36,13 @@ public class ReaderTest {
     assertEquals(data.size(), 20);
 
     // call laodData() and pass in a new file for CSV Parser to read
-    reader.loadData("data/project1/proj1_medium.csv");
+    reader.loadData(new String[]{"data/project1/proj1_medium.csv"});
 
     // store data stored in Data object in a hashmap named hash
     hash = (HashMap<String, Student>) reader.getData().getData();
 
     // make sure Reader object clears old data and stores new data correctly
     assertEquals(hash.get("1").getName(), "Wyatan Luce");
-  }
 
+  }
 }

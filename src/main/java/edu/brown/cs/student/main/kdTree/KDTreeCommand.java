@@ -38,7 +38,7 @@ public class KDTreeCommand implements Command {
     if (tokens.get(0).equals("load_kd")) {
       HashMapData studentDataMap = new HashMapData();
       Reader studentReader = new Reader(studentDataMap);
-      studentReader.loadData(tokens.get(1));
+      studentReader.loadData(new String[] {tokens.get(1)});
       HashMap<String, Student> studentHashMap = studentDataMap.getData();
       List<KDInsertable> studentList = new ArrayList<>(studentHashMap.values());
       this.tree = new KDTree<Student>(studentList, new EuclidianDistance(), 3);

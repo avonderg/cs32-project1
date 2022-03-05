@@ -2,14 +2,18 @@ package edu.brown.cs.student.main;
 
 // look into using these imports for your REPL!
 import java.io.IOException;
+import java.util.HashMap;
 
+import edu.brown.cs.student.main.api.core.APICommand;
 import edu.brown.cs.student.main.bloom.BloomCommand;
 import edu.brown.cs.student.main.csvReader.HashMapData;
 import edu.brown.cs.student.main.csvReader.Reader;
 import edu.brown.cs.student.main.dbProxy.CreateStudentsCommand;
 import edu.brown.cs.student.main.dbProxy.DbCommand;
+import edu.brown.cs.student.main.csvReader.Student;
 import edu.brown.cs.student.main.kdTree.KDTreeCommand;
 import edu.brown.cs.student.main.repl.Command;
+import edu.brown.cs.student.main.repl.RecommendCommand;
 import edu.brown.cs.student.main.repl.REPL;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -62,8 +66,13 @@ public final class Main {
     HashMapData data = new HashMapData();
     Reader csvReader = new Reader(data);
 
+    HashMap<String, String> headers = new HashMap<String, String>();
+    HashMap<String, Student> students = new HashMap<String, Student>();
+
     // Initialize a command object to pass into the REPL object
-    Command[] commands = {new BloomCommand(), new KDTreeCommand(), new DbCommand(), new CreateStudentsCommand()};
+
+    Command[] commands = {new BloomCommand(), new KDTreeCommand(), new DbCommand(), new CreateStudentsCommand(), new APICommand(), new RecommendCommand()};
+
     REPL reader = new REPL("(\\S+)", commands);
 
     // Run the repl.
