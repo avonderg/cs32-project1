@@ -1,0 +1,10 @@
+INPUT
+load_db_data
+query_db 1
+query_db 2
+query_db 3
+query_db 4
+OUTPUT
+Successfully loaded data_tester.sqlite3
+13
+END

@@ -60,7 +60,5 @@ public class KDTreeCommand implements Command {
       return null;
     }
   }
-
-
 }
 
