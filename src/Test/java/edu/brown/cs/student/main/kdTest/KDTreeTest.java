@@ -1,9 +1,6 @@
 package edu.brown.cs.student.main.kdTest;
 import edu.brown.cs.student.main.csvReader.Student;
-import edu.brown.cs.student.main.kdTree.EuclidianDistance;
-import edu.brown.cs.student.main.kdTree.KDInsertable;
-import edu.brown.cs.student.main.kdTree.KDNodeTestClass;
-import edu.brown.cs.student.main.kdTree.KDTree;
+import edu.brown.cs.student.main.kdTree.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -38,7 +35,7 @@ public class KDTreeTest {
     KDInsertable rightChild = kdTree.getRight(kdTree.getRoot());
 
     assertEquals(kdTree.getLeft(kdTree.getRoot()), node1);
-    assertEquals(kdTree.getRight(kdTree.getRoot()), node3);//    assertEquals(kdTree.getRoot().getLeft().getLeft(), node2);
+    assertEquals(kdTree.getRight(kdTree.getRoot()), node3);
     assertNull(kdTree.getRight(leftChild));
     assertNull(kdTree.getRight(rightChild));
     assertEquals(kdTree.getLeft(rightChild), node5);
@@ -111,7 +108,6 @@ public class KDTreeTest {
     List<KDInsertable> kdNodeList = new ArrayList<KDInsertable>();
     KDTree<Student> kdTree = new KDTree<Student>(kdNodeList, new EuclidianDistance(), 3);
     assertNull(kdTree.getRoot());
-
   }
 
 

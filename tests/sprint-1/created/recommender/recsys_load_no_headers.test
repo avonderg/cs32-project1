@@ -1,0 +1,9 @@
+INPUT
+recsys_load
+data/project1/proj1_sprint2_small_1.csv
+data/project1/proj1_sprint2_small_2.csv
+data/project1/proj1_sprint2_small_3.csv
+data/project1/proj1_sprint2_small_4.csv
+OUTPUT
+Headers not loaded
+END
