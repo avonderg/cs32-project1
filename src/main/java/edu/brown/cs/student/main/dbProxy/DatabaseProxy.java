@@ -65,7 +65,7 @@ public class DatabaseProxy {
   /**
    * This method initializes the cache and implements the CacheLoader's load method. I store
    * CachedRowSets instead of ResultSets because ResultSets cannot be copies and can only be printed
-   * out once, whereas CachedRowSets can be copied and converted to ResultSets. Idea from ED #329
+   * out once, whereas CachedRowSets can be copied and converted to ResultSets. Idea from ED #1004
    */
   private void initCache() {
     CacheLoader<String, CachedRowSet> loader;
