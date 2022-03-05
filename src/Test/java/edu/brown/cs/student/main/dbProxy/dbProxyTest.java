@@ -147,7 +147,7 @@ public class dbProxyTest {
   }
 
   /**
-   * This tests makes sure that the cache is cleared after 10 entries are added (that the max size of
+   * This tests makes sure that the cache is capped at 10 (that the max size of
    * the cache never exceeds 10).
    * @throws SQLException
    * @throws ClassNotFoundException
@@ -174,6 +174,36 @@ public class dbProxyTest {
 
     //assures that the size of the cache is still 10, which is the max size
     assertEquals(10, db.getCacheSize());
+
+  }
+
+  /**
+   * This tests makes sure that the cache is cleared after a write access command to the db.
+   * @throws SQLException
+   * @throws ClassNotFoundException
+   */
+  @Test
+  public void testCacheClearAfterWrite() throws SQLException, ClassNotFoundException {
+    HashMap<String, String> tables = new HashMap<String, String>() {
+      {
+        put("interests", "R");
+        put("names", "RW");
+        put("skills", "R");
+        put("traits", "R");
+      }
+    };
+
+    DatabaseProxy db = new DatabaseProxy("data/recommendation_data/sql/data.sqlite3", tables);
+    ResultSet rs = db.executeSQL("SELECT email FROM names WHERE ID='1'");
+    assertEquals(1, db.getCacheSize());
+    //11th select command added
+    db.executeSQL("UPDATE NAMES SET email= 'ben@gmail.com' WHERE id = '1'");
+
+    //assures that the cache is cleared
+    assertEquals(0, db.getCacheSize());
+
+    //reverts back to previous form
+    db.executeSQL("UPDATE names SET email= 'pdillingstone0@nationalgeographic.com' WHERE id = '1'");
 
   }
 }
