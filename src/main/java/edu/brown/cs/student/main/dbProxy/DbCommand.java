@@ -15,6 +15,7 @@ import java.util.List;
 public class DbCommand implements Command {
   DatabaseProxy dataDB;
 
+  //note from mentor: change REPL command so that user can input SQL syntax
   /**
    * Implemented from the command class
    * @param tokens -- list of REPL input Strings
@@ -43,15 +44,31 @@ public class DbCommand implements Command {
       }
 
       String query = this.getQuery(tokens.get(1));
-      ResultSet getNamesRS = null;
+      ResultSet queryResult = null;
       try {
-        getNamesRS = this.dataDB.executeSQL(query);
+        queryResult = this.dataDB.executeSQL(query);
       } catch (SQLException e) {
         e.printStackTrace();
       }
 
       //for demo purposes
-      this.printResultSet(getNamesRS);
+      this.printResultSet(queryResult);
+    }
+    else if (tokens.get(0).equals("query")) {
+      int i = 1;
+      String sqlQuery = "";
+      while (i < tokens.size()) {
+        sqlQuery += tokens.get(i) + " ";
+        i++;
+      }
+      ResultSet queryResult = null;
+      try {
+        queryResult = this.dataDB.executeSQL(sqlQuery);
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+
+      this.printResultSet(queryResult);
     }
     return null;
   }
