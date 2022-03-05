@@ -10,29 +10,31 @@ public class StudentFromDB {
   private final String name;
   private final String email;
   private final String skill;
-//  private final List<String> interests;
-//  private final List<String> traits;
+  private List<String> interests;
+  private List<String> strengths;
+  private List<String> weaknesses;
+
 
   public StudentFromDB(int id, String name, String email, String skill) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.skill = skill;
-//    this.interests = interests;
-//    this.traits = traits;
+    this.strengths = null;
+    this.weaknesses = null;
   }
 
   public int getId() {
     return this.id;
   }
-
-//  public List<String> getTraits() {
-//    return traits;
-//  }
 //
-//  public List<String> getInterests() {
-//    return this.interests;
+//  public List<String> getTraits() {
+//    return this.;
 //  }
+
+  public List<String> getInterests() {
+    return this.interests;
+  }
 
   public String getEmail() {
     return this.email;
@@ -46,13 +48,17 @@ public class StudentFromDB {
     return this.skill;
   }
 
-//  public void addInterest(String interest) {
-//    this.interests.add(interest);
-//  }
-//
-//  public void addTrait(String trait) {
-//    this.traits.add(trait);
-//  }
+  public void setInterests(List<String> interests) {
+    this.interests = interests;
+  }
+
+  public void setStrengths(List<String> strengths) {
+    this.strengths = strengths;
+  }
+
+  public void setWeaknesses(List<String> weaknesses) {
+    this.weaknesses = weaknesses;
+  }
 
   @Override
   public String toString() {
