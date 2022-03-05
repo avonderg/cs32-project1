@@ -4,6 +4,7 @@ package edu.brown.cs.student.main;
 import java.io.IOException;
 import java.util.HashMap;
 
+import edu.brown.cs.student.main.api.core.APICommand;
 import edu.brown.cs.student.main.bloom.BloomCommand;
 import edu.brown.cs.student.main.csvReader.HashMapData;
 import edu.brown.cs.student.main.csvReader.Reader;
@@ -67,8 +68,8 @@ public final class Main {
     HashMap<String, Student> students = new HashMap<String, Student>();
 
     // Initialize a command object to pass into the REPL object
-    Command[] commands = {new BloomCommand(), new KDTreeCommand(),
-        new RecommendCommand()};
+    Command[] commands = {new BloomCommand(), new KDTreeCommand(), new APICommand(), new RecommendCommand()};
+    
     REPL reader = new REPL("(\\S+)", commands);
 
     // Run the repl.
