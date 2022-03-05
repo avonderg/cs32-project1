@@ -20,7 +20,7 @@ public class APICommand implements Command {
      */
     @Override
     public String checkCommand(List<String> tokens) {
-        ApiClient client = new ApiClient(); // creates a new client
+        ApiClient client = new ApiClient(null); // creates a new client
         if (tokens.get(0).equals("active")) { // if the command is active
             if (tokens.size() != 2) { // error checking / handling
                 System.out.println("ERROR: invalid arguments");

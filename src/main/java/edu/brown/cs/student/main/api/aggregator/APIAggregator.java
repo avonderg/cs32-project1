@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 public class APIAggregator {
     // global variables
     public List<String> tokens = new ArrayList<String>(); // contains active endpoints
-    private static final ApiClient finalClient = new ApiClient(); // api client
+    private static final ApiClient finalClient = new ApiClient(null); // api client
     private List<APIInfoStudents> infoStudents;
     private List<APIMatchStudents> matchStudents;
 
@@ -35,14 +35,15 @@ public class APIAggregator {
      * appropriate helpers
      * @param lineToParse - input JSON string returned from active get request
      */
-    public void loadData(String lineToParse) {
+    public List<? extends Object> loadData(String lineToParse) {
         List<String> items = parseActive(lineToParse); // parses JSON string
         if (items.get(0).contains("info")) { // if the JSON string contains info endpoints
-            getData("info");
+            return getData("info");
         }
         else if (items.get(0).contains("match")) { // if the JSON string contains match endpoints
-            getData("match");
+            return getData("match");
         }
+        return null;
     }
 
     /**
@@ -108,6 +109,12 @@ public class APIAggregator {
                     System.out.println(m.convertToString());
                 }
             }
+        }
+        if (determinant == 1) {
+            return infoStudents;
+        }
+        else if (determinant == 2) {
+            return matchStudents;
         }
         return null;
     }

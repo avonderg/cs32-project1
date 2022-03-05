@@ -8,6 +8,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class encapsulates the client request handling logic. It is agnostic of what kinds of requests are being made.
@@ -16,10 +18,12 @@ import java.time.Duration;
 public class ApiClient {
 
     private HttpClient client;
+    public List<? extends Object> students;
 
-    public ApiClient() {
+    public ApiClient(List<? extends Object> students) {
         this.client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2).connectTimeout(Duration.ofSeconds(60)).build();
+        this.students = students;
     }
 
     /**
@@ -34,7 +38,8 @@ public class ApiClient {
             if (flag == 1) {  // if we need to aggregate, flag is set to 1
                 APIAggregator agg = new APIAggregator();
                 String toParse = apiResponse.body();
-                agg.loadData(toParse); // loadData method is called, which controls aggregating
+                this.students = new ArrayList<>();
+                this.students = agg.loadData(toParse); // loadData method is called, which controls aggregating
             }
             if (flag == 0) { // otherwise, print out api response body
                 System.out.println(apiResponse.body());
