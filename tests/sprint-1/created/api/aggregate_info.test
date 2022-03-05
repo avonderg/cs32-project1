@@ -1,0 +1,65 @@
+INPUT
+api_aggregate info
+OUTPUT
+Students:
+1, Petr Dillingstone, sophomore, 8, email, 13, in person, afternoon
+2, Gerri Enterle, sophomore, 19, zoom, 19, in person, morning
+3, Fitzgerald Mulbery, freshman, 11, text, 19, in person, morning
+4, Trumaine Dodson, senior, 4, slack, 7, in person, morning
+5, Victoria Autry, sophomore, 5, zoom, 6, virtual, afternoon
+6, Bee Glisenan, sophomore, 4, other, 4, in person, night
+7, Antonetta Gadaud, freshman, 9, text, 16, virtual, morning
+8, Ugo Bellanger, sophomore, 6, zoom, 8, in person, afternoon
+9, Cobby Cauley, senior, 13, other, 20, virtual, afternoon
+10, Kendal Garretts, junior, 16, text, 5, virtual, night
+11, Rozanne Uridge, senior, 5, zoom, 19, virtual, morning
+12, Gregoor Huckerby, sophomore, 3, other, 5, virtual, afternoon
+13, Desmond Hyslop, sophomore, 12, zoom, 13, in person, night
+14, Fallon Sheward, senior, 6, text, 3, in person, afternoon
+15, Nance Fawbert, freshman, 14, other, 13, in person, morning
+16, Darline Reily, senior, 14, other, 12, hybrid, morning
+17, Filippo McGerraghty, sophomore, 11, zoom, 1, virtual, night
+18, Rachele Sheldon, junior, 9, other, 15, virtual, evening
+19, Pamella McCudden, sophomore, 19, slack, 15, in person, evening
+20, Miquela Fidgett, senior, 19, zoom, 15, in person, morning
+21, Fran Empson, senior, 20, zoom, 19, virtual, afternoon
+22, Mitch Freegard, sophomore, 9, text, 1, hybrid, morning
+23, Gerick Millins, freshman, 1, zoom, 5, in person, night
+24, Giles Shorton, senior, 13, email, 11, hybrid, evening
+25, Anthe Baseley, freshman, 16, email, 14, in person, afternoon
+26, Sheff Hillaby, sophomore, 19, text, 17, virtual, night
+27, Aila Border, senior, 20, zoom, 10, in person, night
+28, Paulita Mainds, sophomore, 10, text, 16, hybrid, night
+29, Mal Antonchik, freshman, 1, other, 14, virtual, afternoon
+30, Tasha McSporon, freshman, 2, slack, 3, virtual, night
+31, Karolina Gronno, sophomore, 8, other, 6, in person, afternoon
+32, Free Cook, junior, 13, other, 12, in person, evening
+33, Malissia Kubat, senior, 3, slack, 20, in person, evening
+34, Eleen Preto, freshman, 15, other, 17, in person, afternoon
+35, Ashlin Wettern, junior, 1, slack, 8, hybrid, evening
+36, Delia Boice, freshman, 15, other, 20, in person, morning
+37, Spenser Giannassi, senior, 11, email, 5, hybrid, evening
+38, Anne Bruyntjes, junior, 14, other, 5, virtual, morning
+39, Viola Sheirlaw, senior, 15, other, 15, virtual, night
+40, Kirbie Garnul, senior, 19, slack, 20, virtual, evening
+41, Melvin Arendt, sophomore, 15, text, 9, hybrid, morning
+42, Pamelina Couper, sophomore, 10, email, 2, hybrid, evening
+43, Newton Berkley, freshman, 15, slack, 19, in person, morning
+44, Alexandro Clayworth, senior, 15, email, 12, hybrid, night
+45, Olivero Brangan, freshman, 9, zoom, 8, virtual, morning
+46, Creigh Fike, freshman, 17, other, 13, in person, night
+47, Jocelyne Wheatley, sophomore, 17, other, 4, in person, afternoon
+48, Rebekah Gresley, sophomore, 2, slack, 20, hybrid, evening
+49, Ella Kitman, sophomore, 1, text, 13, in person, afternoon
+50, Dannye Abramchik, freshman, 5, text, 9, in person, afternoon
+51, Heidie Antonias, sophomore, 6, slack, 4, in person, night
+52, Lanae Petric, junior, 13, text, 18, in person, morning
+53, Farrell Ellesmere, sophomore, 1, slack, 5, virtual, afternoon
+54, Tore Giorgetti, junior, 13, slack, 20, in person, evening
+55, Daisy Sewell, freshman, 8, zoom, 10, in person, night
+56, Maude Sweatland, freshman, 11, text, 14, in person, evening
+57, Graig Wardle, sophomore, 20, text, 4, hybrid, morning
+58, Jack Sommerled, freshman, 15, email, 7, hybrid, night
+59, Jess Miettinen, freshman, 12, email, 19, virtual, night
+60, Sibelle Slafford, freshman, 2, email, 12, in person, night
+END

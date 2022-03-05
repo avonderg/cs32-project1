@@ -93,6 +93,10 @@ public class APIAggregator {
                 baseString += url; // appends appropriate auth and key info to the URL
                 activeRequest = HttpRequest.newBuilder().uri(URI.create(baseString)).build(); // makes get requests, per token
                 response = finalClient.makeRequest(activeRequest,3); // flag == 3 to prevent from active matches being printed
+                if (response.statusCode() != 200) { // if the endpoint needs to be hit again
+                    activeRequest = HttpRequest.newBuilder().uri(URI.create(baseString)).build(); // makes get requests, per token
+                    response = finalClient.makeRequest(activeRequest,3); // flag == 3 to prevent from active matches being printed
+                }
                 infoStudents = JsonParser.storeInfo(response); // parses and stores APIInfoStudents in list
                 for (APIInfoStudents m : infoStudents) { // prints out students
                     System.out.println(m.convertToString());
@@ -104,6 +108,13 @@ public class APIAggregator {
                         .POST(HttpRequest.BodyPublishers.ofString("{\"auth\":\"" + auth + "\"}"))
                         .build(); // makes post requests, per token
                 response = finalClient.makeRequest(activeRequest,3); // flag == 3 to prevent from active matches being printed
+                if (response.statusCode() != 200) { // if the endpoint needs to be hit again
+                    activeRequest = HttpRequest.newBuilder().uri(URI.create(baseString))
+                            .header("x-api-key", apiKey)
+                            .POST(HttpRequest.BodyPublishers.ofString("{\"auth\":\"" + auth + "\"}"))
+                            .build(); // makes post requests, per token
+                    response = finalClient.makeRequest(activeRequest,3); // flag == 3 to prevent from active matches being printed
+                }
                 matchStudents = JsonParser.storeMatch(response);  // parses and stores APIMatchStudents in list
                 for (APIMatchStudents m : matchStudents) { // prints out students
                     System.out.println(m.convertToString());
