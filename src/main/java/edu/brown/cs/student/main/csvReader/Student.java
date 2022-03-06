@@ -1,9 +1,13 @@
 package edu.brown.cs.student.main.csvReader;
 
+import edu.brown.cs.student.main.api.client.APIInfoStudents;
+import edu.brown.cs.student.main.api.client.APIMatchStudents;
+import edu.brown.cs.student.main.dbProxy.StudentFromDB;
 import edu.brown.cs.student.main.kdTree.KDInsertable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -94,6 +98,28 @@ public class Student implements KDInsertable {
     this.weaknesses = convertList(attributes.get("weaknesses"));
     this.skills = convertList(attributes.get("skills"));
     this.interests = convertList(attributes.get("interests"));
+  }
+
+  public Student(StudentFromDB currDB, APIInfoStudents currInfo, APIMatchStudents currMatch) {
+    this.id = String.valueOf(currDB.getId());
+    this.name = currDB.getName();
+    this.interests = this.convertList(currDB.getInterests());
+    this.skills = this.convertList(currDB.getSkills());
+    this.weaknesses = this.convertList(currDB.getWeaknesses());
+    this.email = currDB.getEmail();
+
+    this.email = currInfo.getEmail();
+    this.classYear = currInfo.getClass_year();
+    this.communicationStyle = currInfo.getCommunication_style();
+    this.meetingStyle = currInfo.getMeeting_style();
+    this.meetingTime = currInfo.getMeeting_time();
+    this.yearsExperience = Double.valueOf(currInfo.getYears_experience());
+    this.weeklyAvailHours = Double.valueOf(currInfo.getWeekly_avail_hours());
+
+    this.gender = currMatch.getGender();
+    this.nationality = currMatch.getNationality();
+    this.race = currMatch.getRace();
+    this.softwareEngnConfidence = Double.valueOf(currMatch.getSoftware_engn_confidence());
   }
 
   private String[] convertList (Object vals) {

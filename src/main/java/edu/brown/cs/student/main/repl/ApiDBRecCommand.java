@@ -61,7 +61,8 @@ public class ApiDBRecCommand implements Command {
             tablePermissions.put("traits", "R");
             try {
                 this.dataDB =
-                        new DatabaseProxy("data/recommendation_data/sql/data.sqlite3", tablePermissions);
+                        new DatabaseProxy("data/recommendation_data/sql/data.sqlite3",
+                            tablePermissions);
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -71,8 +72,9 @@ public class ApiDBRecCommand implements Command {
 
             ResultSet studentFields = null;
             try {
-                studentFields = this.dataDB.executeSQL("SELECT names.id,names.name "
-                        + ",names.email,skills.skill FROM names JOIN skills ON names.id = skills.id");
+                studentFields =
+                    this.dataDB.executeSQL("SELECT names.id,names.name " +
+                        ",names.email,skills.skill FROM names JOIN skills ON names.id = skills.id");
             } catch (SQLException exception) {
                 System.out.println("SQLException Thrown");
                 exception.printStackTrace();
@@ -103,7 +105,8 @@ public class ApiDBRecCommand implements Command {
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
-            System.out.println("Read " + this.idToDBstudentMap.size() + " students from data.sqlite3");
+            System.out.println("Read " + this.idToDBstudentMap.size()
+                + " students from data.sqlite3");
 
             return "";
         }
@@ -118,13 +121,15 @@ public class ApiDBRecCommand implements Command {
 
             // TODO: Iterate through API and DB Proxy Student Lists and store in global students hashmap.
 
-            List<StudentFromDB> dbStudents = this.idToDBstudentMap.values().stream().collect(Collectors.toList());
+            List<StudentFromDB> dbStudents =
+                this.idToDBstudentMap.values().stream().collect(Collectors.toList());
 
             for (int i = 0; i < 60; i++) {
                 StudentFromDB currDB = dbStudents.get(i);
                 APIInfoStudents currInfo = infoStudents.get(i);
                 APIMatchStudents currMatch = matchStudents.get(i);
-//                this.students.put(currDB.getId(), new Student(currDB, currInfo, currMatch));
+                this.students.put(String.valueOf(currDB.getId()),
+                    new Student(currDB, currInfo, currMatch));
             }
 
 
