@@ -6,3 +6,4 @@ target/
 **.DS_Store**
 *.prefs
 /config/secret/
+/config/secret/

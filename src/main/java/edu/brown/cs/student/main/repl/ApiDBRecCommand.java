@@ -111,7 +111,7 @@ public class ApiDBRecCommand implements Command {
             return "";
         }
         else if (tokens.get(0).equals("api_db_recommend")) {
-            if (students.size() <= 0) {
+            if (infoStudents.size() <= 0 || matchStudents.size() <= 0 || idToDBstudentMap.size() <= 0) {
                 // if no students are stored, return appropriate message
                 return "No students found";
             } else if (!students.containsKey(tokens.get(2))) { // if target student is not in hashmap,
@@ -120,9 +120,11 @@ public class ApiDBRecCommand implements Command {
             }
 
             // TODO: Iterate through API and DB Proxy Student Lists and store in global students hashmap.
+//            System.out.println(infoStudents.get(5));
 
             List<StudentFromDB> dbStudents =
                 this.idToDBstudentMap.values().stream().collect(Collectors.toList());
+
 
             for (int i = 0; i < 60; i++) {
                 StudentFromDB currDB = dbStudents.get(i);

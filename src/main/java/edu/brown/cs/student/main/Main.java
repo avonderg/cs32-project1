@@ -12,6 +12,7 @@ import edu.brown.cs.student.main.dbProxy.CreateStudentsCommand;
 import edu.brown.cs.student.main.dbProxy.DbCommand;
 import edu.brown.cs.student.main.csvReader.Student;
 import edu.brown.cs.student.main.kdTree.KDTreeCommand;
+import edu.brown.cs.student.main.repl.ApiDBRecCommand;
 import edu.brown.cs.student.main.repl.Command;
 import edu.brown.cs.student.main.repl.RecommendCommand;
 import edu.brown.cs.student.main.repl.REPL;
@@ -71,7 +72,7 @@ public final class Main {
 
     // Initialize a command object to pass into the REPL object
 
-    Command[] commands = {new BloomCommand(), new KDTreeCommand(), new DbCommand(), new CreateStudentsCommand(), new APICommand(), new RecommendCommand()};
+    Command[] commands = {new BloomCommand(), new KDTreeCommand(), new DbCommand(), new CreateStudentsCommand(), new APICommand(), new RecommendCommand(), new ApiDBRecCommand()};
 
     REPL reader = new REPL("(\\S+)", commands);
 
