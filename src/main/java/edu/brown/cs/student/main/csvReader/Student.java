@@ -127,7 +127,7 @@ public class Student implements KDInsertable {
       ArrayList<String> list = (ArrayList<String>) ((ArrayList<?>) vals);
       return list.toArray(new String[list.size()]);
     } else {
-      return new String[]{(String) vals};
+      return new String[]{"incorrect format"}; //(String) vals};
     }
   }
 

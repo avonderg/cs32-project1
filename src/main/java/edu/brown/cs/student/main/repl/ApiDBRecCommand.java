@@ -131,9 +131,7 @@ public class ApiDBRecCommand implements Command {
                 this.students.put(String.valueOf(currDB.getId()),
                     new Student(currDB, currInfo, currMatch));
             }
-
-
-
+            
             // initialize new recommender object and pass in k value, students hashmap,
             // and target student object
             Recommender recommender =
