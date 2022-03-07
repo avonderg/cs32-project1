@@ -10,7 +10,6 @@ import edu.brown.cs.student.main.csvReader.HashMapData;
 import edu.brown.cs.student.main.csvReader.Reader;
 import edu.brown.cs.student.main.dbProxy.CreateStudentsCommand;
 import edu.brown.cs.student.main.dbProxy.DbCommand;
-import edu.brown.cs.student.main.csvReader.Student;
 import edu.brown.cs.student.main.kdTree.KDTreeCommand;
 import edu.brown.cs.student.main.repl.ApiDBRecCommand;
 import edu.brown.cs.student.main.repl.Command;

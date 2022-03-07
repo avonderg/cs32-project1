@@ -1,5 +1,6 @@
 package edu.brown.cs.student.main.csvParserTest;
 
+import edu.brown.cs.student.main.Student;
 import edu.brown.cs.student.main.csvReader.*;
 import org.junit.Test;
 

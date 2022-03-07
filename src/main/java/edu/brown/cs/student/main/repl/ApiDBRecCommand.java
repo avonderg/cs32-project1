@@ -4,7 +4,7 @@ import edu.brown.cs.student.main.api.client.APIInfoStudents;
 import edu.brown.cs.student.main.api.client.APIMatchStudents;
 import edu.brown.cs.student.main.api.client.ApiClient;
 import edu.brown.cs.student.main.api.client.ClientRequestGenerator;
-import edu.brown.cs.student.main.csvReader.Student;
+import edu.brown.cs.student.main.Student;
 import edu.brown.cs.student.main.dbProxy.DatabaseProxy;
 import edu.brown.cs.student.main.dbProxy.StudentFromDB;
 
@@ -55,8 +55,6 @@ public class ApiDBRecCommand implements Command {
             client2.makeRequest(ClientRequestGenerator.getSecuredGetRequest(match_req), 1);
             this.infoStudents = (List<APIInfoStudents>) client1.students;
             this.matchStudents = (List<APIMatchStudents>) client2.students;
-
-            this.api_loaded = true;
         }
         else if (tokens.get(0).equals("load_db_students")) {
             HashMap<String, String> tablePermissions = new HashMap<String, String>();
@@ -108,24 +106,14 @@ public class ApiDBRecCommand implements Command {
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
-            System.out.println("Read " + this.idToDBstudentMap.size()
-                + " students from data.sqlite3");
-
-            this.db_loaded = true;
-
-            return "";
+            return "Read " + this.idToDBstudentMap.size()
+                + " students from data.sqlite3";
         }
         else if (tokens.get(0).equals("api_db_recommend")) {
-            if (!this.api_loaded || !this.db_loaded) {
-                System.out.println("ERROR: Must load both api and db before running recommender.");
-            }
-
             if (infoStudents.size() <= 0 || matchStudents.size() <= 0 || idToDBstudentMap.size() <= 0) {
                 // if no students are stored, return appropriate message
                 return "No students found";
             }
-
-            // TODO: Iterate through API and DB Proxy Student Lists and store in global students hashmap.
 
             List<StudentFromDB> dbStudents =
                 this.idToDBstudentMap.values().stream().collect(Collectors.toList());

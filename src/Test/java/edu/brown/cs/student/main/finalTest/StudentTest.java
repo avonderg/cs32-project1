@@ -2,7 +2,7 @@ package edu.brown.cs.student.main.finalTest;
 
 import edu.brown.cs.student.main.api.client.APIInfoStudents;
 import edu.brown.cs.student.main.api.client.APIMatchStudents;
-import edu.brown.cs.student.main.csvReader.Student;
+import edu.brown.cs.student.main.Student;
 import edu.brown.cs.student.main.dbProxy.StudentFromDB;
 import org.junit.Test;
 

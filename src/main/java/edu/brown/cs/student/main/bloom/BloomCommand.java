@@ -3,7 +3,7 @@ package edu.brown.cs.student.main.bloom;
 import edu.brown.cs.student.main.csvReader.Data;
 import edu.brown.cs.student.main.csvReader.HashMapData;
 import edu.brown.cs.student.main.csvReader.Reader;
-import edu.brown.cs.student.main.csvReader.Student;
+import edu.brown.cs.student.main.Student;
 import edu.brown.cs.student.main.repl.Command;
 
 import java.security.NoSuchAlgorithmException;

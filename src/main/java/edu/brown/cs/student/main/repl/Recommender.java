@@ -1,7 +1,7 @@
 package edu.brown.cs.student.main.repl;
 
+import edu.brown.cs.student.main.Student;
 import edu.brown.cs.student.main.bloom.*;
-import edu.brown.cs.student.main.csvReader.*;
 import edu.brown.cs.student.main.kdTree.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;

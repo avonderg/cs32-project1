@@ -1,4 +1,4 @@
-package edu.brown.cs.student.main.csvReader;
+package edu.brown.cs.student.main;
 
 import edu.brown.cs.student.main.api.client.APIInfoStudents;
 import edu.brown.cs.student.main.api.client.APIMatchStudents;
@@ -7,7 +7,6 @@ import edu.brown.cs.student.main.kdTree.KDInsertable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -78,6 +77,11 @@ public class Student implements KDInsertable {
     interests = this.cleanList(interests);
   }
 
+  /**
+   * Class constructor. Iterates through HashMap of attributes and stores them.
+   * @param attributes
+   * @param id
+   */
   public Student(HashMap<String, Object> attributes, String id) {
     this.id = id;
     this.name = (String) attributes.get("name");
@@ -100,6 +104,13 @@ public class Student implements KDInsertable {
     this.interests = convertList(attributes.get("interests"));
   }
 
+  /**
+   * Class constructor. Takes in three types of student objects from API Aggregator and
+   * Database Proxy, gets various attributes from each object and stores them.
+   * @param currDB Database Proxy Student Object
+   * @param currInfo API Aggregator Info Student Object
+   * @param currMatch API Aggregator Match Student Object
+   */
   public Student(StudentFromDB currDB, APIInfoStudents currInfo, APIMatchStudents currMatch) {
     this.id = String.valueOf(currDB.getId());
     this.name = currDB.getName();
@@ -154,8 +165,6 @@ public class Student implements KDInsertable {
   /**
    * @return id
    */
-  @Override
-
   public String getID() {
     return id;
   }

@@ -1,5 +1,7 @@
 package edu.brown.cs.student.main.csvReader;
 
+import edu.brown.cs.student.main.Student;
+
 import java.util.HashMap;
 
 /**

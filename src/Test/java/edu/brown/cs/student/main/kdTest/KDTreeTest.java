@@ -1,5 +1,5 @@
 package edu.brown.cs.student.main.kdTest;
-import edu.brown.cs.student.main.csvReader.Student;
+import edu.brown.cs.student.main.Student;
 import edu.brown.cs.student.main.kdTree.*;
 import org.junit.Test;
 
