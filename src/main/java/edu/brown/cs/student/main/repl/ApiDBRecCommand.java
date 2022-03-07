@@ -4,12 +4,10 @@ import edu.brown.cs.student.main.api.client.APIInfoStudents;
 import edu.brown.cs.student.main.api.client.APIMatchStudents;
 import edu.brown.cs.student.main.api.client.ApiClient;
 import edu.brown.cs.student.main.api.client.ClientRequestGenerator;
-import edu.brown.cs.student.main.api.core.APICommand;
 import edu.brown.cs.student.main.csvReader.Student;
 import edu.brown.cs.student.main.dbProxy.DatabaseProxy;
 import edu.brown.cs.student.main.dbProxy.StudentFromDB;
 
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -20,6 +18,8 @@ public class ApiDBRecCommand implements Command {
     List<APIMatchStudents> matchStudents = new ArrayList<>();
     // maps attributes to type (qualitative or quantitative)
     HashMap<String, String> headers;
+    Boolean api_loaded;
+    Boolean db_loaded;
 
     // maps student IDs to hashmap of their attributes
     HashMap<String, Student> students;
@@ -33,6 +33,9 @@ public class ApiDBRecCommand implements Command {
     public ApiDBRecCommand() {
         this.headers = new HashMap<String, String>();
         this.students = new HashMap<String, Student>();
+        this.idToDBstudentMap = new HashMap<>();
+        this.api_loaded = false;
+        this.db_loaded = false;
     }
 
     /**
@@ -52,6 +55,8 @@ public class ApiDBRecCommand implements Command {
             client2.makeRequest(ClientRequestGenerator.getSecuredGetRequest(match_req), 1);
             this.infoStudents = (List<APIInfoStudents>) client1.students;
             this.matchStudents = (List<APIMatchStudents>) client2.students;
+
+            this.api_loaded = true;
         }
         else if (tokens.get(0).equals("load_db_students")) {
             HashMap<String, String> tablePermissions = new HashMap<String, String>();
@@ -67,8 +72,6 @@ public class ApiDBRecCommand implements Command {
                 e.printStackTrace();
             }
             System.out.println("Successfully loaded data_tester.sqlite3");
-
-            this.idToDBstudentMap = new HashMap<Integer, StudentFromDB>();
 
             ResultSet studentFields = null;
             try {
@@ -108,9 +111,15 @@ public class ApiDBRecCommand implements Command {
             System.out.println("Read " + this.idToDBstudentMap.size()
                 + " students from data.sqlite3");
 
+            this.db_loaded = true;
+
             return "";
         }
         else if (tokens.get(0).equals("api_db_recommend")) {
+            if (!this.api_loaded || !this.db_loaded) {
+                System.out.println("ERROR: Must load both api and db before running recommender.");
+            }
+
             if (infoStudents.size() <= 0 || matchStudents.size() <= 0 || idToDBstudentMap.size() <= 0) {
                 // if no students are stored, return appropriate message
                 return "No students found";
@@ -125,6 +134,9 @@ public class ApiDBRecCommand implements Command {
             List<StudentFromDB> dbStudents =
                 this.idToDBstudentMap.values().stream().collect(Collectors.toList());
 
+            System.out.println(dbStudents.size());
+            System.out.println(infoStudents.size());
+            System.out.println(matchStudents.size());
 
             for (int i = 0; i < 60; i++) {
                 StudentFromDB currDB = dbStudents.get(i);
@@ -133,7 +145,7 @@ public class ApiDBRecCommand implements Command {
                 this.students.put(String.valueOf(currDB.getId()),
                     new Student(currDB, currInfo, currMatch));
             }
-            
+
             // initialize new recommender object and pass in k value, students hashmap,
             // and target student object
             Recommender recommender =
@@ -169,9 +181,9 @@ public class ApiDBRecCommand implements Command {
             ArrayList<String> studentInterests = new ArrayList<String>();
             while (interestRS.next()) {
                 String currInterest = interestRS.getString(1);
-                if (i == 1) {
-                    System.out.println(currInterest);
-                }
+//                if (i == 1) {
+//                    System.out.println(currInterest);
+//                }
                 studentInterests.add(currInterest);
             }
 
@@ -205,9 +217,9 @@ public class ApiDBRecCommand implements Command {
             ArrayList<String> studentTraits = new ArrayList<String>();
             while (traitRS.next()) {
                 String currTrait = traitRS.getString(1);
-                if (i == 1) {
-                    System.out.println(currTrait);
-                }
+//                if (i == 1) {
+//                    System.out.println(currTrait);
+//                }
                 studentTraits.add(currTrait);
             }
             if (strengthsOrWeaknesses.equals("strengths")) {
