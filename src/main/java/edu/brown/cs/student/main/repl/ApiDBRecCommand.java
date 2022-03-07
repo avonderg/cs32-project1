@@ -123,13 +123,9 @@ public class ApiDBRecCommand implements Command {
             if (infoStudents.size() <= 0 || matchStudents.size() <= 0 || idToDBstudentMap.size() <= 0) {
                 // if no students are stored, return appropriate message
                 return "No students found";
-            } else if (!students.containsKey(tokens.get(2))) { // if target student is not in hashmap,
-                // return appropriate message
-                return "Target student not found";
             }
 
             // TODO: Iterate through API and DB Proxy Student Lists and store in global students hashmap.
-//            System.out.println(infoStudents.get(5));
 
             List<StudentFromDB> dbStudents =
                 this.idToDBstudentMap.values().stream().collect(Collectors.toList());
@@ -144,6 +140,11 @@ public class ApiDBRecCommand implements Command {
                 APIMatchStudents currMatch = matchStudents.get(i);
                 this.students.put(String.valueOf(currDB.getId()),
                     new Student(currDB, currInfo, currMatch));
+            }
+
+            if (!students.containsKey(tokens.get(2))) { // if target student is not in hashmap,
+                // return appropriate message
+                return "Target student not found";
             }
 
             // initialize new recommender object and pass in k value, students hashmap,
