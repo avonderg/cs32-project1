@@ -111,7 +111,7 @@ public class ApiDBRecCommand implements Command {
             return "";
         }
         else if (tokens.get(0).equals("api_db_recommend")) {
-            if (students.size() <= 0) {
+            if (infoStudents.size() <= 0 || matchStudents.size() <= 0 || idToDBstudentMap.size() <= 0) {
                 // if no students are stored, return appropriate message
                 return "No students found";
             } else if (!students.containsKey(tokens.get(2))) { // if target student is not in hashmap,
