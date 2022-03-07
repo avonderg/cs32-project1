@@ -120,11 +120,12 @@ public class ApiDBRecCommand implements Command {
             }
 
             // TODO: Iterate through API and DB Proxy Student Lists and store in global students hashmap.
+//            System.out.println(infoStudents.get(5));
 
             List<StudentFromDB> dbStudents =
                 this.idToDBstudentMap.values().stream().collect(Collectors.toList());
 
-            System.out.println(dbStudents.get(5));
+
             for (int i = 0; i < 60; i++) {
                 StudentFromDB currDB = dbStudents.get(i);
                 APIInfoStudents currInfo = infoStudents.get(i);
