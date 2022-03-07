@@ -21,6 +21,8 @@ public class APIAggregator {
     private static final ApiClient finalClient = new ApiClient(null); // api client
     private List<APIInfoStudents> infoStudents;
     private List<APIMatchStudents> matchStudents;
+    private List<APIInfoStudents> finalInfo;
+    private List<APIMatchStudents> finalMatch;
 
     /**
      * Constructor for APIAggregator class
@@ -28,6 +30,8 @@ public class APIAggregator {
     public void APIAggregator() {
         this.infoStudents = new ArrayList<APIInfoStudents>(); // init list
         this.matchStudents = new ArrayList<APIMatchStudents>();
+//        this.finalInfo = new ArrayList<APIInfoStudents>(); // init list
+//        this.finalMatch = new ArrayList<APIMatchStudents>();
     }
 
     /**
@@ -67,6 +71,11 @@ public class APIAggregator {
      * @return - List of either APIInfoStudents, or APIMatchStudents
      */
     private List<? extends Object> getData(String type) {
+        // intialize lists
+        this.finalInfo = new ArrayList<APIInfoStudents>();
+        this.finalMatch = new ArrayList<APIMatchStudents>();
+        // done initializing
+
         String req = "";
         int determinant  = 0; // 1 if get request, 2 if post request
         if (type.equals("info")) {
@@ -77,15 +86,19 @@ public class APIAggregator {
             determinant = 2;
             req = "https://studentmatchapi.herokuapp.com";
         }
+
         System.out.println("Students:");
         String baseString = "";
+
         for (String token : tokens) { // loops through tokens array
+
             HttpRequest activeRequest = null;
             HttpResponse<String> response = null;
             baseString = req; // reset URL
             baseString += token; // append correct token to the URL
             String auth = "Avonderg"; // may generalize in the future
             String apiKey = ClientAuth.getApiKey(); // to maintain key security
+
             if (determinant == 1) { // get request
                 StringBuilder urlParams = new StringBuilder("?");
                 String url = "";
@@ -98,10 +111,12 @@ public class APIAggregator {
                     response = finalClient.makeRequest(activeRequest,3); // flag == 3 to prevent from active matches being printed
                 }
                 infoStudents = JsonParser.storeInfo(response); // parses and stores APIInfoStudents in list
+                finalInfo.addAll(infoStudents);
                 for (APIInfoStudents m : infoStudents) { // prints out students
                     System.out.println(m.convertToString());
                 }
             }
+
             else if (determinant == 2) { // post request
                 activeRequest = HttpRequest.newBuilder().uri(URI.create(baseString))
                         .header("x-api-key", apiKey)
@@ -116,16 +131,17 @@ public class APIAggregator {
                     response = finalClient.makeRequest(activeRequest,3); // flag == 3 to prevent from active matches being printed
                 }
                 matchStudents = JsonParser.storeMatch(response);  // parses and stores APIMatchStudents in list
+                finalMatch.addAll(matchStudents);
                 for (APIMatchStudents m : matchStudents) { // prints out students
                     System.out.println(m.convertToString());
                 }
             }
         }
         if (determinant == 1) {
-            return infoStudents;
+            return finalInfo;
         }
         else if (determinant == 2) {
-            return matchStudents;
+            return finalMatch;
         }
         return null;
     }
