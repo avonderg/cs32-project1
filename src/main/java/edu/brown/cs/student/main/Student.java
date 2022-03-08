@@ -120,7 +120,6 @@ public class Student implements KDInsertable {
     this.strengths = this.convertList(currDB.getStrengths());
     this.email = currDB.getEmail();
 
-    this.email = currInfo.getEmail();
     this.classYear = currInfo.getClass_year();
     this.communicationStyle = currInfo.getCommunication_style();
     this.meetingStyle = currInfo.getMeeting_style();
