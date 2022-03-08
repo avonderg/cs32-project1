@@ -87,7 +87,7 @@ public class APIAggregator {
             req = "https://studentmatchapi.herokuapp.com";
         }
 
-        System.out.println("Students:");
+        // System.out.println("Students:");
         String baseString = "";
 
         for (String token : tokens) { // loops through tokens array
@@ -112,9 +112,9 @@ public class APIAggregator {
                 }
                 infoStudents = JsonParser.storeInfo(response); // parses and stores APIInfoStudents in list
                 finalInfo.addAll(infoStudents);
-                for (APIInfoStudents m : infoStudents) { // prints out students
-                    System.out.println(m.convertToString());
-                }
+//                for (APIInfoStudents m : infoStudents) { // prints out students
+//                    System.out.println(m.convertToString());
+//                }
             }
 
             else if (determinant == 2) { // post request
@@ -132,9 +132,9 @@ public class APIAggregator {
                 }
                 matchStudents = JsonParser.storeMatch(response);  // parses and stores APIMatchStudents in list
                 finalMatch.addAll(matchStudents);
-                for (APIMatchStudents m : matchStudents) { // prints out students
-                    System.out.println(m.convertToString());
-                }
+//                for (APIMatchStudents m : matchStudents) { // prints out students
+//                    System.out.println(m.convertToString());
+//                }
             }
         }
         if (determinant == 1) {

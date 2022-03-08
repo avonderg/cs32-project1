@@ -47,109 +47,123 @@ public class ApiDBRecCommand implements Command {
     @Override
     public String checkCommand(List<String> tokens) {
         if (tokens.get(0).equals("load_api_students")) {
-            String info_req = "https://studentinfoapi.herokuapp.com/get-active";
-            String match_req = "https://studentmatchapi.herokuapp.com/get-active";
-            ApiClient client1 = new ApiClient(null);
-            ApiClient client2 = new ApiClient(null);
-            client1.makeRequest(ClientRequestGenerator.getSecuredGetRequest(info_req), 1);
-            client2.makeRequest(ClientRequestGenerator.getSecuredGetRequest(match_req), 1);
-            this.infoStudents = (List<APIInfoStudents>) client1.students;
-            this.matchStudents = (List<APIMatchStudents>) client2.students;
+            return loadApiStudents(tokens);
         }
         else if (tokens.get(0).equals("load_db_students")) {
-            HashMap<String, String> tablePermissions = new HashMap<String, String>();
-            tablePermissions.put("names", "R");
-            tablePermissions.put("interests", "R");
-            tablePermissions.put("skills", "R");
-            tablePermissions.put("traits", "R");
-            try {
-                this.dataDB =
-                        new DatabaseProxy("data/recommendation_data/sql/data.sqlite3",
-                            tablePermissions);
-            } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Successfully loaded data_tester.sqlite3");
-
-            ResultSet studentFields = null;
-            try {
-                studentFields =
-                    this.dataDB.executeSQL("SELECT names.id,names.name " +
-                        ",names.email,skills.skill FROM names JOIN skills ON names.id = skills.id");
-            } catch (SQLException exception) {
-                System.out.println("SQLException Thrown");
-                exception.printStackTrace();
-            }
-
-            if (studentFields == null) {
-                return null;
-            }
-
-            try {
-                this.populateStudentObjects(studentFields);
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
-
-            try {
-                this.addTraits("strengths");
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
-            try {
-                this.addTraits("weaknesses");
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
-            try {
-                this.addInterests();
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
-            return "Read " + this.idToDBstudentMap.size()
-                + " students from data.sqlite3";
+            return loadDbStudents(tokens);
         }
         else if (tokens.get(0).equals("api_db_recommend")) {
-            if (infoStudents.size() <= 0 || matchStudents.size() <= 0 || idToDBstudentMap.size() <= 0) {
-                // if no students are stored, return appropriate message
-                return "No students found";
-            }
-
-            List<StudentFromDB> dbStudents =
-                this.idToDBstudentMap.values().stream().collect(Collectors.toList());
-
-            for (int i = 0; i < 60; i++) {
-                StudentFromDB currDB = dbStudents.get(i);
-                APIInfoStudents currInfo = infoStudents.get(i);
-                APIMatchStudents currMatch = matchStudents.get(i);
-                this.students.put(String.valueOf(currDB.getId()),
-                    new Student(currDB, currInfo, currMatch));
-            }
-
-            if (!students.containsKey(tokens.get(2))) { // if target student is not in hashmap,
-                // return appropriate message
-                return "Target student not found";
-            }
-
-            // initialize new recommender object and pass in k value, students hashmap,
-            // and target student object
-            Recommender recommender =
-                    new Recommender(tokens.get(1), students, tokens.get(2));
-
-            // initialize output string as empty string
-            String output = "";
-
-            // add recommendation ids to the string
-            Object[] recs = recommender.getRecommendations();
-            for (Object r : recs) {
-                String id = r.toString();
-                output = output + id + "\n";
-            }
-
-            // return string with stored recommendation ids
-            return output.trim();
+            return produceRecommendations(tokens);
+        } else {
+            return null;
         }
-        return null;
+    }
+
+    private String loadApiStudents(List<String> tokens) {
+        String info_req = "https://studentinfoapi.herokuapp.com/get-active";
+        String match_req = "https://studentmatchapi.herokuapp.com/get-active";
+        ApiClient client1 = new ApiClient(null);
+        ApiClient client2 = new ApiClient(null);
+        client1.makeRequest(ClientRequestGenerator.getSecuredGetRequest(info_req), 1);
+        client2.makeRequest(ClientRequestGenerator.getSecuredGetRequest(match_req), 1);
+        this.infoStudents = (List<APIInfoStudents>) client1.students;
+        this.matchStudents = (List<APIMatchStudents>) client2.students;
+        return "Succesfully loaded students from API.";
+    }
+
+    private String loadDbStudents(List<String> tokens) {
+        HashMap<String, String> tablePermissions = new HashMap<String, String>();
+        tablePermissions.put("names", "R");
+        tablePermissions.put("interests", "R");
+        tablePermissions.put("skills", "R");
+        tablePermissions.put("traits", "R");
+        try {
+            this.dataDB =
+                new DatabaseProxy("data/recommendation_data/sql/data.sqlite3",
+                    tablePermissions);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        // System.out.println("Successfully loaded data_tester.sqlite3");
+
+        ResultSet studentFields = null;
+        try {
+            studentFields =
+                this.dataDB.executeSQL("SELECT names.id,names.name " +
+                    ",names.email,skills.skill FROM names JOIN skills ON names.id = skills.id");
+        } catch (SQLException exception) {
+            System.out.println("SQLException Thrown");
+            exception.printStackTrace();
+        }
+
+        if (studentFields == null) {
+            return null;
+        }
+
+        try {
+            this.populateStudentObjects(studentFields);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        try {
+            this.addTraits("strengths");
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        try {
+            this.addTraits("weaknesses");
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        try {
+            this.addInterests();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return "Read " + this.idToDBstudentMap.size()
+            + " students from data.sqlite3";
+    }
+
+    private String produceRecommendations(List<String> tokens) {
+        if (infoStudents.size() <= 0 || matchStudents.size() <= 0 || idToDBstudentMap.size() <= 0) {
+            // if no students are stored, return appropriate message
+            return "No students found";
+        }
+
+        List<StudentFromDB> dbStudents =
+            this.idToDBstudentMap.values().stream().collect(Collectors.toList());
+
+        for (int i = 0; i < 60; i++) {
+            StudentFromDB currDB = dbStudents.get(i);
+            APIInfoStudents currInfo = infoStudents.get(i);
+            APIMatchStudents currMatch = matchStudents.get(i);
+            this.students.put(String.valueOf(currDB.getId()),
+                new Student(currDB, currInfo, currMatch));
+        }
+
+        if (!students.containsKey(tokens.get(2))) { // if target student is not in hashmap,
+            // return appropriate message
+            return "Target student not found";
+        }
+
+        // initialize new recommender object and pass in k value, students hashmap,
+        // and target student object
+        Recommender recommender =
+            new Recommender(tokens.get(1), students, tokens.get(2));
+
+        // initialize output string as empty string
+        String output = "";
+
+        // add recommendation ids to the string
+        Object[] recs = recommender.getRecommendations();
+        for (Object r : recs) {
+            String id = r.toString();
+            output = output + id + "\n";
+        }
+
+        // return string with stored recommendation ids
+        return output.trim();
     }
 
     private void addInterests() throws SQLException {
