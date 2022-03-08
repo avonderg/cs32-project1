@@ -41,10 +41,6 @@ public class StudentFromDB {
   public int getId() {
     return this.id;
   }
-//
-//  public List<String> getTraits() {
-//    return this.;
-//  }
 
   /**
    * Gets the list of the student Interests

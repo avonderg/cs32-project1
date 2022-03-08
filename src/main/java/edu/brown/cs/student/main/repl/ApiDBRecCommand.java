@@ -181,6 +181,11 @@ public class ApiDBRecCommand implements Command {
         return output.trim();
     }
 
+    /**
+     * This helper retreives the interests for each student from data.sqlite3 and adds it to the
+     * student object.
+     * @throws SQLException
+     */
     private void addInterests() throws SQLException {
         int i = 1;
         while (i <= this.idToDBstudentMap.size()) {
@@ -195,9 +200,6 @@ public class ApiDBRecCommand implements Command {
             ArrayList<String> studentInterests = new ArrayList<String>();
             while (interestRS.next()) {
                 String currInterest = interestRS.getString(1);
-//                if (i == 1) {
-//                    System.out.println(currInterest);
-//                }
                 studentInterests.add(currInterest);
             }
 
@@ -231,9 +233,6 @@ public class ApiDBRecCommand implements Command {
             ArrayList<String> studentTraits = new ArrayList<String>();
             while (traitRS.next()) {
                 String currTrait = traitRS.getString(1);
-//                if (i == 1) {
-//                    System.out.println(currTrait);
-//                }
                 studentTraits.add(currTrait);
             }
             if (strengthsOrWeaknesses.equals("strengths")) {
