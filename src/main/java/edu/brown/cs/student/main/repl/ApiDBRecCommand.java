@@ -59,6 +59,11 @@ public class ApiDBRecCommand implements Command {
         }
     }
 
+    /**
+     * Reads students from API using ApiClient.
+     * @param tokens REPL input
+     * @return REPL output
+     */
     private String loadApiStudents(List<String> tokens) {
         String info_req = "https://studentinfoapi.herokuapp.com/get-active";
         String match_req = "https://studentmatchapi.herokuapp.com/get-active";
@@ -71,6 +76,11 @@ public class ApiDBRecCommand implements Command {
         return "Succesfully loaded students from API.";
     }
 
+    /**
+     * Reads students from database proxy using DatabaseProxy object.
+     * @param tokens REPL input
+     * @return REPL output
+     */
     private String loadDbStudents(List<String> tokens) {
         HashMap<String, String> tablePermissions = new HashMap<String, String>();
         tablePermissions.put("names", "R");
@@ -125,6 +135,11 @@ public class ApiDBRecCommand implements Command {
             + " students from data.sqlite3";
     }
 
+    /**
+     * Produces recommendations using Recommend object.
+     * @param tokens REPL input
+     * @return REPL output
+     */
     private String produceRecommendations(List<String> tokens) {
         if (infoStudents.size() <= 0 || matchStudents.size() <= 0 || idToDBstudentMap.size() <= 0) {
             // if no students are stored, return appropriate message
