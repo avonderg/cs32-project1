@@ -115,8 +115,9 @@ public class Student implements KDInsertable {
     this.id = String.valueOf(currDB.getId());
     this.name = currDB.getName();
     this.interests = this.convertList(currDB.getInterests());
-    this.skills = this.convertList(currDB.getSkills());
+    this.skills = currDB.getSkills();
     this.weaknesses = this.convertList(currDB.getWeaknesses());
+    this.strengths = this.convertList(currDB.getStrengths());
     this.email = currDB.getEmail();
 
     this.email = currInfo.getEmail();
@@ -138,7 +139,8 @@ public class Student implements KDInsertable {
       ArrayList<String> list = (ArrayList<String>) ((ArrayList<?>) vals);
       return list.toArray(new String[list.size()]);
     } else {
-      return new String[]{"incorrect format"}; //(String) vals};
+      String stringVal = String.valueOf(vals);
+      return new String[]{stringVal};
     }
   }
 

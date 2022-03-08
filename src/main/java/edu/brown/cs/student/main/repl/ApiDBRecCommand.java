@@ -118,9 +118,6 @@ public class ApiDBRecCommand implements Command {
             List<StudentFromDB> dbStudents =
                 this.idToDBstudentMap.values().stream().collect(Collectors.toList());
 
-            System.out.println(dbStudents.size());
-            System.out.println(infoStudents.size());
-            System.out.println(matchStudents.size());
 
             for (int i = 0; i < 60; i++) {
                 StudentFromDB currDB = dbStudents.get(i);

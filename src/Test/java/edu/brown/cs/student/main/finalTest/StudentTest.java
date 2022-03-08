@@ -22,13 +22,13 @@ public class StudentTest {
     db.setInterests(interests);
 
     ArrayList<String> strengths = new ArrayList<>();
-    interests.add("honest");
-    interests.add("knowledgeable");
+    strengths.add("honest");
+    strengths.add("knowledgeable");
     db.setStrengths(strengths);
 
     ArrayList<String> weaknesses = new ArrayList<>();
-    interests.add("controlling");
-    interests.add("procrastinator");
+    weaknesses.add("controlling");
+    weaknesses.add("procrastinator");
     db.setWeaknesses(weaknesses);
 
     APIInfoStudents info = new APIInfoStudents(1, "bob", "bob@gmail.com",
@@ -43,8 +43,22 @@ public class StudentTest {
 
       assertEquals(student.getID(), "1");
       assertEquals(student.getName(), "Bob");
-      assertEquals(student.getInterests()[0], "film");
+      assertEquals(student.getEmail(), "bob@gmail.com");
+      assertEquals(student.getNationality(), "american");
       assertEquals(student.getClassYear(), "2024");
+      assertEquals(student.getRace(), "alien");
+      assertEquals(student.getYearsExperience(), 5, 0.1);
+      assertEquals(student.getCommunicationStyle(), "text");
+      assertEquals(student.getWeeklyAvailHours(), 2, 0.1);
+      assertEquals(student.getMeetingStyle(), "virtual");
+      assertEquals(student.getMeetingTime(), "morning");
+      assertEquals(student.getSoftwareEngnConfidence(), 30, 0.1);
+      assertEquals(student.getStrengths()[0], "honest");
+      assertEquals(student.getStrengths()[1], "knowledgeable");
+      assertEquals(student.getWeaknesses()[0], "controlling");
+      assertEquals(student.getWeaknesses()[1], "procrastinator");
+      assertEquals(student.getSkills()[0], "coding");
+      assertEquals(student.getInterests()[0], "film");
       assertEquals(student.getInterests()[1], "art");
   }
 }
