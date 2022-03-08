@@ -23,7 +23,7 @@ public class ApidbrecCommandTest {
     ApiDBRecCommand command = new ApiDBRecCommand();
     List<String> tokens = new ArrayList<String>();
     tokens.add("load_api_students");
-    assertEquals(command.checkCommand(tokens), "Succesfully loaded students from API.");
+    assertEquals(command.checkCommand(tokens), "Successfully loaded students from API.");
   }
 
   @Test
