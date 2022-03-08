@@ -73,7 +73,7 @@ public class ApiDBRecCommand implements Command {
         client2.makeRequest(ClientRequestGenerator.getSecuredGetRequest(match_req), 1);
         this.infoStudents = (List<APIInfoStudents>) client1.students;
         this.matchStudents = (List<APIMatchStudents>) client2.students;
-        return "Succesfully loaded students from API.";
+        return "Successfully loaded students from API.";
     }
 
     /**
