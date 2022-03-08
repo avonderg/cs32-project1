@@ -8,7 +8,6 @@ import edu.brown.cs.student.main.api.core.APICommand;
 import edu.brown.cs.student.main.bloom.BloomCommand;
 import edu.brown.cs.student.main.csvReader.HashMapData;
 import edu.brown.cs.student.main.csvReader.Reader;
-import edu.brown.cs.student.main.dbProxy.CreateStudentsCommand;
 import edu.brown.cs.student.main.dbProxy.DbCommand;
 import edu.brown.cs.student.main.kdTree.KDTreeCommand;
 import edu.brown.cs.student.main.repl.ApiDBRecCommand;
@@ -71,7 +70,7 @@ public final class Main {
 
     // Initialize a command object to pass into the REPL object
 
-    Command[] commands = {new BloomCommand(), new KDTreeCommand(), new DbCommand(), new CreateStudentsCommand(), new APICommand(), new RecommendCommand(), new ApiDBRecCommand()};
+    Command[] commands = {new BloomCommand(), new KDTreeCommand(), new DbCommand(), new APICommand(), new RecommendCommand(), new ApiDBRecCommand()};
 
     REPL reader = new REPL("(\\S+)", commands);
 
