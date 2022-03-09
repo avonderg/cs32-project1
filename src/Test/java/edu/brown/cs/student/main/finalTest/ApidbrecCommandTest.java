@@ -8,6 +8,10 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class tests that the APIDBRecCommand properly functions, aggregating data from the dbProxy and
+ * the API Aggregator.
+ */
 public class ApidbrecCommandTest {
 
   @Test

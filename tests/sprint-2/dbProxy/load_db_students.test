@@ -1,0 +1,5 @@
+INPUT
+load_db_students
+OUTPUT
+Read 60 students from data.sqlite3
+END

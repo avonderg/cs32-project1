@@ -92,6 +92,7 @@ public class ApiDBRecCommand implements Command {
                 new DatabaseProxy("data/recommendation_data/sql/data.sqlite3",
                     tablePermissions);
         } catch (SQLException | ClassNotFoundException e) {
+            System.out.println("ERROR: problem creating proxy.");
             e.printStackTrace();
         }
         // System.out.println("Successfully loaded data_tester.sqlite3");

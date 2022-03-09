@@ -1,0 +1,66 @@
+INPUT
+load_db_data
+query SELECT name FROM names
+OUTPUT
+Successfully loaded data_tester.sqlite3
+Petr Dillingstone
+Gerri Enterle
+Fitzgerald Mulbery
+Trumaine Dodson
+Victoria Autry
+Bee Glisenan
+Antonetta Gadaud
+Ugo Bellanger
+Cobby Cauley
+Kendal Garretts
+Rozanne Uridge
+Gregoor Huckerby
+Desmond Hyslop
+Fallon Sheward
+Nance Fawbert
+Darline Reily
+Filippo McGerraghty
+Rachele Sheldon
+Pamella McCudden
+Miquela Fidgett
+Fran Empson
+Mitch Freegard
+Gerick Millins
+Giles Shorton
+Anthe Baseley
+Sheff Hillaby
+Aila Border
+Paulita Mainds
+Mal Antonchik
+Tasha McSporon
+Karolina Gronno
+Free Cook
+Malissia Kubat
+Eleen Preto
+Ashlin Wettern
+Delia Boice
+Spenser Giannassi
+Anne Bruyntjes
+Viola Sheirlaw
+Kirbie Garnul
+Melvin Arendt
+Pamelina Couper
+Newton Berkley
+Alexandro Clayworth
+Olivero Brangan
+Creigh Fike
+Jocelyne Wheatley
+Rebekah Gresley
+Ella Kitman
+Dannye Abramchik
+Heidie Antonias
+Lanae Petric
+Farrell Ellesmere
+Tore Giorgetti
+Daisy Sewell
+Maude Sweatland
+Graig Wardle
+Jack Sommerled
+Jess Miettinen
+Sibelle Slafford
+END
