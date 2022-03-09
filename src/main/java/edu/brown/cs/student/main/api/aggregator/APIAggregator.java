@@ -67,6 +67,9 @@ public class APIAggregator {
     /**
      * Loops through all the active endpoints stored within the tokens array, makes get or post requests depending
      * on type specified by the user, and parses and stores student data.
+     * <p>
+     *     NOTE: uncomment the following lines when running API system tests: 93, 118-120, and 138-140
+     * </p>
      * @param type - input string specifying either a get or post request to be made
      * @return - List of either APIInfoStudents, or APIMatchStudents
      */

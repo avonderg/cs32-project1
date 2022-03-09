@@ -34,6 +34,10 @@ public class APICommand implements Command {
             else if (type.equals("match")) {
                 req = "https://studentmatchapi.herokuapp.com/get-active";
             }
+            else {
+                System.out.println("ERROR: invalid type");
+                return null;
+            }
             client.makeRequest(ClientRequestGenerator.getSecuredGetRequest(req), 0); // flag used to determine if aggregating should be done
             return "";
         }
@@ -68,6 +72,10 @@ public class APICommand implements Command {
             }
             else if (type.equals("match")) {
                 req = "https://studentmatchapi.herokuapp.com/get-active";
+            }
+            else {
+                System.out.println("ERROR: invalid method");
+                return null;
             }
             client.makeRequest(ClientRequestGenerator.getSecuredGetRequest(req), 1); // flag set to 1 so aggregating can be handled
             return "";

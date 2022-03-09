@@ -1,0 +1,5 @@
+INPUT
+api_aggregate snowing
+OUTPUT
+ERROR: invalid method
+END

@@ -1,0 +1,5 @@
+INPUT
+api ppost
+OUTPUT
+ERROR: invalid method
+END
