@@ -16,6 +16,9 @@ import static org.junit.Assert.assertEquals;
 
 public class APICommandTest {
 
+    /**
+     * Tests the checkCommand function, located within the APICommand class
+     */
     @Test
     public void testCheckCommand() {
         APICommand command = new APICommand();
@@ -37,6 +40,9 @@ public class APICommandTest {
         assertEquals(null, command.checkCommand(tokens4));
     }
 
+    /**
+     * Tests the getSecuredGetRequest method, located within the ClientRequestGenerator class
+     */
     @Test
     public void testGetSecuredGetRequest() {
         ClientRequestGenerator client = new ClientRequestGenerator();
@@ -48,6 +54,11 @@ public class APICommandTest {
         assertEquals(activeMatch, client.getSecuredGetRequest("https://studentmatchapi.herokuapp.com/get-active"));
     }
 
+    /**
+     * Tests the makeRequest() method, located within the ApiClient class
+     * @throws IOException
+     * @throws InterruptedException
+     */
     @Test
     public void testMakeRequest() throws IOException, InterruptedException {
         ApiClient client = new ApiClient(null);
@@ -61,7 +72,4 @@ public class APICommandTest {
         assertEquals(apiResponseInfo.body(), client.makeRequest(activeInfo, 0).body());
         assertEquals(apiResponseMatch.body(), client.makeRequest(activeMatch, 0).body());
     }
-
-
-
 }
