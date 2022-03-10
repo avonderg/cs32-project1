@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This class tests that the StudentFromDB object behavior is expected.
+ */
 public class DBstudentTest {
 
   /**
