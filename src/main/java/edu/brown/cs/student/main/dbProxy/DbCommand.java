@@ -53,6 +53,7 @@ public class DbCommand implements Command {
 
       //for demo purposes
       this.printResultSet(queryResult);
+      return "";
     }
     else if (tokens.get(0).equals("query")) {
       int i = 1;
@@ -69,6 +70,7 @@ public class DbCommand implements Command {
       }
 
       this.printResultSet(queryResult);
+      return "";
     }
     return null;
   }
