@@ -50,6 +50,7 @@ public class REPL {
           tokens.add(m.group());
         }
 
+        boolean commandFound = false;
         // checks tokens for each of the commands passed into the constructor
         for (Command command : commands) {
 
@@ -58,6 +59,7 @@ public class REPL {
 
           // checkCommand returns null if the command is not found in the tokens
           if (output != null) {
+            commandFound = true;
 
             // if the command is found, print the output (if there is one) and
             // exit the loop (don't check for any more commands)
@@ -66,6 +68,9 @@ public class REPL {
             }
             break;
           }
+        }
+        if (!commandFound) {
+          System.out.println("ERROR: No command found.");
         }
       } else {
         // if the next input line is null, then stop running the REPL
